@@ -39,4 +39,7 @@ main{
     float: right;
 }
 
-
+/* Allow textarea to resize */
+form > textarea {
+    width: 100%;
+}
