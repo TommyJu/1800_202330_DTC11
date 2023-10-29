@@ -2,15 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: rgb(255, 250, 240);
 }
 
 main{
     max-width: 100vw;
 }
-#post-title{
+
+#prev-page{
+    margin: 0 10px;
+    color: black;
+}
+
+#post-title-placeholder{
     display: flex;
     justify-content: space-between;
-    margin: 0 10px;
+    padding: 10px 10px 0 10px;; 
 }
 
 .fa-star{
@@ -39,7 +46,26 @@ main{
     float: right;
 }
 
+
 /* Allow textarea to resize */
 form > textarea {
     width: 100%;
+}
+
+#upload-media-placeholder{
+    border: 1px dashed black;
+    padding: 8px;
+    margin: 5px 50px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.fa-upload {
+    align-self: center;
+    margin-right: 10px;
+}
+
+#upload-media-placeholder > p {
+    align-self: center;
+    margin: 0;
 }
