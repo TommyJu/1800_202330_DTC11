@@ -46,16 +46,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
-.card-container {
+#card-container {
     width: 100%;
     height: 80vh;
     overflow-y: scroll;
     text-align: center;
 }
 
-.card-container h1 {
+#card-container h1 {
     margin-top: 30px;
 }
 
@@ -66,11 +67,29 @@ body {
     background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
-    border-radius: 30px;
+    border-radius: 20px;
+    /* border: solid 5px rgb(255,193,7); */
+    box-shadow: rgba(255, 193, 7, 0.4) -5px 5px, rgba(255,193,7, 0.3) -10px 10px, rgba(255,193,7, 0.2) -15px 15px, rgba(255,193,7, 0.1) -20px 20px, rgba(255,193,7, 0.05) -25px 25px;
 }
 
 footer {
     width: 100%;
     height: 60px;
-    background: rgb(255,193,7);
+    background: #ffc107;
+}
+
+#scroll-to-top {
+    width: 50px;
+    height: 50px;
+    filter: invert(88%) sepia(45%) saturate(0%) hue-rotate(268deg) brightness(112%) contrast(100%);
+}
+
+#scroll-to-top:hover {
+    transition: 0.8s;
+    filter: invert(83%) sepia(28%) saturate(3534%) hue-rotate(353deg) brightness(101%) contrast(101%);
+}
+
+.scroll-to-top-text {
+    color: white;
+    padding-bottom: 30px;
 }
