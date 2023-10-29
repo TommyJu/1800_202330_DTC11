@@ -17,13 +17,13 @@
     <link rel="stylesheet" href="./styles/message.css">
 </head>
 <body>
-    <nav>
-        <button type="button" class="btn">
-            <i class="fa-solid fa-chevron-left fa-lg"></i>
-        </button>
+    <nav class="navbar navbar-expand-lg bg-warning">
+        <a id="prev-page" class="bg-warning" href="#">
+            <i class="fa-solid fa-angle-left fa-2xl"></i>
+        </a>
     </nav>
     <main>
-        <div id="post-title">
+        <div id="post-title-placeholder">
             <h1>Post title</h1>
             <i class="fa-regular fa-star fa-lg"></i>
         </div>
@@ -35,10 +35,11 @@
             <form action="">
                 <textarea id="reply-post" rows="4" cols="50" placeholder="Type comment"></textarea>
                 <br>
-                <div class="mb-3">
-                    <input class="form-control" type="file" id="file-upload" multiple>
+                <div id="upload-media-placeholder">
+                    <i class="fa-solid fa-upload"></i>
+                    <p>Upload media</p>
                 </div>
-                <input id="submit-btn" type="submit" value="Submit">
+                <input id="submit-btn" type="submit" value="Add comment">
             </form>
         </div>
     </main>
