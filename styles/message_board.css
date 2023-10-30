@@ -133,13 +133,6 @@ body {
     
 }
 
-
-footer {
-    width: 100%;
-    height: 90px;
-    background: #ffc107;
-}
-
 #scroll-to-top {
     width: 50px;
     height: 50px;
@@ -154,6 +147,31 @@ footer {
 .scroll-to-top-text {
     color: white;
     padding-bottom: 30px;
+}
+
+footer {
+    width: 100%;
+    height: 90px;
+    background: #ffc107;
+    display: flex;
+    justify-content: center;
+}
+
+#add-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-post img {
+    width: 60px;
+    height: 60px;
+}
+
+#add-post p {
+    color: black;
+    text-align: center;
 }
 
 /* media queries */
