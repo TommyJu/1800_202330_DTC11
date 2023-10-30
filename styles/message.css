@@ -69,3 +69,11 @@ form > textarea {
     align-self: center;
     margin: 0;
 }
+
+/* previous page button */
+
+#prev-page {
+    width: 40px;
+    height: 40px;
+    background-color: inherit;
+}
