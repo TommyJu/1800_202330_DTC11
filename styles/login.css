@@ -34,7 +34,7 @@ a {
 }
 
 body {
-    /* background-color: rgb(33, 37, 41); */
+    background-color: rgb(33, 37, 41);
     background-image: url(https://picsum.photos/id/60/1600/1000);
     background-repeat: no-repeat;
     background-position: center;
