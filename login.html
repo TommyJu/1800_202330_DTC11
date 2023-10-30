@@ -28,41 +28,25 @@
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/login.css">
 
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-warning">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/panda.svg" height="36px" alt="Logo">
-                Neighborhood Connect
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-                <form class="d-flex">
-                    <!-- <button class="btn btn-outline-success me-2" type="button">Sign Up</button>
-                    <button class="btn btn-sm btn-outline-secondary" type="button">Log In</button> -->
-                </form>
-            </div>
-        </div>
-    </nav>
+    <!-- Nav bar -->
+    <nav id="navbarPlaceholder"></nav>
+
     <!-- Login widget -->
     <div class="container">
-        <h1>Let's Login!</h1>
+        <h1 class="display-5 fw-bold">Connect with others in your community.</h1>
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
     </div>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-    
+
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>

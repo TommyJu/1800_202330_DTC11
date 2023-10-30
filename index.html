@@ -16,6 +16,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />    
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
@@ -25,25 +34,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-warning">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/panda.svg" height="36px" alt="Logo">
-                Neighborhood Connect
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-                <form class="d-flex">
-                    <!-- <button class="btn btn-outline-success me-2" type="button">Sign Up</button>
-                    <button class="btn btn-sm btn-outline-secondary" type="button">Log In</button> -->
-                </form>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbarPlaceholder"></nav>
     <!-- call to action -->
     <div class="bg-dark text-secondary px-4 py-5 text-center">
         <div class="py-5">
@@ -54,7 +45,7 @@
                     neighbourhoods.
                 </p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-lg px-4 me-sm-3 fw-bold btn-warning">Connect for free!</button>
+                    <a href="login.html" class="btn btn-lg px-4 me-sm-3 fw-bold btn-warning">Connect for free!</a>
                 </div>
             </div>
         </div>
@@ -92,6 +83,14 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
+    <script>
+        logout();
+    </script>
+    <script src="./scripts/firebaseAPI_DTC11.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/index.js"></script>
 
 </body>
 
