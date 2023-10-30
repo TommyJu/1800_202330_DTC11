@@ -4,13 +4,13 @@
 }
 
 
-navbar {
+/* navbar {
     display: flex;
     flex-direction: row;
     width: 100%;
     background-color: #ffc107;
     height: 80px;
-}
+} */
 
 main {
     background-color: rgb(33, 37, 41);
