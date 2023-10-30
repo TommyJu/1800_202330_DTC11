@@ -37,7 +37,7 @@ a {
 
 nav {
     width: 100%;
-    height: 60px;
+    /* height: 80px; */
 }
 
 body {
@@ -63,18 +63,73 @@ body {
 .card {
     margin: auto;
     width: 70%;
-    height: 260px;
+    height: 460px;
     background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
     border-radius: 20px;
-    /* border: solid 5px rgb(255,193,7); */
+    border: solid 5px black;
     box-shadow: rgba(255, 193, 7, 0.4) -5px 5px, rgba(255,193,7, 0.3) -10px 10px, rgba(255,193,7, 0.2) -15px 15px, rgba(255,193,7, 0.1) -20px 20px, rgba(255,193,7, 0.05) -25px 25px;
+    
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 24px;
+    gap: 12px;
 }
+
+.card-image-and-description {
+    display: flex;
+    height: 90%;
+    gap: 24px;
+}
+
+.image {
+    width: 70%;
+    height: 100%;
+    border-radius: 20px;
+    border: solid 2px black;
+    overflow: hidden;
+    /* Center img inside container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-description {
+    width: 30%;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+}
+
+.card-description > h3 {
+    border: solid 2px black;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    height: 40px;
+    padding: 8px 24px;
+    background-color:#ffc107;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.card-description > p {
+    padding-top: 18px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card > h2 {
+    width: 100%;
+}
+
 
 footer {
     width: 100%;
-    height: 60px;
+    height: 90px;
     background: #ffc107;
 }
 
