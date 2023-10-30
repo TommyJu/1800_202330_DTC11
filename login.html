@@ -28,7 +28,7 @@
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/login.css">
 
 </head>
 
@@ -38,10 +38,10 @@
 
     <!-- Login widget -->
     <div class="container">
-        <h1>Let's Login!</h1>
+        <h1 class="display-5 fw-bold">Connect with others in your community.</h1>
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
     </div>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
 
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>
