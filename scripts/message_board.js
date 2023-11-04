@@ -15,16 +15,16 @@ function displayCardsDynamically(collection) {
             allPosts.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;    
                 var description = doc.data().description; 
-								
+				var category = doc.data().category;
                 
                 var docID = doc.id;          
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 //update title, description and image
-                newcard.querySelector('h2').innerHTML = title;
+                newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
-                
-                // newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
+                newcard.querySelector('.card-category').innerHTML = category;
+                newcard.querySelector('.card-image').src = `./images/postImages/${docID}.jpg`; //Example: NV01.jpg
 
 
                 //attach to card-container
