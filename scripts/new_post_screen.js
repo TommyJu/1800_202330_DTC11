@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('myform');
-    var messageSentDiv = document.getElementById('message-sent'); // Obtiene el div del mensaje "SENT!"
+    var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
     var urlParams = new URLSearchParams(window.location.search);
     var category = urlParams.get('category');
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Listener for authentication state changes
+        // This authentication state listener should be registered once, not on every form submit.
+        // If needed, place this listener outside and use a variable to store the user state.
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                // User is authenticated, gets the user's ID
                 var userId = user.uid;
-
                 var title = document.getElementById('title').value;
                 var description = document.getElementById('description').value;
                 var media = document.getElementById('media').files[0];
@@ -28,22 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 // The rest of the code to add to Firestore
                 db.collection('allPosts').add(postData).then(function () {
                     console.log('Post added successfully!');
-                    // Oculta el formulario
                     form.style.display = 'none';
-                    // Muestra el mensaje "SENT!"
                     messageSentDiv.style.display = 'block';
-                    // Establece un temporizador para redireccionar
+
+                    // Redirect the user to the message board page with the correct category
                     setTimeout(function () {
-                        window.location.href = 'message_board.html'; // Cambia esto por la URL real de tu message board
-                    }, 3000); // Redirecciona después de 3 segundos
+                        window.location.href = `message_board.html?category=${category}`;
+                    }, 3000); // Redirects after 3 seconds
                 }).catch(function (error) {
                     console.error('Error adding post: ', error);
                 });
             } else {
-                // User is not authenticated, handle the situation here
                 console.error('User not signed in.');
-                // Here you can, for example, display an error message or redirect to the login page
+                // Here you could, for example, display an error message or redirect to the login page.
             }
         });
     });
 });
+
