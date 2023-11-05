@@ -2,7 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-color: rgb(255, 250, 240); */
+    color: whitesmoke;
+}
+
+body {
+    background-color: rgb(33, 37, 41);
+    font-family: 'Roboto', sans-serif;
 }
 
 main{
@@ -25,6 +30,7 @@ main{
 }
 
 #post-image-placeholder{
+    background-color: whitesmoke;
     border: 1px solid black;
     height: 30vh;
     margin: 10px;
@@ -38,13 +44,17 @@ main{
     margin: 10px;
 }
 
-#submit-btn{
-    background-color: black;
-    color: whitesmoke;
+.submit-button {
     border-radius: 10px;
-    padding: 0.5em;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #ffc107;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
     float: right;
 }
+
+
 
 
 /* Allow textarea to resize */
@@ -65,10 +75,10 @@ form > textarea {
     margin-right: 10px;
 }
 
-#upload-media-placeholder > p {
+/* #upload-media-placeholder > p {
     align-self: center;
     margin: 0;
-}
+} */
 
 /* previous page button */
 
