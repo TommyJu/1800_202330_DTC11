@@ -5,11 +5,8 @@
 
 body {
     display: flex;
-    /* Activar Flexbox */
     flex-direction: column;
-    /* Organizar hijos (content-wrapper y footer) en una columna vertical */
     min-height: 100vh;
-    /* Asegurar que el body ocupe al menos el alto completo de la ventana del navegador */
 }
 
 
@@ -53,6 +50,16 @@ footer {
     gap: 20px;
 
 
+}
+
+#message-sent {
+    display: flex;
+    align-items: center;
+    color: #ffc107;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 @media (max-width: 480px) {
