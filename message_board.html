@@ -23,8 +23,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />    
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
@@ -35,10 +35,10 @@
 <body>
     <!-- Navbar -->
     <nav id="navbarPlaceholder"></nav>
-    
+
     <section id="card-container">
         <h1>Welcome to the message board.</h1>
-        
+
         <!-- Message board posts -->
         <template id="card-template">
             <div class="card">
@@ -48,7 +48,12 @@
                     </div>
                     <div class="card-description">
                         <h3 class="card-category">Category</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure corporis odit quia similique, exercitationem sed iste. Perferendis eligendi facilis exercitationem quo dicta, porro amet suscipit minima. Optio, error facere. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos repellat harum temporibus ad esse delectus laboriosam! Aut minima adipisci amet vero neque totam facere facilis. Nemo commodi asperiores laudantium iure!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure corporis odit quia
+                            similique, exercitationem sed iste. Perferendis eligendi facilis exercitationem quo dicta,
+                            porro amet suscipit minima. Optio, error facere. Lorem ipsum dolor sit, amet consectetur
+                            adipisicing elit. Dignissimos repellat harum temporibus ad esse delectus laboriosam! Aut
+                            minima adipisci amet vero neque totam facere facilis. Nemo commodi asperiores laudantium
+                            iure!</p>
                     </div>
                 </div>
                 <h2 class="card-title">Your Message Title Here</h2>
@@ -61,7 +66,9 @@
     </section>
     <footer>
         <div id="add-post">
-            <img src="/images/plus-box.svg" alt="">
+            <a id="add-post-link" href="new_post_screen.html">
+                <img src="/images/plus-box.svg" alt="Add a post">
+            </a>
             <p>Add a post</p>
         </div>
     </footer>
