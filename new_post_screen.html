@@ -27,8 +27,13 @@
 <body>
     <navbar id="navbarPlaceholder"></navbar>
 
+<div id="message-sent"
+    style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background-color: rgb(33, 37, 41); padding: 20px;">
+    <p style="text-align: center; font-size: 35px;">Submission Confirmed!</p>
+</div>
+
     <main>
-        <form action="ruta-del-servidor" method="post" enctype="multipart/form-data">
+        <form id="myform" enctype="multipart/form-data">
 
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;">
@@ -56,6 +61,7 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="scripts/new_post_screen.js"></script>
 </body>
 
 </html>
