@@ -20,8 +20,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />    
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
 
 </head>
@@ -33,7 +33,9 @@
     <main>
         <div class="welcome-message">
             <h1>Hello, <span id="name-goes-here"></span>!</h1>
-            <h1>What do you want to explore today?</h1>
+            <div class="phrase">
+                <h1>What do you want to explore today?</h1>
+            </div>
         </div>
 
 
@@ -41,78 +43,106 @@
         <div class="categories d-flex flex-wrap justify-content-center">
 
             <div class="card" style="width: 18rem;">
-                <img src="images/mainchat.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/mainchat.jpg" class="card-img-top" alt="Main chat image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Main Chat</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=mainchat" class="btn btn-warning main-chat-button">Go
+                        there!</a>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <img src="images/pets.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/pets.jpg" class="card-img-top" alt="Pets community image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">Pets Community!</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <h5 class="card-title">Pets Community</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=pets" class="btn btn-warning pets-button">Go there!</a>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <img src="images/Warning.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/warning.jpg" class="card-img-top" alt="Warnings image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Warnings</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="images/sharing.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Item Sharing</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=warnings" class="btn btn-warning warnings-button">Go there!</a>
                 </div>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <img src="images/social.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/sharing.jpg" class="card-img-top" alt="Item Sharing image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Item Sharing</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=itemsharing" class="btn btn-warning item-sharing-button">Go
+                        there!</a>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <img src="images/social.jpg" class="card-img-top" alt="Social Events image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Social Events</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=socialevents" class="btn btn-warning social-events-button">Go
+                        there!</a>
                 </div>
             </div>
-            
+
             <div class="card" style="width: 18rem;">
-                <img src="images/volunteering.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/volunteering.jpg" class="card-img-top" alt="Volunteering image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Volunteering</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, quos?</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=volunteering" class="btn btn-warning volunteering-button">Go
+                        there!</a>
                 </div>
             </div>
-            
+
             <div class="card" style="width: 18rem;">
-                <img src="images/lostandfound.jpg" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="images/lostandfound.jpg" class="card-img-top" alt="Lost and Found image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Lost and Found</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="message_board.html?category=lostandfound" class="btn btn-warning lost-and-found-button">Go
+                        there!</a>
                 </div>
             </div>
-            
+
             <div class="card" style="width: 18rem;">
-                <img src="https://picsum.photos/id/2/200/150" class="card-img-top" alt="..." style="width: 100%; max-height: 150px; object-fit: cover;">
+                <img src="https://picsum.photos/id/2/200/150" class="card-img-top" alt="Others image"
+                    style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Others</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
-                    <a href="#" class="btn btn-warning">Go there!</a>
+                    <a href="message_board.html?category=others" class="btn btn-warning others-button">Go there!</a>
                 </div>
             </div>
 
-        
+
+
         </div>
 
         <footer>
