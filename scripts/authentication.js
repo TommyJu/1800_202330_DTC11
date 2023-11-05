@@ -1,5 +1,19 @@
+// Declare a variable to hold the user ID
+var userID = null;
+
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+// Listen for changes in the authentication state
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // User is signed in, store the user's UID in localStorage
+    localStorage.setItem('userID', user.uid);
+  } else {
+    // User is signed out, clear the UID from localStorage
+    localStorage.removeItem('userID');
+  }
+});
 
 var uiConfig = {
     callbacks: {
@@ -40,7 +54,7 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'message_board.html',
+    signInSuccessUrl: 'message_board_menu.html',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.EmailAuthProvider.PROVIDER_ID
