@@ -6,10 +6,14 @@ scrollToTop.addEventListener("click", () => {
     cardContainer.scrollTop = 0;
 })
 
-function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("card-template"); // Retrieve the HTML element with the ID "card-template" and store it in the cardTemplate variable. 
+function displayCardsDynamically(collection, selectedCategory = null) {
+    let cardTemplate = document.getElementById("card-template");
+    let query = db.collection(collection);
+    if (selectedCategory) { // A filter was added in order to
+        query = query.where('category', '==', selectedCategory);
+    }
 
-    db.collection(collection).get()   //the collection called "allPosts"
+    query.get()
         .then(allPosts => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
             allPosts.forEach(doc => { //iterate thru each doc
@@ -38,4 +42,32 @@ function displayCardsDynamically(collection) {
         })
 }
 
-displayCardsDynamically("allPosts");  //input param is the name of the collection
+
+
+
+
+
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+var category = getParameterByName('category'); 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var urlParams = new URLSearchParams(window.location.search);
+    var category = urlParams.get('category');
+    var addPostLink = document.getElementById('add-post-link');
+
+    if (category && addPostLink) {
+        addPostLink.href = `new_post_screen.html?category=${category}`;
+    }
+    // Display cards based on the category obtained from the URL
+    displayCardsDynamically("allPosts", category);
+});
