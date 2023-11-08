@@ -32,7 +32,7 @@ function displayCardsDynamically(collection, selectedCategory = null) {
 
 
                 //attach to card-container
-                // document.getElementById("card-container").insertBefore(newcard);
+                // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("card-container").insertBefore(
                     newcard, 
                     document.getElementById("scroll-to-top"));
