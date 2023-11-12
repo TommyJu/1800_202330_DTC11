@@ -6,9 +6,41 @@ scrollToTop.addEventListener("click", () => {
 })
 
 
+// Retrieve a name for each post using user id
+
+// currentUser.get().then(userDoc => {
+//     console.log(userDoc.data().name)
+//     newcard.querySelector('.card-user').innerHTML = name;
+// });
+
+// function getName(userID) {
+//     let currentUser = db.collection("users").doc(userID);
+//     currentUser.get().then(userDoc => {
+//         console.log(userDoc.data().name)
+//         return userDoc.data().name;
+//         })
+            
+// }
+
+async function addNameToCard(userID, newcard) {
+    console.log(userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    await currentUser.get().then(userDoc => {
+        // Get the user name
+        var userName = userDoc.data().name;
+        console.log(userName);
+        // Add user name to HTML
+        return userName;
+    }).catch(error => {
+        console.error("Error fetching user data:", error);
+    });
+}
+
+
+
 // ---------- Add cards using the Firestore database ----------
 selectedCategory = null
-function displayCardsDynamically(collection, selectedCategory) {
+async function displayCardsDynamically(collection, selectedCategory) {
     let cardTemplate = document.getElementById("card-template");
     let query = db.collection(collection);
 
@@ -26,7 +58,9 @@ function displayCardsDynamically(collection, selectedCategory) {
 				var category = doc.data().category;
                 var image = doc.data().image;
                 var userID = doc.data().userId;
-                docID = doc.id;
+                console.log(userID);
+                var docID = doc.id;
+                
 
                 // Retrieve the timestamp seconds and convert to milliseconds
                 // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
@@ -39,10 +73,8 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-date').innerHTML = date;
-                // newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-image').src = image;       
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
-
 
                 // Añadir manejador de eventos para enviar nuevos comentarios
                 let submitCommentButton = newcard.querySelector('.submit-comment');
@@ -70,6 +102,8 @@ function displayCardsDynamically(collection, selectedCategory) {
                     newcard, 
                     document.getElementById("scroll-to-top"));
 
+                // newcard.querySelector('.card-user').innerHTML = getName(userID);
+
                 //i++;   //Optional: iterate variable to serve as unique ID
                 // var user = db.collection("users").doc(userID);
                 // var postUserName = null
@@ -81,6 +115,8 @@ function displayCardsDynamically(collection, selectedCategory) {
             })
         })
 }
+
+// ------ Get user name from the users collection then add to cards -------
 
 
 function getParameterByName(name, url = window.location.href) {
