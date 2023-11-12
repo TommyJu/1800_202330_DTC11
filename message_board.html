@@ -39,11 +39,13 @@
     <nav id="navbarPlaceholder"></nav>
 
     <section id="card-container">
-        <h1>Hi <span id="message-board-user-name"></span>. Welcome to the <span id="message-board-category"></span> board.</h1>
+        <h1>Hi <span id="message-board-user-name"></span>. Welcome to the <span id="message-board-category"></span>
+            board.</h1>
 
         <!-- Message board card template -->
         <template id="card-template">
             <div class="card">
+                <h2 class="card-title">Your Message Title Here</h2>
                 <div class="card-image-and-description">
                     <div class="image-container">
                         <img class="card-image" src="https://picsum.photos/seed/21/900/700" alt="">
@@ -58,7 +60,15 @@
                             iure!</p>
                     </div>
                 </div>
-                <h2 class="card-title">Your Message Title Here</h2>
+                <div class="buttons-container">
+                    <div class="like-button">
+                        <img src="images/Like-icon.png" width="25px" alt="">
+                        Like</div>
+
+                    <div class="comment-button">
+                        <img src="images/comment-icon.png" width="25px" alt="">
+                        Commnet</div>
+                </div>
             </div>
         </template>
 
