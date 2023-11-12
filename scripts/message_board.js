@@ -34,8 +34,19 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-image').src = image;
+
+
+
+                // Añadir manejador de eventos para enviar nuevos comentarios
+                let submitCommentButton = newcard.querySelector('.submit-comment');
+                let commentInput = newcard.querySelector('.add-comment input');
+                submitCommentButton.addEventListener('click', () => {
+                    let commentText = commentInput.value;
+                    addCommentToFirestore(commentText, docID); // Función para añadir comentario
+                    commentInput.value = ''; // Limpiar el campo después de enviar
+                });
                 
-                
+        
                 // -------- Image can be toggled with --------
                 // newcard.querySelector('.image-container').style.display = "none";
                 // newcard.querySelector('.image-container').style.display = "block";
@@ -107,3 +118,56 @@ function displayCategory() {
     console.log(category);
 }
 displayCategory()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addCommentToFirestore(commentText, postId) {
+    db.collection('comments').add({
+        text: commentText,
+        postId: postId, // Guardar el ID del post en el comentario
+        // ... otros campos que necesites ...
+    })
+        .then(() => {
+            console.log('Comentario añadido con éxito');
+            // Aquí puedes implementar lógica adicional si es necesario
+        })
+        .catch(error => {
+            console.error('Error al añadir comentario: ', error);
+        });
+}
+
+
+
+// Obtener todos los botones con la clase "comment-button" y los divs de comentarios correspondientes
+const commentButtons = document.querySelectorAll('.comment-button');
+const commentsSections = document.querySelectorAll('.comments-section');
+
+// Agregar un manejador de eventos a cada botón
+commentButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        // Cambiar el estilo del div de comentarios correspondiente a "block" para mostrarlo
+        commentsSections[index].style.display = 'block';
+    });
+});

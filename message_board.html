@@ -61,14 +61,35 @@
                     </div>
                 </div>
                 <div class="buttons-container">
-                    <div class="like-button">
-                        <img src="images/Like-icon.png" width="25px" alt="">
-                        Like</div>
 
-                    <div class="comment-button">
-                        <img src="images/comment-icon.png" width="25px" alt="">
-                        Commnet</div>
+                    <button class="like-button">
+                        <img src="images/Like-icon.png" alt="View" width="25px">
+                        Like
+                    </button>
+
+                    <button class="comment-button">
+                        <img src="images/comment-icon2.png" alt="Comment" width="25px">
+                        Comments <span class="comment-count">0</span>
+                    </button>
                 </div>
+
+
+
+                <div class="comments-section" style="display: none;">
+                    <!-- Lista de Comentarios -->
+                    <div class="comments-list">
+                        <!-- Aquí se cargarán los comentarios -->
+                    </div>
+                
+                    <!-- Añadir un Nuevo Comentario -->
+                    <div class="add-comment">
+                        <input type="text" placeholder="Escribe un comentario...">
+                        <button class="submit-comment">Enviar Comentario</button>
+                    </div>
+                </div>
+
+
+                
             </div>
         </template>
 
