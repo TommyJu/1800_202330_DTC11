@@ -24,6 +24,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 var title = doc.data().title;    
                 var description = doc.data().description; 
 				var category = doc.data().category;
+                var image = doc.data().image;
                 
                 var docID = doc.id;          
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
@@ -32,10 +33,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-category').innerHTML = category;
-                
-                // No images yet, display none
-                // Can toggle a class to control the layout when an image-container is hidden
-                newcard.querySelector('.image-container').style.display = "none";
+                newcard.querySelector('.card-image').src = image;
                 
                 
                 // -------- Image can be toggled with --------
