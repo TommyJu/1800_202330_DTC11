@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 var userId = user.uid;
                 var title = document.getElementById('title').value;
                 var description = document.getElementById('description').value;
-                var media = document.getElementById('media').files[0];
 
                 var postData = {
                     title: title,
@@ -25,10 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
 
                 // The rest of the code to add to Firestore
-                db.collection('allPosts').add(postData).then(function () {
+                db.collection('allPosts').add(postData).then(doc => {
                     console.log('Post added successfully!');
                     form.style.display = 'none';
                     messageSentDiv.style.display = 'block';
+                    console.log(doc.id);
+                    uploadPic(doc.id);
 
                     // Redirect the user to the message board page with the correct category
                     setTimeout(function () {
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Change media preview on file upload
 var ImageFile;
 function listenFileSelect() {
       // listen for file selection
@@ -59,3 +61,49 @@ function listenFileSelect() {
       })
 }
 listenFileSelect();
+
+
+//------------------------------------------------
+// So, a new post document has just been added
+// and it contains a bunch of fields.
+// We want to store the image associated with this post,
+// such that the image name is the postid (guaranteed unique).
+// 
+// This function is called AFTER the post has been created, 
+// and we know the post's document id.
+//------------------------------------------------
+function uploadPic(postDocID) {
+    console.log("inside uploadPic " + postDocID);
+    var storageRef = storage.ref("images/" + postDocID + ".jpg");
+
+    storageRef.put(ImageFile)   //global variable ImageFile
+       
+                   // AFTER .put() is done
+        .then(function () {
+            console.log('2. Uploaded to Cloud Storage.');
+            storageRef.getDownloadURL()
+
+                 // AFTER .getDownloadURL is done
+                .then(function (url) { // Get URL of the uploaded file
+                    console.log("3. Got the download URL.");
+
+                    // Now that the image is on Storage, we can go back to the
+                    // post document, and update it with an "image" field
+                    // that contains the url of where the picture is stored.
+                    db.collection("allPosts").doc(postDocID).update({
+                            "image": url // Save the URL into users collection
+                        })
+                         // AFTER .update is done
+                        .then(function () {
+                            console.log('4. Added pic URL to Firestore.');
+                            // One last thing to do:
+                            // save this postID into an array for the OWNER
+                            // so we can show "my posts" in the future
+                            savePostIDforUser(postDocID);
+                        })
+                })
+        })
+        .catch((error) => {
+             console.log("error uploading to cloud storage");
+        })
+}
