@@ -25,7 +25,7 @@ footer {
     height: 90px;
     background: #ffc107;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #title {
@@ -39,7 +39,6 @@ footer {
     background-color: #ffc107;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
-
 
 
 .button-container {
@@ -61,6 +60,29 @@ footer {
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+#home-button img{
+    width: 60px;
+    height: 60px;
+    filter: brightness(0) invert(0);
+}
+
+#home-button p{
+    color: black;
+    text-align: center;
+}
+
+#back-button img{
+    width: 60px;
+    height: 60px;
+    filter: brightness(0) invert(0);
+}
+
+#back-button p{
+    color: black;
+    text-align: center;
+}
+
 
 @media (max-width: 480px) {
     form {
