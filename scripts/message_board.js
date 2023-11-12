@@ -25,13 +25,19 @@ function displayCardsDynamically(collection, selectedCategory) {
                 var description = doc.data().description; 
 				var category = doc.data().category;
                 var image = doc.data().image;
-                
-                var docID = doc.id;          
+                var userID = doc.data().userId;
+                // Retrieve the timestamp seconds and convert to milliseconds
+                var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
+                console.log(date);
+                // var postUserName = doc.data(userName);
+                // fetch username 
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
-                //update title, description and image
+                // update title, description and image
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
+                newcard.querySelector('.card-image').src = image;
+                newcard.querySelector('.card-date').innerHTML = date;
                 newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-image').src = image;       
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
@@ -64,6 +70,13 @@ function displayCardsDynamically(collection, selectedCategory) {
                     document.getElementById("scroll-to-top"));
 
                 //i++;   //Optional: iterate variable to serve as unique ID
+                // var user = db.collection("users").doc(userID);
+                // var postUserName = null
+                // user.get().then(userDoc => {
+                //     console.log(userDoc)
+                //     postUserName = userDoc.data().name;
+                //     console.log("username:", postUserName)  
+                // })
             })
         })
 }
