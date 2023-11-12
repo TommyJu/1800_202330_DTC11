@@ -58,7 +58,7 @@ main{
 #title-and-star {
     display: flex;
     justify-content: space-between;
-    margin: 10px;
+    margin: 10px 0;
 }
 
 /* Allow textarea to resize */
@@ -90,4 +90,10 @@ form > textarea {
     width: 40px;
     height: 40px;
     background-color: inherit;
+}
+
+/* align date on right */
+#posted-date-placeholder{
+    margin: 0 10px;
+    color: grey;
 }
