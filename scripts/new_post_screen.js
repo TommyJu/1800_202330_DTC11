@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     description: description,
                     category: category,
                     userId: userId,
+                    date: new Date().toLocaleDateString()
                     // The URL of the uploaded file will go here
                 };
 
