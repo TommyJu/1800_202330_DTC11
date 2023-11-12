@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     description: description,
                     category: category,
                     userId: userId,
+                    last_updated: firebase.firestore.FieldValue
+                       .serverTimestamp() //current system time
                     date: new Date().toLocaleDateString()
                     // The URL of the uploaded file will go here
                 };
@@ -120,7 +122,6 @@ function savePostIDforUser(postDocID) {
           })
           .then(() =>{
                 console.log("5. Saved to user's document!");
-                                alert ("Post is complete!");
                 //window.location.href = "showposts.html";
            })
            .catch((error) => {
