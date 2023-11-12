@@ -26,11 +26,12 @@ function displayCardsDynamically(collection, selectedCategory) {
 				var category = doc.data().category;
                 var image = doc.data().image;
                 var userID = doc.data().userId;
+                docID = doc.id;
+
                 // Retrieve the timestamp seconds and convert to milliseconds
-                var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
-                console.log(date);
-                // var postUserName = doc.data(userName);
-                // fetch username 
+                // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
+                var date = Date(doc.data().last_updated);
+                console.log(doc.data().last_updated);
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 // update title, description and image
@@ -38,7 +39,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-date').innerHTML = date;
-                newcard.querySelector('.card-category').innerHTML = category;
+                // newcard.querySelector('.card-category').innerHTML = category;
                 newcard.querySelector('.card-image').src = image;       
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
