@@ -159,13 +159,57 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 5px;
+    margin-top: 20px;
+    border-top: solid 2px rgb(109, 106, 106);
+    padding-top: 10px;
 }
 
 .comment-button {
+    background-color: white;
+    border: none;
+    padding: 5px 10px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 5px;
+    font-size: 16px;
+    color: rgb(34, 30, 30);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+
+}
+
+.comment-button:hover {
+    background-color: #eaeaea;
+}
+
+.comment-button img {
+    width: 25px;/
+    height: auto;
+}
+
+.like-button {
+    background-color: white;
+    border: none;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    color: rgb(34, 30, 30);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.like-button:hover {
+    background-color: #eaeaea;
+}
+
+.like-button img {
+    width: 25px;/ height: auto;
 }
 
 #scroll-to-top {

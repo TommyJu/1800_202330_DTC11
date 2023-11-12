@@ -49,7 +49,9 @@
                 <p class="card-date"></p>
                 <div class="card-image-and-description">
                     <div class="image-container">
-                        <img class="card-image" src="https://picsum.photos/seed/21/900/700" alt="">
+                        <a class="card-link" href="#">
+                            <img class="card-image" src="https://picsum.photos/seed/21/900/700" alt="">
+                        </a>
                     </div>
                     <div class="card-description">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure corporis odit quia
@@ -70,6 +72,36 @@
                     </div>
                     
                 </div>
+                <div class="buttons-container">
+
+                    <button class="like-button">
+                        <img src="images/Like-icon.png" alt="View" width="25px">
+                        Like
+                    </button>
+
+                    <button class="comment-button">
+                        <img src="images/comment-icon2.png" alt="Comment" width="25px">
+                        Comments <span class="comment-count">0</span>
+                    </button>
+                </div>
+
+
+
+                <div class="comments-section" style="display: none;">
+                    <!-- Lista de Comentarios -->
+                    <div class="comments-list">
+                        <!-- Aquí se cargarán los comentarios -->
+                    </div>
+                
+                    <!-- Añadir un Nuevo Comentario -->
+                    <div class="add-comment">
+                        <input type="text" placeholder="Escribe un comentario...">
+                        <button class="submit-comment">Enviar Comentario</button>
+                    </div>
+                </div>
+
+
+                
             </div>
         </template>
 

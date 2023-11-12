@@ -37,7 +37,8 @@ main{
 }
 
 #post-description-placeholder {
-    margin: 20px 10px;
+    margin: 20px;
+    font-size: 30px;
 }
 
 #post-comment {
@@ -54,8 +55,12 @@ main{
     float: right;
 }
 
-
-
+/* Make title and star in the same line */
+#title-and-star {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
 
 /* Allow textarea to resize */
 form > textarea {
