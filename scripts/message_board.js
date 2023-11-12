@@ -28,7 +28,20 @@ function displayCardsDynamically(collection, selectedCategory = null) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-category').innerHTML = category;
-                newcard.querySelector('.card-image').src = `./images/postImages/${docID}.jpg`; //Example: NV01.jpg
+                
+                // No images yet, display none
+                // Can toggle a class to control the layout when an image-container is hidden
+                newcard.querySelector('.image-container').style.display = "none";
+                
+                
+                // -------- Image can be toggled with --------
+                // newcard.querySelector('.image-container').style.display = "none";
+                // newcard.querySelector('.image-container').style.display = "block";
+
+
+                // -------- Can use this code to add a card image when a new card is created -------
+                // newcard.querySelector('.card-image').src = "";
+                // newcard.querySelector('.image-container').style.display = "block";
 
 
                 //attach to card-container
