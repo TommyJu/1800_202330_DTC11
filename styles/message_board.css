@@ -84,14 +84,9 @@ body {
     text-align: left;
     padding: 24px;
     gap: 12px;
-}
 
-.card {
-    /* Estilos existentes de tu tarjeta */
     max-height: 1000px;
-    /* Ajusta según sea necesario */
     overflow-y: auto;
-    /* Habilita el desplazamiento vertical si el contenido excede el max-height */
 }
 
 
