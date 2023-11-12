@@ -186,29 +186,6 @@ function displayCategory() {
 displayCategory()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function addCommentToFirestore(commentText, postId) {
     db.collection('comments').add({
         text: commentText,
