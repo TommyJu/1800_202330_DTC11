@@ -26,6 +26,8 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Other libraries go here -->
+    <script src="https://kit.fontawesome.com/f35c321b59.js" crossorigin="anonymous"></script>
+
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/message_board.css">
@@ -66,10 +68,18 @@
     </section>
     <footer>
         <div id="add-post">
-            <a id="add-post-link" href="new_post_screen.html">
-                <img src="/images/plus-box.svg" alt="Add a post">
-            </a>
-            <p>Add a post</p>
+            <div id="home-button">
+                <a href="menu.html">
+                    <img src="/images/home button.webp" alt="">
+                </a>
+                <p>Home</p>
+            </div>
+            <div>
+                <a id="add-post-link" href="new_post_screen.html">
+                    <img src="/images/plus-box.svg" alt="Add a post">
+                </a>
+                <p>Add a post</p>
+            </div>
         </div>
     </footer>
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
@@ -77,6 +87,7 @@
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/message_board.js"></script>
+    <script src="/scripts/view_message.js"></script>
 </body>
 
 </html>

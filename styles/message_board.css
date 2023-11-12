@@ -161,14 +161,15 @@ footer {
     width: 100%;
     height: 90px;
     background: #ffc107;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    
 }
 
 #add-post {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -180,6 +181,20 @@ footer {
 #add-post p {
     color: black;
     text-align: center;
+}
+
+#home-button {
+    width: 78px;
+    height: 84px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home-button img {
+    width: 60px;
+    height: 60px;
+    filter: brightness(0) invert(0);
 }
 
 /* media queries */
@@ -204,6 +219,4 @@ footer {
 }
 
 @media (max-width: 350px) {
-   
-
 }
