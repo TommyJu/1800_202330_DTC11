@@ -4,8 +4,8 @@ function displayPostInfo() {
     console.log( ID );
 
     // doublecheck: is your collection called "Reviews" or "reviews"?
-    db.collection( "allPosts" )
-        .doc( ID )
+    db.collection("allPosts")
+        .doc(ID)
         .get()
         .then( doc => {
             thisPost = doc.data();
@@ -13,7 +13,7 @@ function displayPostInfo() {
             postTitle = doc.data().title;
             
             // only populate title, and image
-            document.getElementById( "post-title-placeholder" ).innerHTML = postTitle;
+            document.getElementById("post-title-placeholder").innerHTML = postTitle;
             // let imgEvent = document.querySelector( "post-image-placeholder" );
             // imgEvent.src = "../images/" + postImg + ".jpg";
         } );

@@ -1,21 +1,42 @@
-// scroll to top
+// --------- Scroll to top button ---------
 const scrollToTop = document.getElementById("scroll-to-top");
 const cardContainer = document.getElementById("card-container");
-
 scrollToTop.addEventListener("click", () => {
     cardContainer.scrollTop = 0;
 })
 
+// ---------- Add user name and category to message board title ---------
+const messageBoardCategory = document.getElementById("message-board-category")
+const messageBoardUserName = document.getElementById("message-board-user-name");
+
+function insertNameFromFirestore() {
+    var userID = localStorage.getItem("userID");
+    console.log(userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    currentUser.get().then(userDoc => {
+        // Get the user name
+        var userName = userDoc.data().name;
+        console.log(userName);
+        // Add user name to html
+        messageBoardUserName.innerText = userName;
+    }) 
+}
+
+insertNameFromFirestore();
+
+// ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(collection, selectedCategory = null) {
     let cardTemplate = document.getElementById("card-template");
     let query = db.collection(collection);
-    if (selectedCategory) { // A filter was added in order to
+
+    // Filter by category using selectedCategory
+    if (selectedCategory) { 
         query = query.where('category', '==', selectedCategory);
     }
 
     query.get()
         .then(allPosts => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
+            // Create each message board post
             allPosts.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;    
                 var description = doc.data().description; 
@@ -54,11 +75,6 @@ function displayCardsDynamically(collection, selectedCategory = null) {
             })
         })
 }
-
-
-
-
-
 
 
 function getParameterByName(name, url = window.location.href) {
