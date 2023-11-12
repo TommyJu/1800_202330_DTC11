@@ -29,7 +29,6 @@ function uploadPic(postDocID) {
     var storageRef = storage.ref("images/" + postDocID + ".jpg");
 
     storageRef.put(ImageFile)   //global variable ImageFile
-       
                    // AFTER .put() is done
         .then(function () {
             console.log('2. Uploaded to Cloud Storage.');
@@ -59,6 +58,43 @@ function uploadPic(postDocID) {
              console.log("error uploading to cloud storage");
         })
 }
+
+
+// Add user name to post document
+// function saveUserName(postDocID) {
+//     firebase.auth().onAuthStateChanged(user => {
+//           console.log("user id is: " + user.uid);
+//           console.log("postdoc id is: " + postDocID);
+//           userName = db.collection("users").doc(user.uid).data().name;
+//           console.log(userName);
+
+//           db.collection("allPosts").doc(postDocID).update({
+//                 userName : userName
+//           })
+//           .then(() =>{
+//                 console.log("6. Saved user name!");
+//                 //window.location.href = "showposts.html";
+//            })
+//            .catch((error) => {
+//                 console.error("Error writing document: ", error);
+//            });
+//     })
+// }
+var userName; // create userName global variable using userID in local storage
+function saveUserName() {
+    var userID = localStorage.getItem("userID");
+    console.log("userid from local storage:", userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    currentUser.get().then(userDoc => {
+        // Get the user name
+        userName = userDoc.data().name; // overwrite global variable
+        console.log("from saveUserName:", userName);
+        // Add user name to html
+    })
+}
+saveUserName();
+
+
         //--------------------------------------------
 //saves the post ID for the user, in an array
 //--------------------------------------------
@@ -80,11 +116,13 @@ function savePostIDforUser(postDocID) {
 }
 
 
+// Add post to database on submit
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('myform');
     var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
     var urlParams = new URLSearchParams(window.location.search);
     var category = urlParams.get('category');
+
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -96,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var userId = user.uid;
                 console.log(userId);
                 console.log(user);
+                console.log(userName); // global variable
                 var title = document.getElementById('title').value;
                 var description = document.getElementById('description').value;
 
@@ -104,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     description: description,
                     category: category,
                     userId: userId,
+                    userName: userName, // global variable
                     last_updated: firebase.firestore.FieldValue
                        .serverTimestamp() //current system time
                     // The URL of the uploaded file will go here

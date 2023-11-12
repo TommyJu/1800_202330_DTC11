@@ -22,10 +22,10 @@ scrollToTop.addEventListener("click", () => {
             
 // }
 
-async function addNameToCard(userID, newcard) {
+function addNameToCard(userID, newcard) {
     console.log(userID);
     currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
-    await currentUser.get().then(userDoc => {
+    currentUser.get().then(userDoc => {
         // Get the user name
         var userName = userDoc.data().name;
         console.log(userName);
