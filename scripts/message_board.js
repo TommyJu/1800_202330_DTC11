@@ -45,7 +45,7 @@ async function displayCardsDynamically(collection, selectedCategory) {
     let query = db.collection(collection);
 
     // Filter by category using selectedCategory
-    if (selectedCategory) { 
+    if (selectedCategory) {
         query = query.where('category', '==', selectedCategory);
     }
 
@@ -53,9 +53,9 @@ async function displayCardsDynamically(collection, selectedCategory) {
         .then(allPosts => {
             // Create each message board post
             allPosts.forEach(doc => { //iterate thru each doc
-                var title = doc.data().title;    
-                var description = doc.data().description; 
-				var category = doc.data().category;
+                var title = doc.data().title;
+                var description = doc.data().description;
+                var category = doc.data().category;
                 var image = doc.data().image;
                 var userID = doc.data().userId;
                 console.log(userID);
@@ -73,7 +73,7 @@ async function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-date').innerHTML = date;
-                newcard.querySelector('.card-image').src = image;       
+                newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
                 // Añadir manejador de eventos para enviar nuevos comentarios
@@ -84,8 +84,8 @@ async function displayCardsDynamically(collection, selectedCategory) {
                     addCommentToFirestore(commentText, docID); // Función para añadir comentario
                     commentInput.value = ''; // Limpiar el campo después de enviar
                 });
-                
-        
+
+
                 // -------- Image can be toggled with --------
                 // newcard.querySelector('.image-container').style.display = "none";
                 // newcard.querySelector('.image-container').style.display = "block";
@@ -99,12 +99,28 @@ async function displayCardsDynamically(collection, selectedCategory) {
                 //attach to card-container
                 // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("card-container").insertBefore(
-                    newcard, 
+                    newcard,
                     document.getElementById("scroll-to-top"));
 
                 // newcard.querySelector('.card-user').innerHTML = getName(userID);
 
                 //i++;   //Optional: iterate variable to serve as unique ID
+
+
+
+
+
+                // Get all buttons with the class "comment-button" and the corresponding comment divs
+                const commentButtons = document.querySelectorAll('.comment-button');
+                const commentsSections = document.querySelectorAll('.comments-section');
+
+                // Add an event handler to each button
+                commentButtons.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        // Change the style of the corresponding comment div to "block" to show it
+                        commentsSections[index].style.display = 'block';
+                    });
+                });
                 // var user = db.collection("users").doc(userID);
                 // var postUserName = null
                 // user.get().then(userDoc => {
@@ -128,7 +144,7 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-var category = getParameterByName('category'); 
+var category = getParameterByName('category');
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -159,7 +175,7 @@ function displayUserName() {
         console.log(userName);
         // Add user name to html
         messageBoardUserName.innerText = userName;
-    }) 
+    })
 }
 displayUserName();
 
@@ -197,6 +213,9 @@ function addCommentToFirestore(commentText, postId) {
     db.collection('comments').add({
         text: commentText,
         postId: postId, // Guardar el ID del post en el comentario
+        userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
         // ... otros campos que necesites ...
     })
         .then(() => {
@@ -210,14 +229,3 @@ function addCommentToFirestore(commentText, postId) {
 
 
 
-// Obtener todos los botones con la clase "comment-button" y los divs de comentarios correspondientes
-const commentButtons = document.querySelectorAll('.comment-button');
-const commentsSections = document.querySelectorAll('.comments-section');
-
-// Agregar un manejador de eventos a cada botón
-commentButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        // Cambiar el estilo del div de comentarios correspondiente a "block" para mostrarlo
-        commentsSections[index].style.display = 'block';
-    });
-});
