@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     description: description,
                     category: category,
                     userId: userId,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     // The URL of the uploaded file will go here
                 };
 
