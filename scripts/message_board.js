@@ -13,7 +13,7 @@ function displayCardsDynamically(collection, selectedCategory) {
     let query = db.collection(collection);
 
     // Filter by category using selectedCategory
-    if (selectedCategory) { 
+    if (selectedCategory) {
         query = query.where('category', '==', selectedCategory);
     }
 
@@ -21,19 +21,19 @@ function displayCardsDynamically(collection, selectedCategory) {
         .then(allPosts => {
             // Create each message board post
             allPosts.forEach(doc => { //iterate thru each doc
-                var title = doc.data().title;    
-                var description = doc.data().description; 
-				var category = doc.data().category;
+                var title = doc.data().title;
+                var description = doc.data().description;
+                var category = doc.data().category;
                 var image = doc.data().image;
-                
-                var docID = doc.id;          
+
+                var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 //update title, description and image
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-category').innerHTML = category;
-                newcard.querySelector('.card-image').src = image;       
+                newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
 
@@ -45,8 +45,8 @@ function displayCardsDynamically(collection, selectedCategory) {
                     addCommentToFirestore(commentText, docID); // Función para añadir comentario
                     commentInput.value = ''; // Limpiar el campo después de enviar
                 });
-                
-        
+
+
                 // -------- Image can be toggled with --------
                 // newcard.querySelector('.image-container').style.display = "none";
                 // newcard.querySelector('.image-container').style.display = "block";
@@ -60,7 +60,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 //attach to card-container
                 // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("card-container").insertBefore(
-                    newcard, 
+                    newcard,
                     document.getElementById("scroll-to-top"));
 
                 //i++;   //Optional: iterate variable to serve as unique ID
@@ -94,7 +94,7 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-var category = getParameterByName('category'); 
+var category = getParameterByName('category');
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -125,7 +125,7 @@ function displayUserName() {
         console.log(userName);
         // Add user name to html
         messageBoardUserName.innerText = userName;
-    }) 
+    })
 }
 displayUserName();
 
@@ -165,7 +165,7 @@ function addCommentToFirestore(commentText, postId) {
         postId: postId, // Guardar el ID del post en el comentario
         userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        
+
         // ... otros campos que necesites ...
     })
         .then(() => {
