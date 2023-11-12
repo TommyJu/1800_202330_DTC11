@@ -33,8 +33,8 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
                 newcard.querySelector('.card-category').innerHTML = category;
-                newcard.querySelector('.card-image').src = image;
-                
+                newcard.querySelector('.card-image').src = image;       
+                newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
                 
                 // -------- Image can be toggled with --------
                 // newcard.querySelector('.image-container').style.display = "none";
