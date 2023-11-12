@@ -83,6 +83,21 @@ footer {
     text-align: center;
 }
 
+#media-preview {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+#media {
+    width: 100px;
+    height: auto;
+}
+
+#media-container {
+    display: flex
+}
+
 
 @media (max-width: 480px) {
     form {

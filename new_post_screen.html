@@ -44,8 +44,13 @@
                 placeholder="Describe your post" style="width: 100%;"></textarea>
             <br><br>
 
-            <label for="media">Attach a photo or video</label>
-            <input class="chose-button" type="file" id="media" name="media" accept="image/*,video/*">
+            <p>Attach a photo or video:</p>
+            <div id="media-container">
+                <input type="file" id="media-input" name="media" accept="image/*,video/*">
+                <div id="media-preview">
+                    <img id="media">
+                </div>
+            </div>
             <br><br>
 
             <div class="button-container">
