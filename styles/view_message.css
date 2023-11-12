@@ -30,14 +30,14 @@ main{
 }
 
 #post-image-placeholder{
-    background-color: whitesmoke;
-    border: 1px solid black;
-    height: 30vh;
-    margin: 10px;
+    height: auto;
+    max-width: 100%;
+    padding:10px;
 }
 
 #post-description-placeholder {
-    margin: 20px 10px;
+    margin: 20px;
+    font-size: 30px;
 }
 
 #post-comment {
@@ -54,8 +54,12 @@ main{
     float: right;
 }
 
-
-
+/* Make title and star in the same line */
+#title-and-star {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
 
 /* Allow textarea to resize */
 form > textarea {

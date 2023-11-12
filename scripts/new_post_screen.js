@@ -1,52 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('myform');
-    var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
-    var urlParams = new URLSearchParams(window.location.search);
-    var category = urlParams.get('category');
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // This authentication state listener should be registered once, not on every form submit.
-        // If needed, place this listener outside and use a variable to store the user state.
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                var userId = user.uid;
-                var title = document.getElementById('title').value;
-                var description = document.getElementById('description').value;
-
-                var postData = {
-                    title: title,
-                    description: description,
-                    category: category,
-                    userId: userId,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    // The URL of the uploaded file will go here
-                };
-
-                // The rest of the code to add to Firestore
-                db.collection('allPosts').add(postData).then(doc => {
-                    console.log('Post added successfully!');
-                    form.style.display = 'none';
-                    messageSentDiv.style.display = 'block';
-                    console.log(doc.id);
-                    uploadPic(doc.id);
-
-                    // Redirect the user to the message board page with the correct category
-                    setTimeout(function () {
-                        window.location.href = `message_board.html?category=${category}`;
-                    }, 3000); // Redirects after 3 seconds
-                }).catch(function (error) {
-                    console.error('Error adding post: ', error);
-                });
-            } else {
-                console.error('User not signed in.');
-                // Here you could, for example, display an error message or redirect to the login page.
-            }
-        });
-    });
-});
-
 // Change media preview on file upload
 var ImageFile;
 function listenFileSelect() {
@@ -78,7 +29,6 @@ function uploadPic(postDocID) {
     var storageRef = storage.ref("images/" + postDocID + ".jpg");
 
     storageRef.put(ImageFile)   //global variable ImageFile
-       
                    // AFTER .put() is done
         .then(function () {
             console.log('2. Uploaded to Cloud Storage.');
@@ -107,6 +57,43 @@ function uploadPic(postDocID) {
         .catch((error) => {
              console.log("error uploading to cloud storage");
         })
+}
+
+
+// Add user name to post document
+// function saveUserName(postDocID) {
+//     firebase.auth().onAuthStateChanged(user => {
+//           console.log("user id is: " + user.uid);
+//           console.log("postdoc id is: " + postDocID);
+//           userName = db.collection("users").doc(user.uid).data().name;
+//           console.log(userName);
+
+//           db.collection("allPosts").doc(postDocID).update({
+//                 userName : userName
+//           })
+//           .then(() =>{
+//                 console.log("6. Saved user name!");
+//                 //window.location.href = "showposts.html";
+//            })
+//            .catch((error) => {
+//                 console.error("Error writing document: ", error);
+//            });
+//     })
+// }
+var userName; // create userName global variable using userID in local storage
+function saveUserName() {
+    var userID = localStorage.getItem("userID");
+    console.log("userid from local storage:", userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    currentUser.get().then(userDoc => {
+        // Get the user name
+        userName = userDoc.data().name; // overwrite global variable
+        console.log("from saveUserName:", userName);
+        // Add user name to html
+    })
+}
+saveUserName();
+
 
         //--------------------------------------------
 //saves the post ID for the user, in an array
@@ -120,7 +107,6 @@ function savePostIDforUser(postDocID) {
           })
           .then(() =>{
                 console.log("5. Saved to user's document!");
-                                alert ("Post is complete!");
                 //window.location.href = "showposts.html";
            })
            .catch((error) => {
@@ -128,4 +114,60 @@ function savePostIDforUser(postDocID) {
            });
     })
 }
-}
+
+
+// Add post to database on submit
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('myform');
+    var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
+    var urlParams = new URLSearchParams(window.location.search);
+    var category = urlParams.get('category');
+
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // This authentication state listener should be registered once, not on every form submit.
+        // If needed, place this listener outside and use a variable to store the user state.
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userId = user.uid;
+                console.log(userId);
+                console.log(user);
+                console.log(userName); // global variable
+                var title = document.getElementById('title').value;
+                var description = document.getElementById('description').value;
+
+                var postData = {
+                    title: title,
+                    description: description,
+                    category: category,
+                    userId: userId,
+                    userName: userName, // global variable
+                    last_updated: firebase.firestore.FieldValue
+                       .serverTimestamp() //current system time
+                    // The URL of the uploaded file will go here
+                };
+
+                // The rest of the code to add to Firestore
+                db.collection('allPosts').add(postData).then(doc => {
+                    console.log('Post added successfully!');
+                    form.style.display = 'none';
+                    messageSentDiv.style.display = 'block';
+                    console.log(doc.id);
+                    uploadPic(doc.id);
+
+                    // Redirect the user to the message board page with the correct category
+                    setTimeout(function () {
+                        window.location.href = `message_board.html?category=${category}`;
+                    }, 3000); // Redirects after 3 seconds
+                }).catch(function (error) {
+                    console.error('Error adding post: ', error);
+                });
+            } else {
+                console.error('User not signed in.');
+                // Here you could, for example, display an error message or redirect to the login page.
+            }
+        });
+    });
+});

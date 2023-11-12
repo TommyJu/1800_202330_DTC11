@@ -24,6 +24,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <!-- cloud storage -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Other libraries go here -->
     <script src="https://kit.fontawesome.com/f35c321b59.js" crossorigin="anonymous"></script>
@@ -46,6 +48,8 @@
         <template id="card-template">
             <div class="card">
                 <h2 class="card-title">Your Message Title Here</h2>
+                <p class="card-date"></p>
+                <p class="card-user"></p>
                 <div class="card-image-and-description">
                     <div class="image-container">
                         <a class="card-link" href="#">
@@ -54,6 +58,7 @@
                     </div>
                     <div class="card-description">
                         <h3 class="card-category">Category</h3>
+                        <p>Lorem ipsum dolor sit amet 
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure corporis odit quia
                             similique, exercitationem sed iste. Perferendis eligendi facilis exercitationem quo dicta,
                             porro amet suscipit minima. Optio, error facere. Lorem ipsum dolor sit, amet consectetur
@@ -100,20 +105,19 @@
         <p class="scroll-to-top-text">Click to scroll to top</p>
     </section>
     <footer>
-        <div id="add-post">
+        
             <div id="home-button">
                 <a href="menu.html">
                     <img src="/images/home button.webp" alt="">
+                    <p>Home</p>
                 </a>
-                <p>Home</p>
             </div>
-            <div>
+            <div id="add-post">
                 <a id="add-post-link" href="new_post_screen.html">
                     <img src="/images/plus-box.svg" alt="Add a post">
+                    <p>Add post</p>
                 </a>
-                <p>Add a post</p>
             </div>
-        </div>
     </footer>
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>

@@ -6,9 +6,41 @@ scrollToTop.addEventListener("click", () => {
 })
 
 
+// Retrieve a name for each post using user id
+
+// currentUser.get().then(userDoc => {
+//     console.log(userDoc.data().name)
+//     newcard.querySelector('.card-user').innerHTML = name;
+// });
+
+// function getName(userID) {
+//     let currentUser = db.collection("users").doc(userID);
+//     currentUser.get().then(userDoc => {
+//         console.log(userDoc.data().name)
+//         return userDoc.data().name;
+//         })
+
+// }
+
+function addNameToCard(userID, newcard) {
+    console.log(userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    currentUser.get().then(userDoc => {
+        // Get the user name
+        var userName = userDoc.data().name;
+        console.log(userName);
+        // Add user name to HTML
+        return userName;
+    }).catch(error => {
+        console.error("Error fetching user data:", error);
+    });
+}
+
+
+
 // ---------- Add cards using the Firestore database ----------
 selectedCategory = null
-function displayCardsDynamically(collection, selectedCategory) {
+async function displayCardsDynamically(collection, selectedCategory) {
     let cardTemplate = document.getElementById("card-template");
     let query = db.collection(collection);
 
@@ -25,21 +57,28 @@ function displayCardsDynamically(collection, selectedCategory) {
                 var description = doc.data().description;
                 var category = doc.data().category;
                 var image = doc.data().image;
-
+                var userID = doc.data().userId;
+                console.log(userID);
                 var docID = doc.id;
+
+
+                // Retrieve the timestamp seconds and convert to milliseconds
+                // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
+                var date = Date(doc.data().last_updated);
+                console.log(doc.data().last_updated);
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
-                //update title, description and image
+                // update title, description and image
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description > p').innerHTML = description;
-                newcard.querySelector('.card-category').innerHTML = category;
+                newcard.querySelector('.card-image').src = image;
+                newcard.querySelector('.card-date').innerHTML = date;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
-
                 // Añadir manejador de eventos para enviar nuevos comentarios
                 let commentsListDiv = newcard.querySelector('.comments-list');
-                
+
 
 
                 let submitCommentButton = newcard.querySelector('.submit-comment');
@@ -64,7 +103,7 @@ function displayCardsDynamically(collection, selectedCategory) {
 
 
                 // Referencia al contenedor donde se insertarán los comentarios
-                
+
 
                 // Obtener los comentarios del post específico
                 db.collection('comments').where('postId', '==', doc.id).orderBy('timestamp', 'desc').get()
@@ -102,6 +141,8 @@ function displayCardsDynamically(collection, selectedCategory) {
                     newcard,
                     document.getElementById("scroll-to-top"));
 
+                // newcard.querySelector('.card-user').innerHTML = getName(userID);
+
                 //i++;   //Optional: iterate variable to serve as unique ID
 
 
@@ -119,9 +160,18 @@ function displayCardsDynamically(collection, selectedCategory) {
                         commentsSections[index].style.display = 'block';
                     });
                 });
+                // var user = db.collection("users").doc(userID);
+                // var postUserName = null
+                // user.get().then(userDoc => {
+                //     console.log(userDoc)
+                //     postUserName = userDoc.data().name;
+                //     console.log("username:", postUserName)  
+                // })
             })
         })
 }
+
+// ------ Get user name from the users collection then add to cards -------
 
 
 function getParameterByName(name, url = window.location.href) {
@@ -175,12 +225,6 @@ function displayCategory() {
 displayCategory()
 
 
-
-
-
-
-
-
 function getUserName(userId) {
     return db.collection('users').doc(userId).get().then(userDoc => {
         if (userDoc.exists) {
@@ -192,38 +236,43 @@ function getUserName(userId) {
 }
 
 
+
+
+
+
+
 function addCommentToFirestore(commentText, postId, commentsListDiv) {
     const userId = localStorage.getItem('userID');
     getUserName(userId).then(userName => {
-    db.collection('comments').add({
-        text: commentText,
-        postId: postId, // Guardar el ID del post en el comentario
-        userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
-        userName: userName,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        db.collection('comments').add({
+            text: commentText,
+            postId: postId, // Guardar el ID del post en el comentario
+            userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
+            userName: userName,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
-        // ... otros campos que necesites ...
-    })
-        .then(() => {
-            console.log('Comentario añadido con éxito');
-            // Aquí puedes implementar lógica adicional si es necesario
+            // ... otros campos que necesites ...
+        })
+            .then(() => {
+                console.log('Comentario añadido con éxito');
+                // Aquí puedes implementar lógica adicional si es necesario
 
-            // Actualizar la UI aquí
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment');
-            commentDiv.innerHTML = `
+                // Actualizar la UI aquí
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
                 <p><strong>User:</strong> ${localStorage.getItem('userID')}</p>
                 <p>${commentText}</p>
                 <span>${new Date()}</span>
             `;
 
-            // Agregar el comentario a la lista de comentarios
-            commentsListDiv.appendChild(commentDiv);
-        })
-        .catch(error => {
-            console.error('Error al añadir comentario: ', error);
-        });
-    });    
+                // Agregar el comentario a la lista de comentarios
+                commentsListDiv.appendChild(commentDiv);
+            })
+            .catch(error => {
+                console.error('Error al añadir comentario: ', error);
+            });
+    });
 
 }
 
