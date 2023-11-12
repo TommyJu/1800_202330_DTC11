@@ -35,12 +35,15 @@
     <a href="message_board.html">
         <img id="prev-page" src="/images/angle-left-solid.svg" alt="">
     </a>
-    <main>
+    <main id="post-template">
         <div id="title-and-star">
             <h1 id="post-title-placeholder">Post title</h1>
             <i class="fa-regular fa-star fa-lg"></i>
         </div>
-        <div id="post-image-placeholder"></div>
+        <div>
+        <div>
+            <img id="post-image-placeholder" src="#" alt="#">
+        </div>
         <div id="post-description-placeholder">
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque possimus cum sunt laborum maiores cumque! Non, vel dicta consectetur nihil nam praesentium sint doloremque? Esse, eligendi voluptatibus? Provident, quaerat reiciendis?</p>
         </div>
@@ -61,5 +64,6 @@
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/view_message.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 </body>
 </html>
