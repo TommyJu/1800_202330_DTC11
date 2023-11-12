@@ -9,11 +9,13 @@ function dynamicallyPopulatePost(){
             console.log(postID.data().title)
             console.log(postID.data().image)
             console.log(postID.data().description);
+            console.log(postID.data().date);
 
             // document.getElementById("post-category").innerText = postID.data().category;
             document.getElementById("post-title-placeholder").innerText = postID.data().title;
             document.getElementById("post-image-placeholder").src = postID.data().image;
             document.getElementById("post-description-placeholder").innerText = postID.data().description;
+            document.getElementById("posted-date-placeholder").innerText = postID.data().date
             
         })
 }
