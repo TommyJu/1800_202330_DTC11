@@ -64,6 +64,22 @@ function displayCardsDynamically(collection, selectedCategory) {
                     document.getElementById("scroll-to-top"));
 
                 //i++;   //Optional: iterate variable to serve as unique ID
+
+
+
+
+
+                // Get all buttons with the class "comment-button" and the corresponding comment divs
+                const commentButtons = document.querySelectorAll('.comment-button');
+                const commentsSections = document.querySelectorAll('.comments-section');
+
+                // Add an event handler to each button
+                commentButtons.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        // Change the style of the corresponding comment div to "block" to show it
+                        commentsSections[index].style.display = 'block';
+                    });
+                });
             })
         })
 }
@@ -147,6 +163,9 @@ function addCommentToFirestore(commentText, postId) {
     db.collection('comments').add({
         text: commentText,
         postId: postId, // Guardar el ID del post en el comentario
+        userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        
         // ... otros campos que necesites ...
     })
         .then(() => {
@@ -160,14 +179,3 @@ function addCommentToFirestore(commentText, postId) {
 
 
 
-// Obtener todos los botones con la clase "comment-button" y los divs de comentarios correspondientes
-const commentButtons = document.querySelectorAll('.comment-button');
-const commentsSections = document.querySelectorAll('.comments-section');
-
-// Agregar un manejador de eventos a cada botón
-commentButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        // Cambiar el estilo del div de comentarios correspondiente a "block" para mostrarlo
-        commentsSections[index].style.display = 'block';
-    });
-});
