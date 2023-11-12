@@ -5,27 +5,10 @@ scrollToTop.addEventListener("click", () => {
     cardContainer.scrollTop = 0;
 })
 
-// ---------- Add user name and category to message board title ---------
-const messageBoardCategory = document.getElementById("message-board-category")
-const messageBoardUserName = document.getElementById("message-board-user-name");
-
-function insertNameFromFirestore() {
-    var userID = localStorage.getItem("userID");
-    console.log(userID);
-    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
-    currentUser.get().then(userDoc => {
-        // Get the user name
-        var userName = userDoc.data().name;
-        console.log(userName);
-        // Add user name to html
-        messageBoardUserName.innerText = userName;
-    }) 
-}
-
-insertNameFromFirestore();
 
 // ---------- Add cards using the Firestore database ----------
-function displayCardsDynamically(collection, selectedCategory = null) {
+selectedCategory = null
+function displayCardsDynamically(collection, selectedCategory) {
     let cardTemplate = document.getElementById("card-template");
     let query = db.collection(collection);
 
@@ -100,3 +83,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // Display cards based on the category obtained from the URL
     displayCardsDynamically("allPosts", category);
 });
+
+
+// ---------- Add user name and category to message board title ---------
+const messageBoardCategory = document.getElementById("message-board-category")
+const messageBoardUserName = document.getElementById("message-board-user-name");
+
+// Display the user's name using localStorage
+function displayUserName() {
+    var userID = localStorage.getItem("userID");
+    console.log(userID);
+    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
+    currentUser.get().then(userDoc => {
+        // Get the user name
+        var userName = userDoc.data().name;
+        console.log(userName);
+        // Add user name to html
+        messageBoardUserName.innerText = userName;
+    }) 
+}
+displayUserName();
+
+function displayCategory() {
+    messageBoardCategory.innerText = category;
+    console.log(category);
+}
+displayCategory()
