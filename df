@@ -1,0 +1,263 @@
+[33mcommit 4d240594690f125ad6e1b761aa3307a4b1794273[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 12 11:08:17 2023 -0800
+
+    Add comment functionality code
+
+[33mcommit 1f396a5ab7868997167b0cb6cad1abe042bcf516[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 12 11:04:58 2023 -0800
+
+    Add timestamp to js code
+
+[33mcommit dbc2aa332366873553b1c5f3c9746e896629b115[m
+Merge: 93eb973 cc12b13
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sat Nov 11 23:10:05 2023 -0800
+
+    Merge branch 'main' of https://github.com/TommyJu/1800_202330_DTC11
+
+[33mcommit 93eb973a83a7df0d8be500e6f3b6647291db7376[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sat Nov 11 23:05:12 2023 -0800
+
+    Last changes
+
+[33mcommit cc12b13410056b0bbb24df484f4a94202a18c17b[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 11 23:01:13 2023 -0800
+
+    Make image redirect to view_image.html
+
+[33mcommit 413f738fa956e5f22e74173446a8a84061066bfa[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 11 21:53:25 2023 -0800
+
+    Make angle-left button clickable
+
+[33mcommit 113a658dcdf272c0ab3f34c8a73e9ff534d754ac[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sat Nov 11 21:11:39 2023 -0800
+
+    Add Style to Like and Comment buttons
+
+[33mcommit fae8edc88c38617959ab8c0e1e1b2ffae3ba5497[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sat Nov 11 21:11:24 2023 -0800
+
+    Upload comment and like icons
+
+[33mcommit d269df64f30da59a643baded7af2f83429391d84[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sat Nov 11 21:11:09 2023 -0800
+
+    add like and comment buttons
+
+[33mcommit 0354472a2cf8db75317e199d7e82a09bd63d5593[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 21:00:16 2023 -0800
+
+    Update message board post with uploaded media
+
+[33mcommit 7aec4f0be7bd308037bdea45c0b1b356e7231470[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 20:55:12 2023 -0800
+
+    Enable users to upload media to Firestore
+
+[33mcommit c7b5c077d6d5e707aa344f375764c05ed3fe90d2[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 19:22:17 2023 -0800
+
+    Create media upload preview
+
+[33mcommit 5b1b0cb5aff77da2479810b5d23daef4a15c815a[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 18:50:43 2023 -0800
+
+    Update message board title with category
+
+[33mcommit d747663ac1bb73017174448f4692c420566469ba[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 18:43:24 2023 -0800
+
+    Update message board title with user name
+
+[33mcommit 788c38a8967cb102e9625b2e265033c32b87450c[m
+Merge: 4b3451c a0d47dc
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 16:58:04 2023 -0800
+
+    Merge branch 'main' of github.com:TommyJu/1800_202330_DTC11
+
+[33mcommit 4b3451c3c5d504836f620fea225305b7ae276db2[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Sat Nov 11 16:57:52 2023 -0800
+
+    Fix overflow issue and remove image placeholder
+
+[33mcommit a0d47dc6f1a574ac1cc7438d8545eb56cfd846c3[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 11 16:31:33 2023 -0800
+
+    Add home button and back button in new_post_screen.html
+
+[33mcommit 1de862025d574fd726bfc5f795a87a26a3e53ed2[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 11 16:18:20 2023 -0800
+
+    Add home button in message_board.html
+
+[33mcommit 594cd93cd4be6dd97a7b284a67255b3e08768289[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Tue Nov 7 17:10:46 2023 -0800
+
+    Rename files for readability
+
+[33mcommit 2d8deedbd47f8bd1f825fe544f55aa8bd1dc45bc[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Tue Nov 7 15:54:17 2023 -0800
+
+    Implement sample code to view message(Not finished)
+
+[33mcommit c8fdc2d85bd543993d3de17e9f9c60ac4f404790[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sun Nov 5 13:02:44 2023 -0800
+
+    Change words inside button
+
+[33mcommit 83c08c5742f42ed4e2256fabda00f2621a68e548[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sun Nov 5 09:22:09 2023 -0800
+
+    Adjust theme to match other pages
+
+[33mcommit cb4422ca66f4096c1d2233347e571a67dbe2e220[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 03:10:23 2023 -0800
+
+    Fix redirection to last page after submission
+
+[33mcommit 8b30b34d22512b31f4ace6d781c8fc5389a98c11[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:41:23 2023 -0800
+
+    Add query string for category filtering to link
+
+[33mcommit 1b24246f8c8e4f28dc66e373670c52ab78ab6924[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:39:18 2023 -0800
+
+    Enable add post button
+
+[33mcommit ab6085fa76137c2f0043ad7ca45ea3c0f587eb0d[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:38:16 2023 -0800
+
+    Add submission confirmed message to screen
+
+[33mcommit 5923e01a4b78c33ae794fa068bfb282d2c63bbed[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:36:25 2023 -0800
+
+    Add code for listening changes in authentication
+
+[33mcommit 3d5783c4a58ed263c837f626703ca346a2023480[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:35:27 2023 -0800
+
+    Add code to function to filter message categories
+
+[33mcommit 4a8743222e5b76bc24310578c90c72b5424145ae[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:34:04 2023 -0800
+
+    Add js code to read and create data in new post
+
+[33mcommit 372f857407397de77710999010001a9584fef186[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:31:03 2023 -0800
+
+    Fix the welcome message position
+
+[33mcommit 2081109f08e0260855d91342028d45d7db2b0e3b[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Sun Nov 5 02:30:22 2023 -0800
+
+    Add style for message confirmation
+
+[33mcommit ccec0c97e1c5dce00ea04501eabb6c7506195d64[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 4 15:11:29 2023 -0700
+
+    Implement function to add user name in welcome-message
+
+[33mcommit c7ad57b8baffb553d7572503dd038afafb8ec888[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 4 15:09:54 2023 -0700
+
+    Add user name in welcome-message
+
+[33mcommit 7fd8d0f162df41dbdc81cf11e5a49216218ce203[m
+Author: Momona Wada <momona.9410@gmail.com>
+Date:   Sat Nov 4 15:08:00 2023 -0700
+
+    Add function to store user information in Firebase
+
+[33mcommit fd5992826c87aae00dfff63e253fa6bdd2451f86[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Fri Nov 3 19:31:44 2023 -0700
+
+    Make login page responsive
+
+[33mcommit 84ccbf4591a3b0977bc262f8ff3963c88f686802[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Fri Nov 3 19:13:58 2023 -0700
+
+    Implement dynamic card elements
+
+[33mcommit 3f294209b26cb9dab0cdb4bf7e9b7e7131cbdf5b[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Fri Nov 3 19:05:43 2023 -0700
+
+    Create post template and dynamic cards
+
+[33mcommit 5e9718d7f5dd3fc8280cb490d7c6f8128630b126[m
+Merge: 7cceae6 61c73d7
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Fri Nov 3 18:14:04 2023 -0700
+
+    Merge branch 'main' of github.com:TommyJu/1800_202330_DTC11
+
+[33mcommit 7cceae658d277a1d4304278632fffb47f9dbe8d3[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Fri Nov 3 18:13:55 2023 -0700
+
+    Create assets folder for post images
+
+[33mcommit 61c73d7c8db5b4f6dc4b7d412053cf5cc043edb0[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Mon Oct 30 22:55:21 2023 -0700
+
+    Add new post screen style
+
+[33mcommit b29249ffb1b4aab657d45ded6e5258c5784f6b49[m
+Author: ALBERTO GARCIA <albertogarciagil3@gmail.com>
+Date:   Mon Oct 30 22:55:06 2023 -0700
+
+    Add new post screen skeleton
+
+[33mcommit 1c48b97d77b5a24478758a97a4edd3ecd6122816[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Mon Oct 30 17:00:21 2023 -0700
+
+    Remove firebase API from .gitignore
+
+[33mcommit 4a7e1ca83fc6b698d2d076cdff6d000843a25bec[m
+Author: Tommy Ju <tommyju25@gmail.com>
+Date:   Mon Oct 30 16:53:07 2023 -0700
+
+    Adjust style for login page
+
+[33mcommit aa0184f956492a5afb2d3e1e89f0e98a5288a329[m
+Author: ALBERTO GARCIA <albertogarciag

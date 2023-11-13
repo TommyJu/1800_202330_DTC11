@@ -86,7 +86,11 @@ body {
     text-align: left;
     padding: 24px;
     gap: 12px;
+
+    max-height: 1000px;
+    overflow-y: auto;
 }
+
 
 .card-image-and-description {
     display: flex;
@@ -152,7 +156,6 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 5px;
-    margin-top: 20px;
     border-top: solid 2px rgb(109, 106, 106);
     padding-top: 10px;
 }
@@ -205,6 +208,24 @@ body {
     width: 25px;
     height: auto;
 }
+
+.comments-list {
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.comment {
+    display: table;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #F0F2F5;
+    border-radius: 20px;
+    align-items: flex-start;
+    /* Alinea el contenido al principio del contenedor flex */
+}
+
 
 #scroll-to-top {
     width: 50px;

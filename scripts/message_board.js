@@ -19,7 +19,7 @@ scrollToTop.addEventListener("click", () => {
 //         console.log(userDoc.data().name)
 //         return userDoc.data().name;
 //         })
-            
+
 // }
 
 function addNameToCard(userID, newcard) {
@@ -61,7 +61,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 var userName = doc.data().userName;
                 console.log(userID);
                 var docID = doc.id;
-                
+
 
                 // Retrieve the timestamp seconds and convert to milliseconds
                 // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
@@ -79,13 +79,55 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
                 // Añadir manejador de eventos para enviar nuevos comentarios
+                let commentsListDiv = newcard.querySelector('.comments-list');
+
+
+
                 let submitCommentButton = newcard.querySelector('.submit-comment');
                 let commentInput = newcard.querySelector('.add-comment input');
                 submitCommentButton.addEventListener('click', () => {
                     let commentText = commentInput.value;
-                    addCommentToFirestore(commentText, docID); // Función para añadir comentario
+                    addCommentToFirestore(commentText, docID, commentsListDiv); // Función para añadir comentario
                     commentInput.value = ''; // Limpiar el campo después de enviar
                 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // Referencia al contenedor donde se insertarán los comentarios
+
+
+                // Obtener los comentarios del post específico
+                db.collection('comments').where('postId', '==', doc.id).orderBy('timestamp', 'desc').get()
+                    .then(commentsSnapshot => {
+                        commentsSnapshot.forEach(commentDoc => {
+                            const commentData = commentDoc.data();
+                            const commentDate = commentData.timestamp.toDate();
+                            const formattedTimeAgo = timeAgo(commentDate);
+
+                            let commentDiv = document.createElement('div');
+                            commentDiv.classList.add('comment');
+                            commentDiv.innerHTML = `
+                            <p><strong>${commentData.userName}</strong></p>
+                            <p>${commentData.text}</p>
+                            <span>${formattedTimeAgo}</span>
+                            `;
+                            commentsListDiv.appendChild(commentDiv);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener comentarios: ', error);
+                    });
 
 
                 // -------- Image can be toggled with --------
@@ -188,23 +230,99 @@ function displayCategory() {
 displayCategory()
 
 
-function addCommentToFirestore(commentText, postId) {
-    db.collection('comments').add({
-        text: commentText,
-        postId: postId, // Guardar el ID del post en el comentario
-        userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+function getUserName(userId) {
+    return db.collection('users').doc(userId).get().then(userDoc => {
+        if (userDoc.exists) {
+            return userDoc.data().name; // Asumiendo que el campo se llama 'name'
+        } else {
+            throw new Error('User not found');
+        }
+    });
+}
 
-        // ... otros campos que necesites ...
+
+
+
+
+
+
+function addCommentToFirestore(commentText, postId, commentsListDiv) {
+    const userId = localStorage.getItem('userID');
+    getUserName(userId).then(userName => {
+        if (!userName) {
+            throw new Error('Nombre de usuario no encontrado');
+        }
+
+        return db.collection('comments').add({
+            text: commentText,
+            postId: postId,
+            userId: userId,
+            userName: userName,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // ... otros campos que necesites ...
+        });
     })
-        .then(() => {
-            console.log('Comentario añadido con éxito');
-            // Aquí puedes implementar lógica adicional si es necesario
+        .then((docRef) => {
+            return docRef.get();
+        })
+        .then((commentSnapshot) => {
+            if (commentSnapshot.exists) {
+                const commentData = commentSnapshot.data();
+                const commentDate = commentData.timestamp.toDate();
+                const formattedTimeAgo = timeAgo(commentDate);
+
+                // Actualizar la UI aquí
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                <p><strong>${commentData.userName}</strong> </p>
+                <p>${commentText}</p>
+                <span>${formattedTimeAgo}</span>
+            `;
+
+                // Agregar el comentario a la lista de comentarios
+                commentsListDiv.appendChild(commentDiv);
+            } else {
+                throw new Error('El comentario no existe.');
+            }
         })
         .catch(error => {
-            console.error('Error al añadir comentario: ', error);
+            console.error('Error al añadir comentario o al recuperar información: ', error);
         });
 }
 
 
 
+
+
+function timeAgo(dateParam) {
+    if (!dateParam) {
+        return null;
+    }
+
+    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+    const today = new Date();
+    const seconds = Math.round((today - date) / 1000);
+    const minutes = Math.round(seconds / 60);
+    const hours = Math.round(minutes / 60);
+    const days = Math.round(hours / 24);
+    const weeks = Math.round(days / 7);
+    const months = Math.round(weeks / 4.35);  
+    const years = Math.round(months / 12);
+
+    if (seconds < 60) {
+        return `${seconds} sec`;
+    } else if (minutes < 60) {
+        return `${minutes} min`;
+    } else if (hours < 24) {
+        return `${hours} h`;
+    } else if (days < 7) {
+        return `${days} d`;
+    } else if (weeks < 4.35) {  
+        return `${weeks} w`;
+    } else if (months < 12) {
+        return `${months} m`;
+    } else {
+        return `${years} y`;
+    }
+}
