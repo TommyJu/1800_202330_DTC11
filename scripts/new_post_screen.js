@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var description = document.getElementById('description').value;
 
                 var postData = {
+                    date: new Date().toLocaleDateString(),
                     title: title,
                     description: description,
                     category: category,
