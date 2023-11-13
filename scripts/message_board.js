@@ -109,14 +109,17 @@ async function displayCardsDynamically(collection, selectedCategory) {
                 db.collection('comments').where('postId', '==', doc.id).orderBy('timestamp', 'desc').get()
                     .then(commentsSnapshot => {
                         commentsSnapshot.forEach(commentDoc => {
-                            let comment = commentDoc.data();
+                            const commentData = commentDoc.data();
+                            const commentDate = commentData.timestamp.toDate();
+                            const formattedTimeAgo = timeAgo(commentDate);
+
                             let commentDiv = document.createElement('div');
                             commentDiv.classList.add('comment');
                             commentDiv.innerHTML = `
-                            <p><strong>User:</strong> ${comment.userId}</p>
-                            <p>${comment.text}</p>
-                            <span>${comment.timestamp.toDate()}</span>
-                        `;
+                            <p><strong>${commentData.userName}</strong></p>
+                            <p>${commentData.text}</p>
+                            <span>${formattedTimeAgo}</span>
+                            `;
                             commentsListDiv.appendChild(commentDiv);
                         });
                     })
@@ -244,37 +247,80 @@ function getUserName(userId) {
 function addCommentToFirestore(commentText, postId, commentsListDiv) {
     const userId = localStorage.getItem('userID');
     getUserName(userId).then(userName => {
-        db.collection('comments').add({
+        if (!userName) {
+            throw new Error('Nombre de usuario no encontrado');
+        }
+
+        return db.collection('comments').add({
             text: commentText,
-            postId: postId, // Guardar el ID del post en el comentario
-            userId: localStorage.getItem('userID'), // Guardar el ID del usuario en el comentario
+            postId: postId,
+            userId: userId,
             userName: userName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-
             // ... otros campos que necesites ...
+        });
+    })
+        .then((docRef) => {
+            return docRef.get();
         })
-            .then(() => {
-                console.log('Comentario añadido con éxito');
-                // Aquí puedes implementar lógica adicional si es necesario
+        .then((commentSnapshot) => {
+            if (commentSnapshot.exists) {
+                const commentData = commentSnapshot.data();
+                const commentDate = commentData.timestamp.toDate();
+                const formattedTimeAgo = timeAgo(commentDate);
 
                 // Actualizar la UI aquí
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
                 commentDiv.innerHTML = `
-                <p><strong>User:</strong> ${localStorage.getItem('userID')}</p>
+                <p><strong>${commentData.userName}</strong> </p>
                 <p>${commentText}</p>
-                <span>${new Date()}</span>
+                <span>${formattedTimeAgo}</span>
             `;
 
                 // Agregar el comentario a la lista de comentarios
                 commentsListDiv.appendChild(commentDiv);
-            })
-            .catch(error => {
-                console.error('Error al añadir comentario: ', error);
-            });
-    });
-
+            } else {
+                throw new Error('El comentario no existe.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al añadir comentario o al recuperar información: ', error);
+        });
 }
 
 
 
+
+
+function timeAgo(dateParam) {
+    if (!dateParam) {
+        return null;
+    }
+
+    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+    const today = new Date();
+    const seconds = Math.round((today - date) / 1000);
+    const minutes = Math.round(seconds / 60);
+    const hours = Math.round(minutes / 60);
+    const days = Math.round(hours / 24);
+    const weeks = Math.round(days / 7);
+    const months = Math.round(weeks / 4.35);  
+    const years = Math.round(months / 12);
+
+    if (seconds < 60) {
+        return `${seconds} sec`;
+    } else if (minutes < 60) {
+        return `${minutes} min`;
+    } else if (hours < 24) {
+        return `${hours} h`;
+    } else if (days < 7) {
+        return `${days} d`;
+    } else if (weeks < 4.35) {  
+        return `${weeks} w`;
+    } else if (months < 12) {
+        return `${months} m`;
+    } else {
+        return `${years} y`;
+    }
+}
