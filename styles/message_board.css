@@ -73,7 +73,7 @@ body {
 .card {
     margin: auto;
     width: 70%;
-    height: 80%;
+    height: 60%;
     background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
@@ -94,8 +94,12 @@ body {
 
 .card-image-and-description {
     display: flex;
-    height: 90%;
+    height: 75%;
     gap: 24px;
+}
+
+.card-info {
+    height: 20%;
 }
 
 .image-container {
@@ -114,7 +118,7 @@ body {
     object-position: center;
 }
 
-.card-description {
+.card-description-container{
     width: 30%;
     text-overflow: ellipsis;
     display: flex;
@@ -122,20 +126,7 @@ body {
     justify-content: space-between;
 }
 
-.card-description > h3 {
-    border: solid 2px black;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    height: 40px;
-    padding: 8px 24px;
-    background-color:#ffc107;
-    text-align: center;
-    white-space: nowrap;
-    min-width: 130px;
-}
-
-.card-description > p {
-    padding-top: 18px;
+.card-description {
     width: 100%;
     /* display: -webkit-box;
     -webkit-line-clamp: 9;

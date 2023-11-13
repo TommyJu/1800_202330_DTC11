@@ -40,7 +40,7 @@ function addNameToCard(userID, newcard) {
 
 // ---------- Add cards using the Firestore database ----------
 selectedCategory = null
-async function displayCardsDynamically(collection, selectedCategory) {
+function displayCardsDynamically(collection, selectedCategory) {
     let cardTemplate = document.getElementById("card-template");
     let query = db.collection(collection);
 
@@ -58,6 +58,7 @@ async function displayCardsDynamically(collection, selectedCategory) {
                 var category = doc.data().category;
                 var image = doc.data().image;
                 var userID = doc.data().userId;
+                var userName = doc.data().userName;
                 console.log(userID);
                 var docID = doc.id;
 
@@ -70,9 +71,10 @@ async function displayCardsDynamically(collection, selectedCategory) {
 
                 // update title, description and image
                 newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-description > p').innerHTML = description;
+                newcard.querySelector('.card-description-container > p').innerHTML = description;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-date').innerHTML = date;
+                newcard.querySelector('.card-user').innerHTML = userName;
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
@@ -87,7 +89,7 @@ async function displayCardsDynamically(collection, selectedCategory) {
                     let commentText = commentInput.value;
                     addCommentToFirestore(commentText, docID, commentsListDiv); // Función para añadir comentario
                     commentInput.value = ''; // Limpiar el campo después de enviar
-                });
+                })
 
 
 
