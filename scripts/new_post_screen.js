@@ -26,7 +26,9 @@ listenFileSelect();
 //------------------------------------------------
 function uploadPic(postDocID) {
     console.log("inside uploadPic " + postDocID);
-    var storageRef = storage.ref("images/" + postDocID + ".jpg");
+
+    var fileExtension = ImageFile.name.split('.').pop(); // returns file extension
+    var storageRef = storage.ref("images/" + postDocID + "." + fileExtension); // store image with any file extension
 
     storageRef.put(ImageFile)   //global variable ImageFile
         // AFTER .put() is done

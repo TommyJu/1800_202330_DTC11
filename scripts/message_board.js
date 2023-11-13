@@ -62,7 +62,6 @@ function displayCardsDynamically(collection, selectedCategory) {
                 console.log(userID);
                 var docID = doc.id;
 
-
                 // Retrieve the timestamp seconds and convert to milliseconds
                 // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
                 var date = Date(doc.data().last_updated);
