@@ -15,11 +15,12 @@ main{
 }
 
 #prev-page{
-    margin: 0 10px;
-    color: black;
+    margin-top: 10px;
+    filter:contrast(0);
 }
 
 #post-title-placeholder{
+    font-size: 30px;
     display: flex;
     justify-content: space-between;
     padding: 10px 10px 0 10px;; 
@@ -36,8 +37,8 @@ main{
 }
 
 #post-description-placeholder {
-    margin: 20px;
-    font-size: 30px;
+    margin: 10px 10px;
+    font-size: 20px;
 }
 
 #post-comment {
@@ -55,10 +56,10 @@ main{
 }
 
 /* Make title and star in the same line */
-#title-and-star {
+#date-and-star {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    padding: 10px 10px 0 0;
 }
 
 /* Allow textarea to resize */
