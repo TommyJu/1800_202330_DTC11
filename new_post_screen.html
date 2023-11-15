@@ -39,17 +39,17 @@
         <form id="myform" enctype="multipart/form-data">
 
             <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;">
+            <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;" required>
             <br><br>
 
             <label for="description">Post Description:</label><br>
             <textarea id="description" name="description" rows="10" cols="50"
-                placeholder="Describe your post" style="width: 100%;"></textarea>
+                placeholder="Describe your post" style="width: 100%;" required></textarea>
             <br><br>
 
             <p>Attach a photo or video:</p>
             <div id="media-container">
-                <input type="file" id="media-input" name="media" accept="image/*,video/*">
+                <input type="file" id="media-input" name="media" accept="image/*,video/*" required>
                 <div id="media-preview">
                     <img id="media">
                 </div>

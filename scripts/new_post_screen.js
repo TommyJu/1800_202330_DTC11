@@ -158,7 +158,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     form.style.display = 'none';
                     messageSentDiv.style.display = 'block';
                     console.log(doc.id);
-                    uploadPic(doc.id);
+                    
+                    // Only upload picture 
+                    if (ImageFile != undefined) {
+                        uploadPic(doc.id);
+                    }
 
                     // Redirect the user to the message board page with the correct category
                     setTimeout(function () {

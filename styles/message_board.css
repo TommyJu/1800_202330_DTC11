@@ -104,7 +104,7 @@ body {
 
 .image-container {
     width: 70%;
-    /* height: 90%; */
+    height: 90%;
     height: 400px;
     border-radius: 20px;
     border: solid 2px black;
@@ -172,7 +172,7 @@ body {
     color: rgb(34, 30, 30);
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: 0.3s;
     font-weight: bold;
 
 }
@@ -197,7 +197,7 @@ body {
     color: rgb(34, 30, 30);
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: 0.3s;
     font-weight: bold;
 }
 
@@ -286,6 +286,10 @@ footer {
     overflow: scroll;
 }
 
+.card-description-container {
+    overflow: scroll;
+}
+
 
 /* media queries */
 
@@ -306,7 +310,4 @@ footer {
     .card {
         width: 90%;
     }
-}
-
-@media (max-width: 350px) {
 }
