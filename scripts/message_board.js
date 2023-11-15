@@ -45,14 +45,6 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
-                // If there is no image, add this class
-                console.log("image:", image)
-                if (image == undefined) {
-                    newcard.querySelector('.image-container').style.display = 'none';
-                    newcard.querySelector('.card-description-container').classList.add('description-without-image');
-                    // newcard.addClass('card-without-image');
-                }
-
                 // Añadir manejador de eventos para enviar nuevos comentarios
                 let commentsListDiv = newcard.querySelector('.comments-list');
 

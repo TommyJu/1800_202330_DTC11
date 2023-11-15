@@ -94,7 +94,7 @@ body {
 
 .card-image-and-description {
     display: flex;
-    height: 75%;
+    height: 70%;
     gap: 24px;
 }
 
@@ -104,8 +104,7 @@ body {
 
 .image-container {
     width: 70%;
-    height: 90%;
-    height: 400px;
+    height: 100%;
     border-radius: 20px;
     border: solid 2px black;
     overflow: hidden;
@@ -150,6 +149,7 @@ body {
     justify-content: space-around;
     align-items: center;
     /* margin-top: 20px; */
+    height: 10%;
 }
 
 .like-button {
@@ -281,21 +281,11 @@ footer {
 }
 
 
-.description-without-image {
-    width: 100%;
-    overflow: scroll;
-}
-
-.card-description-container {
-    overflow: scroll;
-}
-
-
 /* media queries */
 
 @media (max-width: 900px) {
     
-    .card-description > p {
+    .card-description {
         display: none;
     }
 
