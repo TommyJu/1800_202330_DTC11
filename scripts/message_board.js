@@ -6,38 +6,6 @@ scrollToTop.addEventListener("click", () => {
 })
 
 
-// Retrieve a name for each post using user id
-
-// currentUser.get().then(userDoc => {
-//     console.log(userDoc.data().name)
-//     newcard.querySelector('.card-user').innerHTML = name;
-// });
-
-// function getName(userID) {
-//     let currentUser = db.collection("users").doc(userID);
-//     currentUser.get().then(userDoc => {
-//         console.log(userDoc.data().name)
-//         return userDoc.data().name;
-//         })
-
-// }
-
-function addNameToCard(userID, newcard) {
-    console.log(userID);
-    currentUser = db.collection("users").doc(userID); // Go to the Firestore document of the user
-    currentUser.get().then(userDoc => {
-        // Get the user name
-        var userName = userDoc.data().name;
-        console.log(userName);
-        // Add user name to HTML
-        return userName;
-    }).catch(error => {
-        console.error("Error fetching user data:", error);
-    });
-}
-
-
-
 // ---------- Add cards using the Firestore database ----------
 selectedCategory = null
 function displayCardsDynamically(collection, selectedCategory) {
@@ -99,18 +67,6 @@ function displayCardsDynamically(collection, selectedCategory) {
                 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 // Referencia al contenedor donde se insertarán los comentarios
 
 
@@ -137,29 +93,11 @@ function displayCardsDynamically(collection, selectedCategory) {
                     });
 
 
-                // -------- Image can be toggled with --------
-                // newcard.querySelector('.image-container').style.display = "none";
-                // newcard.querySelector('.image-container').style.display = "block";
-
-
-                // -------- Can use this code to add a card image when a new card is created -------
-                // newcard.querySelector('.card-image').src = "";
-                // newcard.querySelector('.image-container').style.display = "block";
-
-
                 //attach to card-container
                 // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("card-container").insertBefore(
                     newcard,
                     document.getElementById("scroll-to-top"));
-
-                // newcard.querySelector('.card-user').innerHTML = getName(userID);
-
-                //i++;   //Optional: iterate variable to serve as unique ID
-
-
-
-
 
                 // Get all buttons with the class "comment-button" and the corresponding comment divs
                 const commentButtons = document.querySelectorAll('.comment-button');
@@ -172,13 +110,6 @@ function displayCardsDynamically(collection, selectedCategory) {
                         commentsSections[index].style.display = 'block';
                     });
                 });
-                // var user = db.collection("users").doc(userID);
-                // var postUserName = null
-                // user.get().then(userDoc => {
-                //     console.log(userDoc)
-                //     postUserName = userDoc.data().name;
-                //     console.log("username:", postUserName)  
-                // })
             })
         })
 }
@@ -246,11 +177,6 @@ function getUserName(userId) {
         }
     });
 }
-
-
-
-
-
 
 
 function addCommentToFirestore(commentText, postId, commentsListDiv) {

@@ -62,26 +62,6 @@ function uploadPic(postDocID) {
 }
 
 
-// Add user name to post document
-// function saveUserName(postDocID) {
-//     firebase.auth().onAuthStateChanged(user => {
-//           console.log("user id is: " + user.uid);
-//           console.log("postdoc id is: " + postDocID);
-//           userName = db.collection("users").doc(user.uid).data().name;
-//           console.log(userName);
-
-//           db.collection("allPosts").doc(postDocID).update({
-//                 userName : userName
-//           })
-//           .then(() =>{
-//                 console.log("6. Saved user name!");
-//                 //window.location.href = "showposts.html";
-//            })
-//            .catch((error) => {
-//                 console.error("Error writing document: ", error);
-//            });
-//     })
-// }
 var userName; // create userName global variable using userID in local storage
 function saveUserName() {
     var userID = localStorage.getItem("userID");
@@ -158,16 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     form.style.display = 'none';
                     messageSentDiv.style.display = 'block';
                     console.log(doc.id);
-                    
-                    // Only upload picture 
-                    if (ImageFile != undefined) {
-                        uploadPic(doc.id);
-                    }
+                    uploadPic(doc.id);
 
                     // Redirect the user to the message board page with the correct category
                     setTimeout(function () {
                         window.location.href = `message_board.html?category=${category}`;
-                    }, 3000); // Redirects after 3 seconds
+                    }, 1000); // Redirects after 3 seconds
                 }).catch(function (error) {
                     console.error('Error adding post: ', error);
                 });
