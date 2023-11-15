@@ -98,3 +98,20 @@ form > textarea {
     margin: 0 10px;
     color: grey;
 }
+
+/* footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    background: #ffc107;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 8px;
+}
+
+#home-button img {
+    width: 38px;
+    height: 38px;
+    filter: brightness(0) invert(0);
+} */

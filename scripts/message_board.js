@@ -125,9 +125,9 @@ function displayCardsDynamically(collection, selectedCategory) {
                             let commentDiv = document.createElement('div');
                             commentDiv.classList.add('comment');
                             commentDiv.innerHTML = `
-                            <p><strong>${commentData.userName}</strong></p>
-                            <p>${commentData.text}</p>
-                            <span>${formattedTimeAgo}</span>
+                                <p><strong>${commentData.userName}</strong></p>
+                                <p>${commentData.text}</p>
+                                <span>${formattedTimeAgo}</span>
                             `;
                             commentsListDiv.appendChild(commentDiv);
                         });
