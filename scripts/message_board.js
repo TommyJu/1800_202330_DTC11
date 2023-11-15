@@ -32,7 +32,7 @@ function displayCardsDynamically(collection, selectedCategory) {
 
                 // Retrieve the timestamp seconds and convert to milliseconds
                 // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
-                var date = Date(doc.data().last_updated);
+                var date = doc.data().date;
                 console.log(doc.data().last_updated);
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
