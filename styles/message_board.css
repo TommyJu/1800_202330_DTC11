@@ -104,7 +104,8 @@ body {
 
 .image-container {
     width: 70%;
-    height: 90%;
+    /* height: 90%; */
+    height: 400px;
     border-radius: 20px;
     border: solid 2px black;
     overflow: hidden;
@@ -279,6 +280,11 @@ footer {
     text-align: center;
 }
 
+
+.description-without-image {
+    width: 100%;
+    overflow: scroll;
+}
 
 
 /* media queries */
