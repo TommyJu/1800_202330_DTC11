@@ -45,6 +45,7 @@ function displayCardsDynamically(collection, selectedCategory) {
                 newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
 
+
                 // Añadir manejador de eventos para enviar nuevos comentarios
                 let commentsListDiv = newcard.querySelector('.comments-list');
 
