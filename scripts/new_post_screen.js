@@ -1,5 +1,8 @@
-// Change media preview on file upload
+// Global variables
 var ImageFile;
+var currentCategory = localStorage.getItem("currentCategory");
+
+// Change media preview on file upload
 function listenFileSelect() {
     // listen for file selection
     var fileInput = document.getElementById("media-input"); // pointer #1
@@ -27,12 +30,12 @@ listenFileSelect();
 function uploadPic(postDocID) {
     console.log("inside uploadPic " + postDocID);
 
+    var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
     var fileExtension = ImageFile.name.split('.').pop(); // returns file extension
     var storageRef = storage.ref("images/" + postDocID + "." + fileExtension); // store image with any file extension
 
     storageRef.put(ImageFile)   //global variable ImageFile
-        // AFTER .put() is done
-        .then(function () {
+        .then(() => {
             console.log('2. Uploaded to Cloud Storage.');
             storageRef.getDownloadURL()
 
@@ -43,7 +46,7 @@ function uploadPic(postDocID) {
                     // Now that the image is on Storage, we can go back to the
                     // post document, and update it with an "image" field
                     // that contains the url of where the picture is stored.
-                    db.collection("allPosts").doc(postDocID).update({
+                    postsCollection.doc(postDocID).update({
                         "image": url // Save the URL into users collection
                     })
                         // AFTER .update is done
@@ -102,8 +105,8 @@ function savePostIDforUser(postDocID) {
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('myform');
     var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
-    var urlParams = new URLSearchParams(window.location.search);
-    var category = urlParams.get('category');
+    // var urlParams = new URLSearchParams(window.location.search);
+    // var category = urlParams.get('category');
 
 
     form.addEventListener('submit', function (e) {
@@ -113,10 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // If needed, place this listener outside and use a variable to store the user state.
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
+                // current Category is a local variable
+                let postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
                 var userId = user.uid;
-                console.log(userId);
-                console.log(user);
-                console.log(userName); // global variable
                 var title = document.getElementById('title').value;
                 var description = document.getElementById('description').value;
 
@@ -124,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     date: new Date().toLocaleDateString(),
                     title: title,
                     description: description,
-                    category: category,
+                    // category: category,
                     userId: userId,
                     userName: userName, // global variable
                     last_updated: firebase.firestore.FieldValue
@@ -133,7 +135,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
 
                 // The rest of the code to add to Firestore
-                db.collection('allPosts').add(postData).then(doc => {
+                // db.collection('allPosts').add(postData).then(doc => {
+                postsCollection.add(postData).then(doc => {
                     console.log('Post added successfully!');
                     form.style.display = 'none';
                     messageSentDiv.style.display = 'block';
@@ -141,9 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     uploadPic(doc.id);
 
                     // Redirect the user to the message board page with the correct category
-                    setTimeout(function () {
-                        window.location.href = `message_board.html?category=${category}`;
-                    }, 1000); // Redirects after 3 seconds
+                    // setTimeout(function () {
+                    //     window.location.href = `message_board.html`;
+                    // }, 1000); // Redirects after 3 seconds
                 }).catch(function (error) {
                     console.error('Error adding post: ', error);
                 });

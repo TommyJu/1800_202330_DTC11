@@ -12,9 +12,8 @@ var currentCategoryTitle = localStorage.getItem("currentCategoryTitle");
 
 // ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(category) {
-    postsCollection = db.collection("categories").doc(category).collection("posts");
+    let postsCollection = db.collection("categories").doc(category).collection("posts");
     console.log("collection", postsCollection);
-
     postsCollection.get()
         .then(posts => {
             // Create each message board post
