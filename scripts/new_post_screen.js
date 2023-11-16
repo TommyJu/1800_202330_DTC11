@@ -137,11 +137,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // The rest of the code to add to Firestore
                 // db.collection('allPosts').add(postData).then(doc => {
                 postsCollection.add(postData).then(doc => {
+                    uploadPic(doc.id);
                     console.log('Post added successfully!');
                     form.style.display = 'none';
-                    messageSentDiv.style.display = 'block';
-                    console.log(doc.id);
-                    uploadPic(doc.id);
+                    messageSentDiv.style.display = 'flex';
 
                     // Redirect the user to the message board page with the correct category
                     // setTimeout(function () {

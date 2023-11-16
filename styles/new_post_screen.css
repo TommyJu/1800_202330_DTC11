@@ -71,13 +71,28 @@ main {
 }
 
 #message-sent {
-    display: flex;
+    /* JS will set display to flex upon post submission */
+    display: none;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     color: #ffc107;
     border-radius: 50px;
     font-weight: bold;
     font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
+    background-color: rgb(33, 37, 41); 
+    padding: 20px;
+}
+
+#message-sent p {
+    text-align: center; 
+    font-size: 35px;
 }
 
 #home-button img, #back-button img{
