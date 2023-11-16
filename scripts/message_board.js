@@ -6,34 +6,29 @@ scrollToTop.addEventListener("click", () => {
 })
 
 
+var currentCategory = localStorage.getItem("currentCategory");
+var currentCategoryTitle = localStorage.getItem("currentCategoryTitle");
+
+
 // ---------- Add cards using the Firestore database ----------
-selectedCategory = null
-function displayCardsDynamically(collection, selectedCategory) {
-    let cardTemplate = document.getElementById("card-template");
-    let query = db.collection(collection);
+function displayCardsDynamically(category) {
+    postsCollection = db.collection("categories").doc(category).collection("posts");
+    console.log("collection", postsCollection);
 
-    // Filter by category using selectedCategory
-    if (selectedCategory) {
-        query = query.where('category', '==', selectedCategory);
-    }
-
-    query.get()
-        .then(allPosts => {
+    postsCollection.get()
+        .then(posts => {
             // Create each message board post
-            allPosts.forEach(doc => { //iterate thru each doc
+            posts.forEach(doc => { //iterate thru each doc
+                console.log(doc)
                 var title = doc.data().title;
                 var description = doc.data().description;
-                var category = doc.data().category;
                 var image = doc.data().image;
                 var userID = doc.data().userId;
                 var userName = doc.data().userName;
-                console.log(userID);
                 var docID = doc.id;
-
-                // Retrieve the timestamp seconds and convert to milliseconds
-                // var date = new Date(doc.data().last_updated.seconds*1000).toDateString();
                 var date = doc.data().date;
-                console.log(doc.data().last_updated);
+
+                let cardTemplate = document.getElementById("card-template");
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 // update title, description and image
@@ -118,28 +113,29 @@ function createComments(newcard, docID) {
             });
 }
 
-function getParameterByName(name, url = window.location.href) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
+// function getParameterByName(name, url = window.location.href) {
+//     name = name.replace(/[\[\]]/g, '\\$&');
+//     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+//         results = regex.exec(url);
+//     if (!results) return null;
+//     if (!results[2]) return '';
+//     return decodeURIComponent(results[2].replace(/\+/g, ' '));
+// }
 
-var category = getParameterByName('category');
+// var category = getParameterByName('category');
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    var urlParams = new URLSearchParams(window.location.search);
-    var category = urlParams.get('category');
-    var addPostLink = document.getElementById('add-post-link');
+    // var urlParams = new URLSearchParams(window.location.search);
+    // var category = urlParams.get('category');
+    // var addPostLink = document.getElementById('add-post-link');
 
-    if (category && addPostLink) {
-        addPostLink.href = `new_post_screen.html?category=${category}`;
-    }
+    // if (category && addPostLink) {
+    //     addPostLink.href = `new_post_screen.html?category=${category}`;
+    // }
     // Display cards based on the category obtained from the URL
-    displayCardsDynamically("allPosts", category);
+
+    displayCardsDynamically(currentCategory); // global variable
 });
 
 
@@ -162,11 +158,12 @@ function displayUserName() {
 }
 displayUserName();
 
-function displayCategory() {
+
+function displayCategory(category) {
     messageBoardCategory.innerText = category;
     console.log(category);
 }
-displayCategory()
+displayCategory(currentCategoryTitle) // global variable
 
 
 function getUserName(userId) {

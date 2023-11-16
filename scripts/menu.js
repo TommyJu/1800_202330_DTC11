@@ -41,7 +41,8 @@ function displayCardsDynamically(collection) {
 
                 // Add event listener for category button
                 newcard.querySelector(".card-button").addEventListener("click", () => {
-                    storeCategory(title);
+                    storeCategory(docID);
+                    storeCategoryTitle(title);
                 });
                 console.log(title)
 
@@ -59,5 +60,10 @@ displayCardsDynamically("categories");
 function storeCategory(value) {
     let key = "currentCategory";
     localStorage.setItem(key, value);
-    console.log("cat clicked!");
+};
+
+
+function storeCategoryTitle(value) {
+    let key = "currentCategoryTitle";
+    localStorage.setItem(key, value);
 };
