@@ -1,9 +1,13 @@
+// global variables
+var currentCategory = localStorage.getItem("currentCategory");
+
 function dynamicallyPopulatePost(){
+    var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
     let url = new URL(window.location.href);
     let docID = url.searchParams.get("postID");
     console.log(docID);
 
-    db.collection("allPosts").doc(docID)
+    postsCollection.doc(docID)
         .onSnapshot(postID => {
             // console.log(postID.data().category);
             console.log(postID.data().title)

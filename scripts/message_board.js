@@ -5,7 +5,7 @@ scrollToTop.addEventListener("click", () => {
     cardContainer.scrollTop = 0;
 })
 
-
+// global variables
 var currentCategory = localStorage.getItem("currentCategory");
 var currentCategoryTitle = localStorage.getItem("currentCategoryTitle");
 
