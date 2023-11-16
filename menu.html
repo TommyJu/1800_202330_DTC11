@@ -32,7 +32,7 @@
 
     <navbar id="navbarPlaceholder"></navbar>
 
-    <main>
+    <main id="category-container">
         <div class="welcome-message">
             <h1>Hello, <span id="name-goes-here"></span>!</h1>
             <div class="phrase">
@@ -40,22 +40,21 @@
             </div>
         </div>
 
-        <div class="categories d-flex flex-wrap justify-content-center">
-
-            <div class="card" style="width: 18rem;">
-                <img src="images/mainchat.jpg" class="card-img-top" alt="Main chat image"
-                    style="width: 100%; max-height: 150px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Main Chat</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="message_board.html?category=mainchat" class="btn btn-warning main-chat-button">Go
-                        there!</a>
+        <template id="category-template">
+            <div class="categories d-flex flex-wrap justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="" class="card-img-top" alt="Category image"
+                        style="width: 100%; max-height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                        <a href="message_board.html" class="card-button btn btn-warning main-chat-button">Go
+                            there!</a>
+                    </div>
                 </div>
-            </div>
+        </template>
 
-            <div class="card" style="width: 18rem;">
+            <!-- <div class="card" style="width: 18rem;">
                 <img src="images/pets.jpg" class="card-img-top" alt="Pets community image"
                     style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
@@ -139,11 +138,9 @@
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tenetur.</p>
                     <a href="message_board.html?category=others" class="btn btn-warning others-button">Go there!</a>
                 </div>
-            </div>
+            </div> -->
 
 
-
-        </div>
 
 
 
