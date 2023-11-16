@@ -241,7 +241,10 @@ body {
 
 .scroll-to-top-text {
     color: white;
-    padding-bottom: 140px;
+}
+
+#scroll-to-top-container {
+    margin: 140px 0;
 }
 
 footer {
