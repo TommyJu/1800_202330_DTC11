@@ -141,7 +141,7 @@ function uploadPic(categoryDocID) {
 }
 
 
-
+var categoryImageUrl; // global variable for adding image to first post when creating a new category
 var ImageFile;
 
 // Change media preview on file upload
@@ -155,6 +155,7 @@ function listenFileSelect() {
         ImageFile = e.target.files[0];   //Global variable
         var blob = URL.createObjectURL(ImageFile);
         image.src = blob; // Display this image
+        categoryImageUrl = blob;
     })
 }
 listenFileSelect();
@@ -171,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // This authentication state listener should be registered once, not on every form submit.
         // If needed, place this listener outside and use a variable to store the user state.
-        firebase.auth().onAuthStateChanged(function (user) {
+        firebase.auth().onAuthStateChanged(async function (user) {
             if (user) {
                 // current Category is a local variable
                 let categoriesCollection = db.collection("categories");
@@ -193,11 +194,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 // The rest of the code to add to Firestore
                 categoriesCollection.add(categoryData).then(category => {
                     uploadPic(category.id);
+                    console.log("category", category);
                     
-                    // let categoryImage = doc.data().image;
                     console.log('Post added successfully!');
                     // Create posts collection with a sample post to start
-                    category.collection("posts").add(categoryData)
+                    category.collection("posts").add(categoryData).then(firstPost => {
+                        console.log("first post", firstPost)
+                        firstPost.update({
+                            "image" : categoryImageUrl
+                        })
+                    })
                 })
 
                 // form.style.display = 'none';
