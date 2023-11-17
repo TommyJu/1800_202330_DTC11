@@ -102,7 +102,7 @@ function saveCategoryIDforUser(categoryDocID) {
     })
 }
 
-
+var categoryImageUrl; // global variable for adding image to first post when creating a new category
 function uploadPic(categoryDocID) {
     console.log("inside uploadPic " + categoryDocID);
 
@@ -118,6 +118,7 @@ function uploadPic(categoryDocID) {
                 // AFTER .getDownloadURL is done
                 .then(function (url) { // Get URL of the uploaded file
                     console.log("3. Got the download URL.");
+                    categoryImageUrl = url // store result in global variable
 
                     // Now that the image is on Storage, we can go back to the
                     // post document, and update it with an "image" field
@@ -141,7 +142,7 @@ function uploadPic(categoryDocID) {
 }
 
 
-var categoryImageUrl; // global variable for adding image to first post when creating a new category
+
 var ImageFile;
 
 // Change media preview on file upload
@@ -206,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     })
                 })
 
+                
                 // form.style.display = 'none';
                 // messageSentDiv.style.display = 'flex';
 
