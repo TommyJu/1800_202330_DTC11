@@ -1,6 +1,6 @@
 // Global variables
-var ImageFile;
 var currentCategory = localStorage.getItem("currentCategory");
+var ImageFile;
 
 // Change media preview on file upload
 function listenFileSelect() {

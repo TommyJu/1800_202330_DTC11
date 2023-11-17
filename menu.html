@@ -33,6 +33,55 @@
     <navbar id="navbarPlaceholder"></navbar>
 
     <main id="category-container">
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+      <div class="modal-content bg-dark">
+        <div class="modal-header bg-dark">
+          <h1 class="modal-title fs-5 bg-dark" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-dark">
+            <form id="myform" enctype="multipart/form-data">
+
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;" required>
+                <br><br>
+    
+                <label for="description">Post Description:</label><br>
+                <textarea id="description" name="description" rows="10" cols="50"
+                    placeholder="Describe your post" style="width: 100%;" required></textarea>
+                <br><br>
+    
+                <p>Attach a photo or video:</p>
+                <div id="media-container">
+                    <input type="file" id="media-input" name="media" accept="image/*" required>
+                    <div id="media-preview">
+                        <img id="media">
+                    </div>
+                </div>
+                <br><br>
+    
+                <div class="button-container">
+                <input class="submit-button" type="submit" value="Submit">
+                </div>
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
         <div class="welcome-message">
             <h1>Hello, <span id="name-goes-here"></span>!</h1>
             <div class="phrase">
@@ -54,7 +103,7 @@
                 </div>
         </template>
 
-            <!-- <div class="card" style="width: 18rem;">
+        <!-- <div class="card" style="width: 18rem;">
                 <img src="images/pets.jpg" class="card-img-top" alt="Pets community image"
                     style="width: 100%; max-height: 150px; object-fit: cover;">
                 <div class="card-body">
