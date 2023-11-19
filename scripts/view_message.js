@@ -23,6 +23,19 @@ function dynamicallyPopulatePost(){
             document.getElementById("posted-date-placeholder").innerText = postID.data().date
             document.querySelector("i").id = 'save-' + docID;
             document.querySelector("i").onclick = () => updateBookmark(docID);
+
+            // keep bookmarked if its clicked already
+            let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+            currentUser.get().then(userDoc => {
+                let bookmark = userDoc.data().bookmarks;
+                let iconID = 'save-' + docID;
+                let isBookmarked = bookmark.includes(docID); // check if the post is already bookmarked
+                console.log(isBookmarked);
+                if(isBookmarked){
+                    document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-xl");
+                    document.getElementById(iconID).classList.add("fa-solid","fa-bookmark","fa-xl");
+                }
+            })
         })
 }
 
