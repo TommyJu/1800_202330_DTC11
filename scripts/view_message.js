@@ -24,7 +24,7 @@ function dynamicallyPopulatePost(){
             document.querySelector("i").id = 'save-' + docID;
             document.querySelector("i").onclick = () => updateBookmark(docID);
 
-            // keep bookmarked if its clicked already
+            // keep bookmarked if it's clicked already
             let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
             currentUser.get().then(userDoc => {
                 let bookmark = userDoc.data().bookmarks;
