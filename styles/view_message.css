@@ -115,3 +115,13 @@ form > textarea {
     height: 38px;
     filter: brightness(0) invert(0);
 } */
+
+#date-and-bookmark{
+    display: flex;
+    justify-content: space-between;
+}
+
+#bookmark-icon{
+    align-self: center;
+    margin-right: 15px;
+}
