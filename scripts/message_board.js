@@ -14,7 +14,7 @@ var currentCategoryTitle = localStorage.getItem("currentCategoryTitle");
 function displayCardsDynamically(category) {
     let postsCollection = db.collection("categories").doc(category).collection("posts");
     console.log("collection", postsCollection);
-    postsCollection.get()
+    postsCollection.orderBy("date").get() 
         .then(posts => {
             // Create each message board post
             posts.forEach(doc => { //iterate thru each doc
