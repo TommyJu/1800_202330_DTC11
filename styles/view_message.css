@@ -123,5 +123,13 @@ form > textarea {
 
 #bookmark-icon{
     align-self: center;
+}
+
+/* fill the bookmark icon when it is clicked */
+.fa-solid{
+    color: #ffc107;
+}
+
+.fa-bookmark{
     margin-right: 15px;
 }
