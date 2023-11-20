@@ -72,8 +72,7 @@ body {
 
 .card {
     margin: auto;
-    width: 70%;
-    height: 60%;
+    width: 30%;
     background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
@@ -84,26 +83,55 @@ body {
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding: 24px;
-    gap: 12px;
+    padding: 15px;
+    gap: 5px;
 
     max-height: 1000px;
     overflow-y: auto;
+
 }
 
 
 .card-image-and-description {
     display: flex;
     height: 70%;
-    gap: 24px;
+    gap: 5px;
+
 }
 
 .card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     height: 20%;
 }
 
+.card-title {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.card-date {
+    font-size: 12px;
+    font-weight: bold;
+    width: 25%;
+    text-align: right;
+    font-style: italic;
+}
+
+.card-user {
+    font-size: 18px;
+    font-weight: bold;
+
+
+}
+
 .image-container {
-    width: 70%;
+    width:50%;
     height: 100%;
     border-radius: 20px;
     border: solid 2px black;
@@ -118,8 +146,10 @@ body {
     object-position: center;
 }
 
+
+
 .card-description-container{
-    width: 30%;
+    width: 50%;
     text-overflow: ellipsis;
     display: flex;
     flex-direction: column;
@@ -128,10 +158,11 @@ body {
 
 .card-description {
     width: 100%;
+    font-size: 12px;
     /* display: -webkit-box;
     -webkit-line-clamp: 9;
     -webkit-box-orient: vertical; */
-    overflow: scroll;
+
 }
 
 .card > h2 {
@@ -212,8 +243,11 @@ body {
 
 .comments-list {
     border: solid 2px black;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     padding: 10px;
+    max-height: 300px;
+    overflow-y: scroll;
 }
 
 .comment {
@@ -224,7 +258,27 @@ body {
     background-color: #F0F2F5;
     border-radius: 20px;
     align-items: flex-start;
+    font-size: 12px;
     /* Alinea el contenido al principio del contenedor flex */
+}
+
+.add-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    heigth: 30%;
+}
+
+.comment-section {
+    max-height: none;
 }
 
 
