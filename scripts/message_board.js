@@ -52,25 +52,30 @@ function displayCardsDynamically(category) {
         })
 }
 
-// ------ Create commenting feature for a new card -------
+
 function createComments(newcard, docID) {
-    // Añadir manejador de eventos para enviar nuevos comentarios
     let commentsListDiv = newcard.querySelector('.comments-list');
     let submitCommentButton = newcard.querySelector('.submit-comment');
     let commentInput = newcard.querySelector('.add-comment input');
+    let commentButton = newcard.querySelector('.comment-button');
+    let commentsSection = newcard.querySelector('.comments-section');
+
+    // Asegura que la sección de comentarios pueda desplegarse incluso si no hay comentarios
+    commentButton.addEventListener('click', () => {
+        commentsSection.style.display = commentsSection.style.display === 'block' ? 'none' : 'block';
+    });
+
     submitCommentButton.addEventListener('click', () => {
         let commentText = commentInput.value;
-        addCommentToFirestore(commentText, docID, commentsListDiv); // Función para añadir comentario
-        commentInput.value = ''; // Limpiar el campo después de enviar
-    })
+        addCommentToFirestore(commentText, docID, commentsListDiv);
+        commentInput.value = ''; // Clear the input after submit
+    });
 
-
-    // Referencia al contenedor donde se insertarán los comentarios
-
-
-    // Obtener los comentarios del post específico
     db.collection('comments').where('postId', '==', docID).orderBy('timestamp', 'desc').get()
         .then(commentsSnapshot => {
+            let commentCount = commentsSnapshot.docs.length;
+            commentButton.innerText = commentCount > 0 ? `Comments (${commentCount})` : 'No comments';
+            
             commentsSnapshot.forEach(commentDoc => {
                 const commentData = commentDoc.data();
                 const commentDate = commentData.timestamp.toDate();
@@ -87,30 +92,12 @@ function createComments(newcard, docID) {
             });
         })
         .catch(error => {
-            console.error('Error al obtener comentarios: ', error);
+            console.error('Error to get comments: ', error);
+            commentButton.innerText = 'No comments';
         });
-
-        // // Get all buttons with the class "comment-button" and the corresponding comment divs
-        // const commentButtons = document.querySelectorAll('.comment-button');
-        // const commentsSections = document.querySelectorAll('.comments-section');
-
-        // // Add an event handler to each button
-        // commentButtons.forEach((button, index) => {
-        //     button.addEventListener('click', () => {
-        //         // Change the style of the corresponding comment div to "block" to show it
-        //         commentsSections[index].style.display = 'block';
-        //     });
-        // });
-
-        // Add event listener to comment button
-        let commentButton = newcard.querySelector('.comment-button');
-        console.log(commentButton)
-        let commentsSection = newcard.querySelector('.comments-section');
-        commentButton.addEventListener('click', () => {
-            // Change the style of the corresponding comment div to "block" to show it
-            commentsSection.style.display = 'block';
-            });
 }
+
+
 
 // function getParameterByName(name, url = window.location.href) {
 //     name = name.replace(/[\[\]]/g, '\\$&');
@@ -162,13 +149,13 @@ function displayCategory(category) {
     messageBoardCategory.innerText = category;
     console.log(category);
 }
-displayCategory(currentCategoryTitle) // global variable
+displayCategory(currentCategoryTitle) // 
 
 
 function getUserName(userId) {
     return db.collection('users').doc(userId).get().then(userDoc => {
         if (userDoc.exists) {
-            return userDoc.data().name; // Asumiendo que el campo se llama 'name'
+            return userDoc.data().name; 
         } else {
             throw new Error('User not found');
         }
@@ -189,7 +176,6 @@ function addCommentToFirestore(commentText, postId, commentsListDiv) {
             userId: userId,
             userName: userName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            // ... otros campos que necesites ...
         });
     })
         .then((docRef) => {
@@ -201,7 +187,7 @@ function addCommentToFirestore(commentText, postId, commentsListDiv) {
                 const commentDate = commentData.timestamp.toDate();
                 const formattedTimeAgo = timeAgo(commentDate);
 
-                // Actualizar la UI aquí
+        
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
                 commentDiv.innerHTML = `
@@ -210,7 +196,6 @@ function addCommentToFirestore(commentText, postId, commentsListDiv) {
                 <span>${formattedTimeAgo}</span>
             `;
 
-                // Agregar el comentario a la lista de comentarios
                 commentsListDiv.appendChild(commentDiv);
             } else {
                 throw new Error('El comentario no existe.');
