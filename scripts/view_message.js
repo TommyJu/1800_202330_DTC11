@@ -5,7 +5,8 @@ function dynamicallyPopulatePost(){
     var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
     let url = new URL(window.location.href);
     let docID = url.searchParams.get("postID");
-    console.log(docID);
+    let currentCategoryID = localStorage.getItem("currentCategory");
+    
 
     postsCollection.doc(docID)
         .onSnapshot(postID => {
@@ -14,7 +15,8 @@ function dynamicallyPopulatePost(){
             console.log(postID.data().image)
             console.log(postID.data().description);
             console.log(postID.data().date);
-            console.log(docID)
+            console.log(docID, "= uniqueID for each post");
+            console.log(currentCategoryID, "= currentCategoryID");
 
             // document.getElementById("post-category").innerText = postID.data().category;
             document.getElementById("post-title-placeholder").innerText = postID.data().title;
