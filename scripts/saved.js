@@ -56,6 +56,7 @@ function getBookmarks(user) {
                             let newcard = newcardTemplate.content.cloneNode(true);
                             newcard.querySelector('.card-title').innerHTML = doc.data().title;
                             newcard.querySelector('.card-description').innerHTML = doc.data().description;
+                            newcard.querySelector('.card-date').innerHTML = `Posted date:${doc.data().date}`;
                             newcard.querySelector('.card-image').src = doc.data().image;
                             newcard.querySelector('a').href = "view_message.html?postID=" + postID;
 
