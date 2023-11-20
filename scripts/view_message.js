@@ -29,8 +29,8 @@ function dynamicallyPopulatePost(){
             currentUser.get().then(userDoc => {
                 let bookmark = userDoc.data().bookmarks;
                 let iconID = 'save-' + docID;
-                let isBookmarked = bookmark.includes(docID); // check if the post is already bookmarked
-                console.log(isBookmarked);
+                let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
+                console.log("isBookmarked", isBookmarked);
                 if(isBookmarked){
                     document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-xl");
                     document.getElementById(iconID).classList.add("fa-solid","fa-bookmark","fa-xl");
