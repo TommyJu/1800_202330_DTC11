@@ -41,68 +41,37 @@ function dynamicallyPopulatePost(){
 
 dynamicallyPopulatePost();
 
-// function updateBookmark(docID){
-//     // make bookmark icon clickable
-//     let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
-//         currentUser.get().then(userDoc => {
-//         let bookmark = userDoc.data().bookmarks;
-//         let iconID = 'save-' + docID;
-//         let isBookmarked = bookmark.includes(docID); // check if the post is already bookmarked
-//         console.log(isBookmarked);
-
-//         if(isBookmarked){
-//             // remove bookmark
-//             currentUser.update({
-//                 bookmarks: firebase.firestore.FieldValue.arrayRemove(docID)
-//             }).then(() => {
-//                 console.log("Bookmark removed");
-//                 document.getElementById(iconID).style.color = "black";
-//             })
-//         } else{
-//             // add bookmark
-//             currentUser.update({
-//                 bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
-//             }).then(() => {
-//                 console.log("Bookmark added");
-//                 document.getElementById(iconID).style.color = "red";
-//             })
-//         }
-//     })
-// }
 
 function updateBookmark(docID){
+
+    var currentCategory = localStorage.getItem("currentCategory");
+
     let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
     currentUser.get().then(userDoc => {
-        let bookmark = userDoc.data().bookmarks;
-        // Check if bookmark is undefined and initialize it as an empty array if it is
-        if (typeof bookmark === "undefined") {
-            bookmark = [];
-        }
+        let bookmarks = userDoc.data().bookmarks || {};
 
         let iconID = 'save-' + docID;
         let iconElement = document.getElementById(iconID);
-        let isBookmarked = bookmark.includes(docID); 
 
-        if(isBookmarked){
-            // remove bookmark
-            currentUser.update({
-                bookmarks: firebase.firestore.FieldValue.arrayRemove(docID)
-            }).then(() => {
+        if(bookmarks[docID]){
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = firebase.firestore.FieldValue.delete();
+            currentUser.update(updateObject).then(() => {
                 console.log("Bookmark removed");
                 iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-xl");
                 iconElement.classList.add("fa-regular", "fa-bookmark", "fa-xl");
-            })
+            });
         } else{
-            // add bookmark
-            currentUser.update({
-                bookmarks: firebase.firestore.FieldValue.arrayUnion(docID)
-            }).then(() => {
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = {
+                category: currentCategory,
+            };
+            currentUser.update(updateObject).then(() => {
                 console.log("Bookmark added");
                 iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-xl");
                 iconElement.classList.add("fa-solid","fa-bookmark","fa-xl");
-
-            })
+            });
         }
-    })
+    });
 }
 
