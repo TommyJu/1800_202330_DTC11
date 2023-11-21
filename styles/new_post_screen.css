@@ -135,6 +135,7 @@ main {
 
 #media-container {
     display: flex
+    Height: 10px;
 }
 
 footer {

@@ -25,7 +25,7 @@ ul {
 }
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 a {
@@ -72,14 +72,14 @@ body {
 
 .card {
     margin: auto;
-    width: 30%;
+    width: 40%;
     background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
     border-radius: 20px;
     border: solid 5px black;
-    box-shadow: rgba(255, 193, 7, 0.4) -5px 5px, rgba(255,193,7, 0.3) -10px 10px, rgba(255,193,7, 0.2) -15px 15px, rgba(255,193,7, 0.1) -20px 20px, rgba(255,193,7, 0.05) -25px 25px;
-    
+    box-shadow: rgba(255, 193, 7, 0.4) -5px 5px, rgba(255, 193, 7, 0.3) -10px 10px, rgba(255, 193, 7, 0.2) -15px 15px, rgba(255, 193, 7, 0.1) -20px 20px, rgba(255, 193, 7, 0.05) -25px 25px;
+
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -94,6 +94,7 @@ body {
 
 .card-image-and-description {
     display: flex;
+    flex-direction: row;
     height: 70%;
     gap: 5px;
 
@@ -120,7 +121,6 @@ body {
     font-weight: bold;
     width: 25%;
     text-align: right;
-    font-style: italic;
 }
 
 .card-user {
@@ -131,7 +131,7 @@ body {
 }
 
 .image-container {
-    width:50%;
+    width: 50%;
     height: 100%;
     border-radius: 20px;
     border: solid 2px black;
@@ -148,7 +148,7 @@ body {
 
 
 
-.card-description-container{
+.card-description-container {
     width: 50%;
     text-overflow: ellipsis;
     display: flex;
@@ -158,20 +158,20 @@ body {
 
 .card-description {
     width: 100%;
-    font-size: 12px;
+    font-size: 16px;
     /* display: -webkit-box;
     -webkit-line-clamp: 9;
     -webkit-box-orient: vertical; */
 
 }
 
-.card > h2 {
+.card>h2 {
     width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     /* overflow: hidden; */
-    
+
 }
 
 .buttons-container {
@@ -262,19 +262,22 @@ body {
     /* Alinea el contenido al principio del contenedor flex */
 }
 
-.add-comment{
+.add-comment {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+}
+
+.submit-comment {
+    border-radius: 15px;
+
 }
 
 .text {
-    margin-top: 20px;
-    margin-bottom: 20px;
     width: 100%;
     heigth: 30%;
+    margin-bottom: 15px;
 }
 
 .comment-section {
@@ -310,10 +313,11 @@ footer {
     display: flex;
     justify-content: space-evenly;
     padding: 8px;
-    
+
 }
 
-#add-post, #home-button {
+#add-post,
+#home-button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -338,13 +342,106 @@ footer {
 }
 
 
+
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    /* Se queda fijo en su lugar */
+    z-index: 1;
+    /* Se sitúa sobre los demás elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    overflow: auto;
+    /* Habilita el desplazamiento si es necesario */
+    background-color: rgb(0, 0, 0);
+    /* Color de fondo */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Color de fondo con opacidad */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% desde la parte superior y centrado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    /* Puede ajustarse según la necesidad */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* media queries */
 
 @media (max-width: 900px) {
-    
-    .card-description {
-        display: none;
-    }
+
+    .card-description {}
 
     .card-image-and-description {
         flex-direction: column;
@@ -357,4 +454,30 @@ footer {
     .card {
         width: 90%;
     }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        /* 15% desde la parte superior y centrado */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        height: 85%;
+        /* Puede ajustarse según la necesidad */
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
 }

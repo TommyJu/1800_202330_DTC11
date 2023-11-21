@@ -13,43 +13,47 @@ var currentCategoryTitle = localStorage.getItem("currentCategoryTitle");
 // ---------- Add cards using the Firestore database ----------
 function displayCardsDynamically(category) {
     let postsCollection = db.collection("categories").doc(category).collection("posts");
-    console.log("collection", postsCollection);
-    postsCollection.orderBy("date").get() 
-        .then(posts => {
-            // Create each message board post
-            posts.forEach(doc => { //iterate thru each doc
-                console.log(doc)
-                var title = doc.data().title;
-                var description = doc.data().description;
-                var image = doc.data().image;
-                var userID = doc.data().userId;
-                var userName = doc.data().userName;
-                var docID = doc.id;
-                var date = doc.data().date;
 
-                let cardTemplate = document.getElementById("card-template");
-                let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+    postsCollection.orderBy("date").onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+            var doc = change.doc;
+            var title = doc.data().title;
+            var description = doc.data().description;
+            var image = doc.data().image;
+            var userName = doc.data().userName;
+            var docID = doc.id;
+            var date = doc.data().date;
 
-                // update title, description and image
+            let cardTemplate = document.getElementById("card-template");
+
+            if (change.type === "added") {
+                let newcard = cardTemplate.content.cloneNode(true);
+
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description-container > p').innerHTML = description;
-                newcard.querySelector('.card-image').src = image;
+                if (image) { // Solo establece la imagen si existe
+                    newcard.querySelector('.card-image').src = image;
+                }
                 newcard.querySelector('.card-date').innerHTML = date;
                 newcard.querySelector('.card-user').innerHTML = userName;
-                newcard.querySelector('.card-image').src = image;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
+                newcard.querySelector('.card').setAttribute('data-doc-id', docID); // Añade un atributo para identificar la tarjeta
 
                 createComments(newcard, docID);
-                
 
-
-                //attach to card-container
-                // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("card-container").insertBefore(
                     newcard,
                     document.getElementById("scroll-to-top-container"));
-            })
-        })
+            } else if (change.type === "modified") {
+                const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
+                if (existingCard) {
+                    if (image) {
+                        existingCard.querySelector('.card-image').src = image;
+                    }
+                }
+            }
+        });
+    });
 }
 
 
@@ -60,12 +64,14 @@ function createComments(newcard, docID) {
     let commentButton = newcard.querySelector('.comment-button');
     let commentsSection = newcard.querySelector('.comments-section');
 
-    // Asegura que la sección de comentarios pueda desplegarse incluso si no hay comentarios
+    // Ensure the comments section can be toggled even if there are no comments
     commentButton.addEventListener('click', () => {
         commentsSection.style.display = commentsSection.style.display === 'block' ? 'none' : 'block';
     });
 
     submitCommentButton.addEventListener('click', () => {
+        commentsSection.style.display = 'block'; // Ensures the comments section is shown
+
         let commentText = commentInput.value;
         addCommentToFirestore(commentText, docID, commentsListDiv);
         commentInput.value = ''; // Clear the input after submit
@@ -75,7 +81,7 @@ function createComments(newcard, docID) {
         .then(commentsSnapshot => {
             let commentCount = commentsSnapshot.docs.length;
             commentButton.innerText = commentCount > 0 ? `Comments (${commentCount})` : 'No comments';
-            
+
             commentsSnapshot.forEach(commentDoc => {
                 const commentData = commentDoc.data();
                 const commentDate = commentData.timestamp.toDate();
@@ -96,6 +102,7 @@ function createComments(newcard, docID) {
             commentButton.innerText = 'No comments';
         });
 }
+
 
 
 
@@ -187,16 +194,18 @@ function addCommentToFirestore(commentText, postId, commentsListDiv) {
                 const commentDate = commentData.timestamp.toDate();
                 const formattedTimeAgo = timeAgo(commentDate);
 
-        
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
                 commentDiv.innerHTML = `
-                <p><strong>${commentData.userName}</strong> </p>
-                <p>${commentText}</p>
-                <span>${formattedTimeAgo}</span>
+            <p><strong>${commentData.userName}</strong> </p>
+            <p>${commentText}</p>
+            <span>${formattedTimeAgo}</span>
             `;
 
                 commentsListDiv.appendChild(commentDiv);
+
+                // Actualizar el contador de comentarios
+                updateCommentCount(postId);
             } else {
                 throw new Error('El comentario no existe.');
             }
@@ -206,6 +215,20 @@ function addCommentToFirestore(commentText, postId, commentsListDiv) {
         });
 }
 
+function updateCommentCount(postId) {
+    const postCard = document.querySelector(`.card[data-doc-id="${postId}"]`);
+    if (postCard) {
+        const commentButton = postCard.querySelector('.comment-button');
+        db.collection('comments').where('postId', '==', postId).get()
+            .then(commentsSnapshot => {
+                let commentCount = commentsSnapshot.docs.length;
+                commentButton.innerText = commentCount > 0 ? `Comments (${commentCount})` : 'No comments';
+            })
+            .catch(error => {
+                console.error('Error al obtener comentarios: ', error);
+            });
+    }
+}
 
 
 
@@ -241,3 +264,54 @@ function timeAgo(dateParam) {
         return `${years} y`;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var submitButton = document.querySelector('.submit-button');
+
+
+// Obtén el modal
+var modal = document.getElementById("postModal");
+
+// Obtén el botón que abre el modal
+var btn = document.getElementById("add-post-link");
+
+// Obtén el elemento <span> que cierra el modal
+var span = document.getElementsByClassName("close")[0];
+
+// Cuando el usuario haga clic en el botón, abre el modal 
+btn.onclick = function (event) {
+    event.preventDefault(); // Previene la navegación al enlace
+    modal.style.display = "block";
+
+}
+
+// Cuando el usuario haga clic en <span> (x), cierra el modal
+span.onclick = function () {
+    modal.style.display = "none";
+    document.getElementById('myform').reset();
+    // Limpiar el campo de archivo
+    document.getElementById('media-input').value = "";
+    // Limpiar la vista previa de la imagen si es necesario
+    document.getElementById('media').src = "";
+}
+
+// Cuando el usuario haga clic fuera del modal, también lo cierra
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+

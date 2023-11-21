@@ -86,10 +86,11 @@
                     </div>
                 
                     <!-- Añadir un Nuevo Comentario -->
-                    <div class="add-comment">
-                        <input class="text" type="text" placeholder="Type your comment here">
-                        <button class="submit-comment">Add Comment</button>
-                    </div>
+                   
+                </div>
+                <div class="add-comment">
+                    <input class="text" type="text" placeholder="Type your comment here">
+                    <button class="submit-comment">Add Comment</button>
                 </div>
 
 
@@ -118,12 +119,58 @@
                 </a>
             </div>
     </footer>
+
+
+
+
+
+
+
+
+
+    <div id="postModal" class="modal">
+        <!-- Contenido del Modal -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Aquí puedes agregar el formulario para crear un nuevo post.</p>
+            <form id="myform" enctype="multipart/form-data">
+            
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;" required>
+                <br><br>
+            
+                <label for="description">Post Description:</label><br>
+                <textarea id="description" name="description" rows="10" cols="50" placeholder="Describe your post"
+                    style="width: 100%;" required></textarea>
+                <br><br>
+            
+                <p>Attach a photo or video:</p>
+                <div id="media-container">
+                    <input type="file" id="media-input" name="media" accept="image/*">
+                    <div id="media-preview">
+                        <img id="media">
+                    </div>
+                </div>
+            
+                <div class="button-container">
+                    <input class="submit-button" type="submit" value="Submit">
+                </div>
+            
+            </form>
+        </div>
+    </div>
+ 
+
+
+
+
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/message_board.js"></script>
     <script src="/scripts/view_message.js"></script>
+    <script src="scripts/modal.js"></script>
 </body>
 
 </html>
