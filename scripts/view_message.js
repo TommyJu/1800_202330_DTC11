@@ -34,8 +34,8 @@ function dynamicallyPopulatePost(){
                 let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
                 console.log("isBookmarked", isBookmarked);
                 if(isBookmarked){
-                    document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-xl");
-                    document.getElementById(iconID).classList.add("fa-solid","fa-bookmark","fa-xl");
+                    document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                    document.getElementById(iconID).classList.add("fa-solid","fa-bookmark","fa-2xl");
                 }
             })
         })
@@ -60,8 +60,8 @@ function updateBookmark(docID){
             updateObject['bookmarks.' + docID] = firebase.firestore.FieldValue.delete();
             currentUser.update(updateObject).then(() => {
                 console.log("Bookmark removed");
-                iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-xl");
-                iconElement.classList.add("fa-regular", "fa-bookmark", "fa-xl");
+                iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-regular", "fa-bookmark", "fa-2xl");
             });
         } else{
             let updateObject = {};
@@ -70,8 +70,8 @@ function updateBookmark(docID){
             };
             currentUser.update(updateObject).then(() => {
                 console.log("Bookmark added");
-                iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-xl");
-                iconElement.classList.add("fa-solid","fa-bookmark","fa-xl");
+                iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-solid","fa-bookmark","fa-2xl");
             });
         }
     });

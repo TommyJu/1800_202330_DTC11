@@ -22,18 +22,19 @@ main{
 #post-title-placeholder{
     font-size: 30px;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 0 10px;; 
+    justify-content: center;
+    padding: 10px 10px 0 10px;
 }
 
-.fa-star{
+.fa-2xl{
     align-self: center;
 }
 
 #post-image-placeholder{
     height: auto;
     max-width: 100%;
-    padding:10px;
+    padding:20px;
+    margin: 0 auto;
 }
 
 #post-description-placeholder {
@@ -56,10 +57,10 @@ main{
 }
 
 /* Make title and star in the same line */
-#date-and-star {
+#date-and-bookmark {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 0 0;
+    justify-content: space-evenly;
+    padding: 10px 5px 0 5px;
 }
 
 /* Allow textarea to resize */
@@ -67,23 +68,11 @@ form > textarea {
     width: 100%;
 }
 
-#upload-media-placeholder{
-    border: 1px dashed black;
-    padding: 8px;
-    margin: 5px 50px 10px;
-    display: flex;
-    justify-content: center;
-}
-
 .fa-upload {
     align-self: center;
     margin-right: 10px;
 }
 
-/* #upload-media-placeholder > p {
-    align-self: center;
-    margin: 0;
-} */
 
 /* previous page button */
 
@@ -99,22 +88,6 @@ form > textarea {
     color: grey;
 }
 
-/* footer {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    height: 50px;
-    background: #ffc107;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 8px;
-}
-
-#home-button img {
-    width: 38px;
-    height: 38px;
-    filter: brightness(0) invert(0);
-} */
 
 #date-and-bookmark{
     display: flex;
