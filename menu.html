@@ -30,8 +30,13 @@
 
 <body>
 
-    <navbar id="navbarPlaceholder"></navbar>
+    <navbar id="navbarPlaceholder">
+    </navbar>
 
+    <div id="confirm-category">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        You have successfully created a new category.
+    </div>
 
     <section id="hero-section">
 
@@ -74,7 +79,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input class="submit-button btn btn-warning" type="submit" value="Submit">
+                            <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit" value="Submit">
                             <!-- <button type="button" class="btn btn-warning">Save changes</button> -->
                         </div>
                     </form>

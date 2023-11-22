@@ -124,3 +124,22 @@ p {
     width: 120px;
     height: 120px;
 }
+
+#confirm-category {
+    padding: 20px;
+    background-color: black; /* Red */
+    color: white;
+    display: none;
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }

@@ -167,9 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // var urlParams = new URLSearchParams(window.location.search);
     // var category = urlParams.get('category');
 
-
     form.addEventListener('submit', function (e) {
         e.preventDefault();
+
 
         // This authentication state listener should be registered once, not on every form submit.
         // If needed, place this listener outside and use a variable to store the user state.
@@ -207,6 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     })
                 })
 
+                // Give the user confirmation when a category is added
+                var categoryConfirmation = document.getElementById("confirm-category");
+                categoryConfirmation.style.display = "block";
                 
                 // form.style.display = 'none';
                 // messageSentDiv.style.display = 'flex';
