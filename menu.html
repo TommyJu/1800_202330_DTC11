@@ -43,8 +43,9 @@
                         <h1 class="modal-title fs-5 bg-dark" id="exampleModalLabel">Create a new category</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body bg-dark">
-                        <form id="myform" enctype="multipart/form-data">
+                    <form id="myform" enctype="multipart/form-data">
+                        <div class="modal-body bg-dark">
+
 
                             <label for="title">Title:</label><br>
                             <input type="text" id="title" name="title" placeholder="Enter the title"
@@ -65,16 +66,18 @@
                             </div>
                             <br><br>
 
-                            <div class="button-container">
+                            <!-- <div class="button-container">
                                 <input class="submit-button" type="submit" value="Submit">
-                            </div>
+                            </div> -->
 
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class="submit-button btn btn-warning" type="submit" value="Submit">
+                            <!-- <button type="button" class="btn btn-warning">Save changes</button> -->
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -85,8 +88,9 @@
             </div>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" id="new-category-btn" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Create a new category
+        <button type="button" id="new-category-btn" class="btn btn-warning" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Create a new category
         </button>
 
     </section>
@@ -95,8 +99,7 @@
             <!-- <div class="categories d-flex flex-wrap justify-content-center"> -->
             <div class="categories">
                 <div class="card" style="width: 18rem;">
-                    <img src="" class="card-img-top" alt="Category image"
-                        style="width: 100%; max-height: 150px; object-fit: cover;">
+                    <img src="" class="card-img-top" alt="Category image">
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <p class="card-text"></p>
