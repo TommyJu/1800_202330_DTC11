@@ -22,10 +22,29 @@ navbar {
     height: 80px;
 }  */
 
-main {
+#category-container {
     background-color: rgb(33, 37, 41);
     color: white;
     min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding: 24px;
+}
+
+#new-category-btn {
+    width: 200px;
 }
 
 .welcome-message {
@@ -37,7 +56,7 @@ main {
     font-size: 20px;
     height: 100px;
     padding-top: 50px;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 .categories {
