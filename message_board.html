@@ -113,23 +113,56 @@
                 </a>
             </div>
             <div id="add-post">
-                <a id="add-post-link" href="new_post_screen.html">
+                <a id="add-post-link" href="new_post_screen.html" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                     <img src="/images/plus-box.svg" alt="Add a post">
                     <p>Add post</p>
                 </a>
             </div>
     </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-sm-down">
+            <div class="modal-content bg-dark">
+                <div class="modal-header bg-dark">
+                    <h1 class="modal-title fs-5 bg-dark" id="exampleModalLabel">Create a new post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="myform" enctype="multipart/form-data">
+                    <div class="modal-body bg-dark">
 
 
+                        <label for="title">Title:</label><br>
+                        <input type="text" id="title" name="title" placeholder="Enter the title"
+                            style="width: 100%;" required>
+                        <br><br>
 
+                        <label for="description">Post Description:</label><br>
+                        <textarea id="description" name="description" rows="10" cols="50"
+                            placeholder="Describe your post" style="width: 100%;" required></textarea>
+                        <br><br>
 
+                        <p>Attach a photo or video:</p>
+                        <div id="media-container">
+                            <input type="file" id="media-input" name="media" accept="image/*" required>
+                            <div id="media-preview">
+                                <img id="media">
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit" value="Submit">
+                        <!-- <button type="button" class="btn btn-warning">Save changes</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-
-
-
-
-    <div id="postModal" class="modal">
-        <!-- Contenido del Modal -->
+    <!-- <div id="postModal" class="modal">
+        
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Aquí puedes agregar el formulario para crear un nuevo post.</p>
@@ -146,7 +179,7 @@
             
                 <p>Attach a photo or video:</p>
                 <div id="media-container">
-                    <input type="file" id="media-input" name="media" accept="image/*">
+                    <input type="file" id="media-input" name="media" accept="image/*" required>
                     <div id="media-preview">
                         <img id="media">
                     </div>
@@ -158,7 +191,7 @@
             
             </form>
         </div>
-    </div>
+    </div> -->
  
 
 
