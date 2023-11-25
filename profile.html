@@ -24,12 +24,9 @@
     <!-- cloud storage -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-
-
+    <link rel="stylesheet" href="/styles/profile.css">
 </head>
-
 <body>
-
     <navbar id="navbarPlaceholder"></navbar>
     <div class="container">
         <h1>User Profile </h1>
@@ -51,12 +48,14 @@
             </div>
         </form>
     </div>
-
+    <div id="your-posts"></div>
+    <div id="your-comments"></div>
+    <div id="your-categories"></div>
 
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/authentication.js"></script>
-    <!-- <script src="./scripts/menu.js"></script> -->
+    <script src="./scripts/profile.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 </body>
 

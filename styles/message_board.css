@@ -316,8 +316,15 @@ footer {
 
 }
 
-#add-post,
-#home-button {
+#add-post-link,
+#home-button-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-post img,
+#home-button img {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
