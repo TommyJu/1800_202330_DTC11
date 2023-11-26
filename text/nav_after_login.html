@@ -1,12 +1,28 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-warning">
+<nav class="navbar navbar-expand-md bg-warning">
     <div class="container-fluid">
         <a class="navbar-brand" href="menu.html">
             <img src="images/panda.svg" height="36px" alt="Logo">
             Neighborhood Connect
         </a>
-        <!-- <button class="btn btn-outline-success me-2" type="button">Sign Up</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Log In</button> -->
-            <a onclick="logout()" href="../index.html" class="nav-item btn btn-lg btn-outline-secondary">Log Out</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="menu.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Bookmarks</a>
+              </li>
+              <li class="nav-item">
+                <a onclick="logout()" href="../index.html" class="nav-link">Log Out</a>
+              </li>
+            </ul>
+          </div>
     </div>
 </nav>
