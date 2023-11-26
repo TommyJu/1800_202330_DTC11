@@ -48,9 +48,9 @@
             </div>
         </form>
     </div>
-    <div id="your-bookmarks">
-        <h2>Your Bookmarks</h2>
-        <template id="savedCardTemplate">
+    <div id="my-bookmarks">
+        <h2>My Bookmarks</h2>
+        <template id="bookmarkCardTemplate">
             <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
                 <img class="card-image card-img-top" src=" ..." alt="...">
                 <div class="card-body">
@@ -61,9 +61,18 @@
             </div>
      </template>
     </div>
-    <div id="your-posts"></div>
-    <div id="your-comments"></div>
-    <div id="your-categories"></div>
+    <div id="your-categories">
+        <template id="categoryCardTemplate">
+            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
+                <img class="card-image card-img-top" src=" ..." alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <br>
+                    <a class="btn btn-secondary card-href" id="read-more">See category</a>
+                </div>
+            </div>
+     </template>
+    </div>
 
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>

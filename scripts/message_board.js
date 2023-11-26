@@ -38,7 +38,22 @@ function displayCardsDynamically(category) {
                 newcard.querySelector('.card-user').innerHTML = userName;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
                 newcard.querySelector('.card').setAttribute('data-doc-id', docID); // Añade un atributo para identificar la tarjeta
+                newcard.querySelector("i").id = 'save-' + docID;
+                newcard.querySelector("i").onclick = () => updateBookmark(docID);
 
+                // Keep bookmark active 
+                let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+                currentUser.get().then(userDoc => {
+                    let bookmark = userDoc.data().bookmarks;
+                    let iconID = 'save-' + docID;
+                    let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
+                    console.log("isBookmarked", isBookmarked);
+                    if (isBookmarked) {
+                        document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                        document.getElementById(iconID).classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+                    }
+                })
+                // create comments for post
                 createComments(newcard, docID);
 
                 document.getElementById("card-container").append(newcard);
@@ -51,6 +66,40 @@ function displayCardsDynamically(category) {
                 }
             }
         });
+    });
+}
+
+// Bookmark a post from the message board
+function updateBookmark(docID) {
+
+    var currentCategory = localStorage.getItem("currentCategory");
+
+    let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+    currentUser.get().then(userDoc => {
+        let bookmarks = userDoc.data().bookmarks || {};
+
+        let iconID = 'save-' + docID;
+        let iconElement = document.getElementById(iconID);
+
+        if (bookmarks[docID]) {
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = firebase.firestore.FieldValue.delete();
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark removed");
+                iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-regular", "fa-bookmark", "fa-2xl");
+            });
+        } else {
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = {
+                category: currentCategory,
+            };
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark added");
+                iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+            });
+        }
     });
 }
 
@@ -160,7 +209,7 @@ displayCategory(currentCategoryTitle) //
 function getUserName(userId) {
     return db.collection('users').doc(userId).get().then(userDoc => {
         if (userDoc.exists) {
-            return userDoc.data().name; 
+            return userDoc.data().name;
         } else {
             throw new Error('User not found');
         }
@@ -241,7 +290,7 @@ function timeAgo(dateParam) {
     const hours = Math.round(minutes / 60);
     const days = Math.round(hours / 24);
     const weeks = Math.round(days / 7);
-    const months = Math.round(weeks / 4.35);  
+    const months = Math.round(weeks / 4.35);
     const years = Math.round(months / 12);
 
     if (seconds < 60) {
@@ -252,7 +301,7 @@ function timeAgo(dateParam) {
         return `${hours} h`;
     } else if (days < 7) {
         return `${days} d`;
-    } else if (weeks < 4.35) {  
+    } else if (weeks < 4.35) {
         return `${weeks} w`;
     } else if (months < 12) {
         return `${months} m`;
