@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: whitesmoke;
+    color: black;
 }
 
 body {
@@ -12,6 +12,10 @@ body {
 
 main{
     max-width: 100vw;
+    max-height: 100vh;
+    background-color: rgb(255,250,205);
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
 }
 
 #prev-page{
