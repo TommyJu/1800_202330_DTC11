@@ -60,7 +60,9 @@ function getBookmarks(user) {
                     });
                     newcard.querySelector('a').href = "view_message.html?postID=" + docID;
                     myBookmarks.appendChild(newcard);
-                })
+                }).catch((error) => {
+                    console.error("Error loading bookmarked post. It may have been deleted.");
+                });
             });
         })
 }
