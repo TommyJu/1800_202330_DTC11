@@ -64,6 +64,7 @@ body {
     height: 100vh;
     overflow-y: scroll;
     text-align: center;
+    padding-bottom: 140px;
 }
 
 #card-container h1 {
@@ -276,32 +277,12 @@ body {
 
 .text {
     width: 100%;
-    heigth: 30%;
+    height: 30%;
     margin-bottom: 15px;
 }
 
 .comment-section {
     max-height: none;
-}
-
-
-#scroll-to-top {
-    width: 50px;
-    height: 50px;
-    filter: invert(88%) sepia(45%) saturate(0%) hue-rotate(268deg) brightness(112%) contrast(100%);
-}
-
-#scroll-to-top:hover {
-    transition: 0.8s;
-    filter: invert(83%) sepia(28%) saturate(3534%) hue-rotate(353deg) brightness(101%) contrast(101%);
-}
-
-.scroll-to-top-text {
-    color: white;
-}
-
-#scroll-to-top-container {
-    margin: 140px 0;
 }
 
 footer {
@@ -316,63 +297,61 @@ footer {
 
 }
 
+#profile-button,
 #add-post,
 #home-button {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#add-post img {
+#add-post img, #home-button img, #profile-button img{
     width: 40px;
     height: 40px;
 }
 
-#home-button img {
-    width: 38px;
-    height: 38px;
-    filter: brightness(0) invert(0);
-}
-
-#add-post p {
+/* #add-post p {
     color: black;
     text-align: center;
+} */
+
+
+#media-preview, #media {
+    width: 120px;
+    height: 120px;
 }
-
-
-
 
 /* The Modal (background) */
 .modal {
-    display: none;
+    /* display: none; */
     /* Oculto por defecto */
-    position: fixed;
+    /* position: fixed; */
     /* Se queda fijo en su lugar */
-    z-index: 1;
+    /* z-index: 1; */
     /* Se sitúa sobre los demás elementos */
-    left: 0;
-    top: 0;
+    /* left: 0; */
+    /* top: 0; */
     width: 100%;
     /* Ancho completo */
     height: 100%;
     /* Altura completa */
-    overflow: auto;
+    /* overflow: auto; */
     /* Habilita el desplazamiento si es necesario */
-    background-color: rgb(0, 0, 0);
+    /* background-color: rgb(0, 0, 0); */
     /* Color de fondo */
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
     /* Color de fondo con opacidad */
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    /* background-color: #fefefe; */
+    /* margin: 15% auto; */
     /* 15% desde la parte superior y centrado */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
+    /* padding: 20px; */
+    /* border: 1px solid #888; */
+    /* width: 60%; */
     /* Puede ajustarse según la necesidad */
 }
 

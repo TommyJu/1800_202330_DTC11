@@ -143,3 +143,15 @@ p {
     cursor: pointer;
     transition: 0.3s;
   }
+
+  .card-button-container {
+    display:flex;
+  }
+
+  i {
+    color: #ffc107;
+  }
+
+  .fa-solid {
+    color: #ffc107;
+  }

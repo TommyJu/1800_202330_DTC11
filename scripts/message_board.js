@@ -1,9 +1,9 @@
 // --------- Scroll to top button ---------
-const scrollToTop = document.getElementById("scroll-to-top");
+// const scrollToTop = document.getElementById("scroll-to-top");
 const cardContainer = document.getElementById("card-container");
-scrollToTop.addEventListener("click", () => {
-    cardContainer.scrollTop = 0;
-})
+// scrollToTop.addEventListener("click", () => {
+//     cardContainer.scrollTop = 0;
+// })
 
 // global variables
 var currentCategory = localStorage.getItem("currentCategory");
@@ -38,12 +38,25 @@ function displayCardsDynamically(category) {
                 newcard.querySelector('.card-user').innerHTML = userName;
                 newcard.querySelector('.card-link').href = `view_message.html?postID=${docID}`;
                 newcard.querySelector('.card').setAttribute('data-doc-id', docID); // Añade un atributo para identificar la tarjeta
+                newcard.querySelector("i").id = 'save-' + docID;
+                newcard.querySelector("i").onclick = () => updateBookmark(docID);
 
+                // Keep bookmark active 
+                let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+                currentUser.get().then(userDoc => {
+                    let bookmark = userDoc.data().bookmarks;
+                    let iconID = 'save-' + docID;
+                    let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
+                    console.log("isBookmarked", isBookmarked);
+                    if (isBookmarked) {
+                        document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                        document.getElementById(iconID).classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+                    }
+                })
+                // create comments for post
                 createComments(newcard, docID);
 
-                document.getElementById("card-container").insertBefore(
-                    newcard,
-                    document.getElementById("scroll-to-top-container"));
+                document.getElementById("card-container").append(newcard);
             } else if (change.type === "modified") {
                 const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
                 if (existingCard) {
@@ -53,6 +66,40 @@ function displayCardsDynamically(category) {
                 }
             }
         });
+    });
+}
+
+// Bookmark a post from the message board
+function updateBookmark(docID) {
+
+    var currentCategory = localStorage.getItem("currentCategory");
+
+    let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+    currentUser.get().then(userDoc => {
+        let bookmarks = userDoc.data().bookmarks || {};
+
+        let iconID = 'save-' + docID;
+        let iconElement = document.getElementById(iconID);
+
+        if (bookmarks[docID]) {
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = firebase.firestore.FieldValue.delete();
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark removed");
+                iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-regular", "fa-bookmark", "fa-2xl");
+            });
+        } else {
+            let updateObject = {};
+            updateObject['bookmarks.' + docID] = {
+                category: currentCategory,
+            };
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark added");
+                iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+            });
+        }
     });
 }
 
@@ -162,7 +209,7 @@ displayCategory(currentCategoryTitle) //
 function getUserName(userId) {
     return db.collection('users').doc(userId).get().then(userDoc => {
         if (userDoc.exists) {
-            return userDoc.data().name; 
+            return userDoc.data().name;
         } else {
             throw new Error('User not found');
         }
@@ -231,8 +278,6 @@ function updateCommentCount(postId) {
 }
 
 
-
-
 function timeAgo(dateParam) {
     if (!dateParam) {
         return null;
@@ -245,7 +290,7 @@ function timeAgo(dateParam) {
     const hours = Math.round(minutes / 60);
     const days = Math.round(hours / 24);
     const weeks = Math.round(days / 7);
-    const months = Math.round(weeks / 4.35);  
+    const months = Math.round(weeks / 4.35);
     const years = Math.round(months / 12);
 
     if (seconds < 60) {
@@ -256,7 +301,7 @@ function timeAgo(dateParam) {
         return `${hours} h`;
     } else if (days < 7) {
         return `${days} d`;
-    } else if (weeks < 4.35) {  
+    } else if (weeks < 4.35) {
         return `${weeks} w`;
     } else if (months < 12) {
         return `${months} m`;
@@ -266,52 +311,37 @@ function timeAgo(dateParam) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 var submitButton = document.querySelector('.submit-button');
-
-
 // Obtén el modal
-var modal = document.getElementById("postModal");
-
+var modal = document.getElementById("exampleModal");
 // Obtén el botón que abre el modal
 var btn = document.getElementById("add-post-link");
-
 // Obtén el elemento <span> que cierra el modal
 var span = document.getElementsByClassName("close")[0];
 
-// Cuando el usuario haga clic en el botón, abre el modal 
-btn.onclick = function (event) {
-    event.preventDefault(); // Previene la navegación al enlace
-    modal.style.display = "block";
+// // Cuando el usuario haga clic en el botón, abre el modal 
+// btn.onclick = function (event) {
+//     event.preventDefault(); // Previene la navegación al enlace
+//     modal.style.display = "block";
 
-}
+// }
 
-// Cuando el usuario haga clic en <span> (x), cierra el modal
-span.onclick = function () {
-    modal.style.display = "none";
-    document.getElementById('myform').reset();
-    // Limpiar el campo de archivo
-    document.getElementById('media-input').value = "";
-    // Limpiar la vista previa de la imagen si es necesario
-    document.getElementById('media').src = "";
-}
+// // Cuando el usuario haga clic en <span> (x), cierra el modal
+// span.onclick = function () {
+//     modal.style.display = "none";
+//     document.getElementById('myform').reset();
+//     // Limpiar el campo de archivo
+//     document.getElementById('media-input').value = "";
+//     // Limpiar la vista previa de la imagen si es necesario
+//     document.getElementById('media').src = "";
+// }
 
-// Cuando el usuario haga clic fuera del modal, también lo cierra
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// // Cuando el usuario haga clic fuera del modal, también lo cierra
+// window.onclick = function (event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
 
 
 
