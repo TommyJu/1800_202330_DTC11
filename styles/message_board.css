@@ -449,10 +449,23 @@ footer {
 
     .image-container {
         width: 100%;
+        border: none;
+        
+    }
+
+    .comment-list {
+        max-height: 200px;  
+        border: none
+    }
+
+    .card-image {
+       border: none;
     }
 
     .card {
-        width: 90%;
+        width: 93%;
+        margin-top: 6px;
+        border: none;
     }
 
     .modal-content {
@@ -479,5 +492,36 @@ footer {
         text-decoration: none;
         cursor: pointer;
     }
+
+   #card-container h1 {
+       margin-top: 70px;
+       font-size: 22px;
+       margin-bottom: 15px;
+   }
+
+   .text {
+        border-radius: 15px;
+        width: 85%;
+        height: 35px;
+        border: 1px solid #958f8f;
+        background-color: #F0F2F5;
+        margin-bottom: 0px;
+   }
+
+   .add-comment {
+        display: flex;
+        flex-direction: row;
+        height: 15px;
+        gap: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+   }
+
+   .submit-comment {
+        height: 35px;
+        border-radius: 15px;
+   }
+
+
 
 }
