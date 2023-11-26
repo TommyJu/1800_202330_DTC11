@@ -65,6 +65,12 @@ function saveUserInfo() {
     document.getElementById('personalInfoFields').disabled = true;
 }
 
+// Store category so user can navigate back to desired message board
+function storeCategory(value) {
+    let key = "currentCategory";
+    localStorage.setItem(key, value);
+};
+
 // Populate my profile page with bookmarked posts
 const yourBookmarks = document.getElementById("your-bookmarks")
 function getBookmarks(user) {
@@ -95,7 +101,11 @@ function getBookmarks(user) {
                     //update title and some pertinant information
                     newcard.querySelector('.card-title').innerHTML = title;
                     newcard.querySelector('.card-image').src = image; //Example: NV01.jpg
+                    // Allow user to navigate to bookmarked post
                     newcard.querySelector('a').href = "view_message.html?postID=" + docID;
+                    newcard.querySelector('a').addEventListener("click", () => {
+                        storeCategory(postCategory);
+                    });
 
                     //NEW LINE: update to display length, duration, last updated
                     // newcard.querySelector('.card-length').innerHTML =
