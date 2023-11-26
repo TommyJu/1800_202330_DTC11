@@ -29,7 +29,7 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Other libraries go here -->
     <script src="https://kit.fontawesome.com/f35c321b59.js" crossorigin="anonymous"></script>
-    
+
 
 
     <!-- Link to styles of your own -->
@@ -63,7 +63,7 @@
                         <p class="card-description"></p>
                     </div>
                 </div>
-                
+
                 <div class="buttons-container">
 
                     <button class="like-button">
@@ -84,9 +84,9 @@
                     <div class="comments-list">
                         <!-- Aquí se cargarán los comentarios -->
                     </div>
-                
+
                     <!-- Añadir un Nuevo Comentario -->
-                   
+
                 </div>
                 <div class="add-comment">
                     <input class="text" type="text" placeholder="Type your comment here">
@@ -94,7 +94,7 @@
                 </div>
 
 
-                
+
             </div>
         </template>
 
@@ -105,20 +105,19 @@
         </div>
     </section>
     <footer>
-        
-            <div id="home-button">
-                <a href="menu.html">
-                    <img src="/images/home button.webp" alt="">
-                    <p>Home</p>
-                </a>
-            </div>
-            <div id="add-post">
-                <a id="add-post-link" href="new_post_screen.html" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                    <img src="/images/plus-box.svg" alt="Add a post">
-                    <p>Add post</p>
-                </a>
-            </div>
+        <a id="home-button" href="menu.html">
+            <img src="/images/home.svg" alt="">
+            <p>Home</p>
+        </a>
+        <a id="add-post" href="new_post_screen.html" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img src="/images/plus-box.svg" alt="Add a post">
+            <p>Add post</p>
+        </a>
+
+        <a id="profile-button" href="profile.html">
+            <img src="/images/account-circle.svg" alt="Go to profile">
+            <p>My profile</p>
+        </a>
     </footer>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,8 +132,8 @@
 
 
                         <label for="title">Title:</label><br>
-                        <input type="text" id="title" name="title" placeholder="Enter the title"
-                            style="width: 100%;" required>
+                        <input type="text" id="title" name="title" placeholder="Enter the title" style="width: 100%;"
+                            required>
                         <br><br>
 
                         <label for="description">Post Description:</label><br>
@@ -153,7 +152,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit" value="Submit">
+                        <input class="submit-button btn btn-warning" data-bs-dismiss="modal" type="submit"
+                            value="Submit">
                         <!-- <button type="button" class="btn btn-warning">Save changes</button> -->
                     </div>
                 </form>
@@ -192,7 +192,7 @@
             </form>
         </div>
     </div> -->
- 
+
 
 
 

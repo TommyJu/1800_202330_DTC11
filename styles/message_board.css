@@ -316,37 +316,25 @@ footer {
 
 }
 
-#add-post-link,
-#home-button-link {
+#profile-button,
+#add-post,
+#home-button {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-#add-post img,
-#home-button img {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#add-post img {
+#add-post img, #home-button img, #profile-button img{
     width: 40px;
     height: 40px;
 }
 
-#home-button img {
-    width: 38px;
-    height: 38px;
-    filter: brightness(0) invert(0);
-}
-
-#add-post p {
+/* #add-post p {
     color: black;
     text-align: center;
-}
+} */
 
 
 #media-preview, #media {
