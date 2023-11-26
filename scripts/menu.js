@@ -45,6 +45,21 @@ function displayCardsDynamically(collection) {
                     storeCategoryTitle(title);
                 });
                 console.log(title)
+                // Book mark button
+                newcard.querySelector("i").id = 'save-' + docID;
+                newcard.querySelector("i").onclick = () => updateBookmark(docID);
+                // Keep bookmark active 
+                let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+                currentUser.get().then(userDoc => {
+                    let bookmark = userDoc.data().bookmarks;
+                    let iconID = 'save-' + docID;
+                    let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
+                    console.log("isBookmarked", isBookmarked);
+                    if (isBookmarked) {
+                        document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                        document.getElementById(iconID).classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+                    }
+                })
 
 
                 //attach to card-container
@@ -68,6 +83,39 @@ function storeCategoryTitle(value) {
     localStorage.setItem(key, value);
 };
 
+// Bookmark a category
+function updateBookmark(docID) {
+
+    var currentCategory = localStorage.getItem("currentCategory");
+
+    let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
+    currentUser.get().then(userDoc => {
+        let myCategories = userDoc.data().mycategories || {};
+
+        let iconID = 'save-' + docID;
+        let iconElement = document.getElementById(iconID);
+
+        if (myCategories[docID]) {
+            let updateObject = {};
+            updateObject['mycategories.' + docID] = firebase.firestore.FieldValue.delete();
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark removed");
+                iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-regular", "fa-bookmark", "fa-2xl");
+            });
+        } else {
+            let updateObject = {};
+            updateObject['mycategories.' + docID] = {
+                category: currentCategory,
+            };
+            currentUser.update(updateObject).then(() => {
+                console.log("Bookmark added");
+                iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
+                iconElement.classList.add("fa-solid", "fa-bookmark", "fa-2xl");
+            });
+        }
+    });
+}
 
 // Code for adding a new category -------------------------------
 
@@ -132,7 +180,8 @@ function uploadPic(categoryDocID) {
                             // One last thing to do:
                             // save this postID into an array for the OWNER
                             // so we can show "my posts" in the future
-                            saveCategoryIDforUser(categoryDocID);
+                            
+                            // saveCategoryIDforUser(categoryDocID);
                         })
                 })
         })
