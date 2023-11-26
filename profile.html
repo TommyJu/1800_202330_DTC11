@@ -25,10 +25,18 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <link rel="stylesheet" href="/styles/profile.css">
+    <script src="https://kit.fontawesome.com/f35c321b59.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <navbar id="navbarPlaceholder"></navbar>
     <div class="container">
+        <div id="media-container">
+            <input type="file" id="media-input" name="media" accept="image/*" required>
+            <div id="media-preview">
+                <!-- Default image for profile picture -->
+                <img id="media" src="images/account-circle.svg">
+            </div>
+        </div>
         <h1>User Profile </h1>
         <form>
             <fieldset class="mb-3" id="personalInfoFields" disabled>
@@ -48,33 +56,6 @@
             </div>
         </form>
     </div>
-    <div id="my-bookmarks">
-        <h2>My Bookmarks</h2>
-        <template id="bookmarkCardTemplate">
-            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
-                <img class="card-image card-img-top" src=" ..." alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <br>
-                    <a class="btn btn-secondary card-href" id="read-more">See post</a>
-                </div>
-            </div>
-     </template>
-    </div>
-    <div id="my-categories">
-        <h2>My Categories</h2>
-        <template id="categoryCardTemplate">
-            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
-                <img class="card-image card-img-top" src=" ..." alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <br>
-                    <a class="btn btn-secondary card-href" id="read-more">See category</a>
-                </div>
-            </div>
-     </template>
-    </div>
-
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/authentication.js"></script>
