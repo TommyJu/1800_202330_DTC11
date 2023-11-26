@@ -30,6 +30,13 @@
 <body>
     <navbar id="navbarPlaceholder"></navbar>
     <div class="container">
+        <div id="media-container">
+            <input type="file" id="media-input" name="media" accept="image/*" required>
+            <div id="media-preview">
+                <!-- Default image for profile picture -->
+                <img id="media" src="images/account-circle.svg">
+            </div>
+        </div>
         <h1>User Profile </h1>
         <form>
             <fieldset class="mb-3" id="personalInfoFields" disabled>
