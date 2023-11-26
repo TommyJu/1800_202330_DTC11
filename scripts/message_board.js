@@ -1,9 +1,9 @@
 // --------- Scroll to top button ---------
-const scrollToTop = document.getElementById("scroll-to-top");
+// const scrollToTop = document.getElementById("scroll-to-top");
 const cardContainer = document.getElementById("card-container");
-scrollToTop.addEventListener("click", () => {
-    cardContainer.scrollTop = 0;
-})
+// scrollToTop.addEventListener("click", () => {
+//     cardContainer.scrollTop = 0;
+// })
 
 // global variables
 var currentCategory = localStorage.getItem("currentCategory");
@@ -41,9 +41,7 @@ function displayCardsDynamically(category) {
 
                 createComments(newcard, docID);
 
-                document.getElementById("card-container").insertBefore(
-                    newcard,
-                    document.getElementById("scroll-to-top-container"));
+                document.getElementById("card-container").append(newcard);
             } else if (change.type === "modified") {
                 const existingCard = document.querySelector(`.card[data-doc-id="${docID}"]`);
                 if (existingCard) {
@@ -231,8 +229,6 @@ function updateCommentCount(postId) {
 }
 
 
-
-
 function timeAgo(dateParam) {
     if (!dateParam) {
         return null;
@@ -266,26 +262,11 @@ function timeAgo(dateParam) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 var submitButton = document.querySelector('.submit-button');
-
-
 // Obtén el modal
 var modal = document.getElementById("exampleModal");
-
 // Obtén el botón que abre el modal
 var btn = document.getElementById("add-post-link");
-
 // Obtén el elemento <span> que cierra el modal
 var span = document.getElementsByClassName("close")[0];
 
