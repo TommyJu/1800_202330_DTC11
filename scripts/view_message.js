@@ -1,5 +1,6 @@
 // global variables
 var currentCategory = localStorage.getItem("currentCategory");
+var ImageFile;
 
 function dynamicallyPopulatePost(){
     var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
@@ -25,6 +26,7 @@ function dynamicallyPopulatePost(){
             document.getElementById("posted-date-placeholder").innerText = postID.data().date
             document.querySelector("i").id = 'save-' + docID;
             document.querySelector("i").onclick = () => updateBookmark(docID);
+            document.querySelector("#delete-post").onclick = () => deletePost(docID);
 
             // keep bookmarked if it's clicked already
             let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
@@ -74,6 +76,58 @@ function updateBookmark(docID){
                 iconElement.classList.add("fa-solid","fa-bookmark","fa-2xl");
             });
         }
+    });
+}
+
+// delete post function
+function deletePost(docID){
+    console.log("delete post btn clicked");
+    var result = confirm("Are you sure you want to delete this post?");
+    if (result){
+        db.collection("categories").doc(currentCategory).collection("posts").doc(docID).delete().then(() => {
+            console.log("Post successfully deleted!");
+            deleteFromMyPosts(docID);
+            window.location.href = "message_board.html";
+        }).catch((error) => {
+            console.error("Error removing post: ", error);
+        });
+    }
+}
+
+// delete post from my posts in user collection
+function deleteFromMyPosts(docID){
+    firebase.auth().onAuthStateChanged(user => {
+        db.collection("users").doc(user.uid).update({
+            myposts: firebase.firestore.FieldValue.arrayRemove(docID)
+        }).then(() => {
+            console.log("delete post from my post in users collection");
+            deleteFromStorage(docID);
+            // window.location.href = "message_board.html";
+        }).catch((error) => {
+            console.error("Error removing post: ", error);
+        });
+    })
+}
+
+function getExtensionFromImageUrl(url){
+    return url.split('.').pop();
+}
+
+function deleteFromStorage(imageUrl){
+    var storageRef = firebase.storage().ref();
+    var extension = getExtensionFromImageUrl(imageUrl)
+    var imagePath = 'images/' + imageUrl + '.' + extension;
+    var imageRef = storageRef.child(imagePath);
+
+    // delete the file
+    imageRef.delete().then(() => {
+        // File deleted successfully
+        console.log("delete image from storage");
+        alert("DELETE SUCCESSFUL");
+        location.reload();
+    }).catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log("error deleting image from storage", error);
     });
 }
 

@@ -42,7 +42,8 @@ main{
 }
 
 #post-description-placeholder {
-    margin: 10px 10px;
+    margin: 0 10px 0 10px;
+    padding: 0 0 10px 0;
     font-size: 20px;
 }
 
