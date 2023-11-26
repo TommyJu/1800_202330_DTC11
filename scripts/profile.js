@@ -95,7 +95,7 @@ function getBookmarks(user) {
                     //update title and some pertinant information
                     newcard.querySelector('.card-title').innerHTML = title;
                     newcard.querySelector('.card-image').src = image; //Example: NV01.jpg
-                    newcard.querySelector('a').href = "message_board.html?docID=" + docID;
+                    newcard.querySelector('a').href = "view_message.html?postID=" + docID;
 
                     //NEW LINE: update to display length, duration, last updated
                     // newcard.querySelector('.card-length').innerHTML =
