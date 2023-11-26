@@ -51,9 +51,9 @@ function displayCardsDynamically(collection) {
                 // Keep bookmark active 
                 let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
                 currentUser.get().then(userDoc => {
-                    let bookmark = userDoc.data().bookmarks;
+                    let categories = userDoc.data().mycategories;
                     let iconID = 'save-' + docID;
-                    let isBookmarked = bookmark.hasOwnProperty(docID); // check if the post is already bookmarked
+                    let isBookmarked = categories.includes(docID); // check if the post is already bookmarked
                     console.log("isBookmarked", isBookmarked);
                     if (isBookmarked) {
                         document.getElementById(iconID).classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
@@ -85,9 +85,6 @@ function storeCategoryTitle(value) {
 
 // Bookmark a category
 function updateBookmark(docID) {
-
-    var currentCategory = localStorage.getItem("currentCategory");
-
     let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
     currentUser.get().then(userDoc => {
         let myCategories = userDoc.data().mycategories || {};
@@ -95,20 +92,22 @@ function updateBookmark(docID) {
         let iconID = 'save-' + docID;
         let iconElement = document.getElementById(iconID);
 
-        if (myCategories[docID]) {
-            let updateObject = {};
-            updateObject['mycategories.' + docID] = firebase.firestore.FieldValue.delete();
-            currentUser.update(updateObject).then(() => {
+        if (myCategories.includes(docID)) {
+            currentUser.update(
+                {
+                    mycategories: firebase.firestore.FieldValue.arrayRemove(docID)
+                }
+            ).then(() => {
                 console.log("Bookmark removed");
                 iconElement.classList.remove("fa-solid", "fa-bookmark", "fa-2xl");
                 iconElement.classList.add("fa-regular", "fa-bookmark", "fa-2xl");
             });
         } else {
-            let updateObject = {};
-            updateObject['mycategories.' + docID] = {
-                category: currentCategory,
-            };
-            currentUser.update(updateObject).then(() => {
+            currentUser.update(
+                {
+                    mycategories: firebase.firestore.FieldValue.arrayUnion(docID)
+                }
+            ).then(() => {
                 console.log("Bookmark added");
                 iconElement.classList.remove("fa-regular", "fa-bookmark", "fa-2xl");
                 iconElement.classList.add("fa-solid", "fa-bookmark", "fa-2xl");
