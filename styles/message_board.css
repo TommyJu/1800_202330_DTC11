@@ -369,52 +369,13 @@ footer {
     cursor: pointer;
 }
 
+i {
+    color: #ffc107;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.fa-solid {
+    color: #ffc107;
+}
 
 /* media queries */
 
