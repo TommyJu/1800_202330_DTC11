@@ -101,11 +101,35 @@ body {
 
 }
 
+.right {
+    margin-left: auto;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10%;
+    width: auto
+    height: 50px;
+}
+
 .card-info {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 20%;
+}
+
+.right-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 5px;
+
 }
 
 .card-title {
@@ -113,22 +137,30 @@ body {
     width: 100%;
     text-align: center;
     align-items: center;
-    margin-top: 10px;
-
+    margin-bottom: 0px;
 }
 
 .card-date {
     font-size: 12px;
     font-weight: bold;
-    width: 25%;
     text-align: right;
 }
 
 .card-user {
     font-size: 18px;
     font-weight: bold;
+    width: 200px;
+}
 
 
+.card-user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+    margin-right: 10px;
+    border: solid 2px grey;
 }
 
 .image-container {
@@ -146,7 +178,6 @@ body {
     width: 100%;
     object-position: center;
 }
-
 
 
 .card-description-container {
@@ -432,9 +463,10 @@ footer {
         
     }
 
-    .comment-list {
+    .comments-list {
         max-height: 200px;  
-        border: none
+        border: 1px solid #958f8f;
+        
     }
 
     .card-image {

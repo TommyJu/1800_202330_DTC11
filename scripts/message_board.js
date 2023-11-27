@@ -23,6 +23,7 @@ function displayCardsDynamically(category) {
             var userName = doc.data().userName;
             var docID = doc.id;
             var date = doc.data().date;
+            var userId = doc.data().userId;
 
             let cardTemplate = document.getElementById("card-template");
 
@@ -31,7 +32,7 @@ function displayCardsDynamically(category) {
 
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description-container > p').innerHTML = description;
-                if (image) { // Solo establece la imagen si existe
+                if (image) { // If there is an image, add it to the card
                     newcard.querySelector('.card-image').src = image;
                 }
                 newcard.querySelector('.card-date').innerHTML = date;
@@ -40,6 +41,30 @@ function displayCardsDynamically(category) {
                 newcard.querySelector('.card').setAttribute('data-doc-id', docID); // Añade un atributo para identificar la tarjeta
                 newcard.querySelector("i").id = 'save-' + docID;
                 newcard.querySelector("i").onclick = () => updateBookmark(docID);
+
+                // Find the card user image element within the cloned content
+                const cardUserImage = newcard.querySelector(".card-user-image");
+
+                db.collection("users").doc(userId).get().then(userDoc => {
+                    let profileImage = ""; // Default image URL
+
+                    if (userDoc.exists) {
+                        let userProfile = userDoc.data();
+                        profileImage = userProfile.image; // Get the profile image
+                        console.log("Profile image URL:", profileImage); // Verifica la URL de la imagen de perfil
+                    } else {
+                        console.log("User document not found or does not contain an image.");
+                    }
+
+                    // Check if the element exists before setting the image source
+                    if (cardUserImage) {
+                        cardUserImage.src = profileImage || 'https://firebasestorage.googleapis.com/v0/b/comp1800-dtc11.appspot.com/o/images%2Fundefined.png?alt=media&token=705196ac-2166-4dec-bed4-d906ca77017d';
+                    } else {
+                        console.error("Card user image element not found.");
+                    }
+                }).catch(error => {
+                    console.error("Error retrieving user image:", error);
+                });
 
                 // Keep bookmark active 
                 let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
@@ -117,11 +142,25 @@ function createComments(newcard, docID) {
     });
 
     submitCommentButton.addEventListener('click', () => {
+        event.preventDefault(); // Previene el envío por defecto del formulario
         commentsSection.style.display = 'block'; // Ensures the comments section is shown
 
         let commentText = commentInput.value;
         addCommentToFirestore(commentText, docID, commentsListDiv);
         commentInput.value = ''; // Clear the input after submit
+
+
+        // Waits for the comment to be added to the DOM before scrolling to the bottom
+        setTimeout(() => {
+            let comments = commentsListDiv.querySelectorAll('.comment');
+            if (comments.length > 0) {
+                let lastComment = comments[comments.length - 1];
+                lastComment.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+                // Opcional: Prevenir que cualquier otro elemento reciba enfoque
+                lastComment.focus({ preventScroll: true });
+            }
+        }, 500); // It waits 500ms for the comment to be added to the DOM
     });
 
     db.collection('comments').where('postId', '==', docID).orderBy('timestamp', 'desc').get()
