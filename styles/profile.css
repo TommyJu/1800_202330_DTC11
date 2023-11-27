@@ -1,0 +1,100 @@
+/* Minimal CSS Reset */
+html {
+    width: 100%;
+    height: 100vh;
+}
+
+body {
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    background-color: rgb(33, 37, 41);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+}
+
+form, #media-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    min-width: 400px;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+fieldset{
+    width: 100%;
+    text-align: left;
+}
+
+#media-preview {
+    background-color: white;
+    border-radius: 50%;
+    overflow:hidden;
+    width: 250px;
+    height: 250px;
+}
+
+#media {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+#back-button {
+    margin-right: auto;
+    margin-left: 40px;
+    color: white;
+}
+
+/* back icon */
+#prev-page {
+    width: 40px;
+    height: 40px;
+    background-color: inherit;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(332deg) brightness(103%) contrast(102%);
+}

@@ -25,39 +25,49 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"/>
     <script src="https://kit.fontawesome.com/f35c321b59.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="/styles/bookmarks.css">
 
 </head>
 
 <body>
 
     <navbar id="navbarPlaceholder"></navbar>
-
-    <div id="my-bookmarks">
-        <h2>My Bookmarks</h2>
-        <template id="bookmarkCardTemplate">
-            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
-                <img class="card-image card-img-top" src=" ..." alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <br>
-                    <a class="btn btn-secondary card-href" id="read-more">See post</a>
-                </div>
+    <a id="back-button" href="menu.html">
+        <img id="prev-page" src="/images/angle-left-solid.svg" alt="">
+        Home
+    </a>
+    <h1>Bookmarks</h1>
+    <div id="container">
+        <div id="bookmarks-container">
+            <h2>Posts</h2>
+            <div id="my-bookmarks">
+                <template id="bookmarkCardTemplate">
+                    <div class="card bg-light">
+                        <img class="card-image card-img-top" src=" ..." alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <br>
+                            <a class="btn btn-warning card-href" id="read-more">See post</a>
+                        </div>
+                    </div>
+             </template>
             </div>
-     </template>
-    </div>
-    <div id="my-categories">
-        <h2>My Categories</h2>
-        <template id="categoryCardTemplate">
-            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
-                <img class="card-image card-img-top" src=" ..." alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <br>
-                    <a class="btn btn-secondary card-href" id="read-more">See category</a>
-                </div>
+        </div>
+        <div id="categories-container">
+            <h2>Categories</h2>
+            <div id="my-categories">
+                <template id="categoryCardTemplate">
+                    <div class="card bg-light">
+                        <img class="card-image card-img-top" src=" ..." alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <br>
+                            <a class="btn btn-warning card-href" id="read-more">See category</a>
+                        </div>
+                    </div>
+             </template>
             </div>
-     </template>
+        </div>
     </div>
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/skeleton.js"></script>

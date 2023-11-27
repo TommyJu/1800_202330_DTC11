@@ -97,11 +97,13 @@ function deletePost(docID){
 // delete post from my posts in user collection
 function deleteFromMyPosts(docID){
     firebase.auth().onAuthStateChanged(user => {
+        // remove document ID from user document
         db.collection("users").doc(user.uid).update({
             myposts: firebase.firestore.FieldValue.arrayRemove(docID)
         }).then(() => {
             console.log("delete post from my post in users collection");
             deleteFromStorage(docID);
+            deleteFromCategories(docID);
             // window.location.href = "message_board.html";
         }).catch((error) => {
             console.error("Error removing post: ", error);
@@ -111,6 +113,15 @@ function deleteFromMyPosts(docID){
 
 function getExtensionFromImageUrl(url){
     return url.split('.').pop();
+}
+
+function deleteFromCategories(docID) {
+    var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
+    postsCollection.doc(docID).delete().then(() => {
+        console.log("Post deleted from categories collection")
+    }).catch(error => {
+        console.log("Error deleting post from categories collection")
+    })
 }
 
 function deleteFromStorage(imageUrl){
