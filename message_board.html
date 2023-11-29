@@ -42,17 +42,28 @@
     <nav id="navbarPlaceholder"></nav>
 
     <section id="card-container">
-        <h1>Hi <span id="message-board-user-name"></span>. Welcome to the <span id="message-board-category"></span>
-            board.</h1>
+        <h1>Hi <span id="message-board-user-name"></span>!
+            <br>Welcome to the <span id="message-board-category"></span>
+            board!
+        </h1>
 
         <!-- Message board card template -->
         <template id="card-template">
             <div class="card">
                 <div class="card-info">
-                    <h2 class="card-user">Your Message Title Here</h2>
-                    <p class="card-date"></p>
-                    <i class="fa-regular fa-bookmark fa-2xl "></i>
+                    <div class="user-info-container">
+                        <img class="card-user-image" src="">
+                        <h2 class="card-user">Your Message Title Here</h2>
+                    </div>
+                    <div class="right-items">
+                        <p class="card-date"></p>
+                        <i class="fa-regular fa-bookmark fa-2xl"></i>
+                    </div>
+
                 </div>
+
+
+
                 <div class="card-title"></div>
                 <div class="card-image-and-description">
                     <div class="image-container">
@@ -90,8 +101,8 @@
 
                 </div>
                 <div class="add-comment">
-                    <input class="text" type="text" placeholder="Type your comment here">
-                    <button class="submit-comment">Add Comment</button>
+                    <input class="text" type="text" placeholder="  Write a comment here">
+                    <button type="button" class="submit-comment">Send</button>
                 </div>
 
 
@@ -166,7 +177,7 @@
         
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Aquí puedes agregar el formulario para crear un nuevo post.</p>
+            <p>Aquí puedes agregar el formulario para crear un nuevo post</p>
             <form id="myform" enctype="multipart/form-data">
             
                 <label for="title">Title:</label><br>

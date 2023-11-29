@@ -101,11 +101,35 @@ body {
 
 }
 
+.right {
+    margin-left: auto;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10%;
+    width: auto
+    height: 50px;
+}
+
 .card-info {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 20%;
+}
+
+.right-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 5px;
+
 }
 
 .card-title {
@@ -113,22 +137,30 @@ body {
     width: 100%;
     text-align: center;
     align-items: center;
-    margin-top: 10px;
-
+    margin-bottom: 0px;
 }
 
 .card-date {
     font-size: 12px;
     font-weight: bold;
-    width: 25%;
     text-align: right;
 }
 
 .card-user {
     font-size: 18px;
     font-weight: bold;
+    width: 200px;
+}
 
 
+.card-user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+    margin-right: 10px;
+    border: solid 2px grey;
 }
 
 .image-container {
@@ -146,7 +178,6 @@ body {
     width: 100%;
     object-position: center;
 }
-
 
 
 .card-description-container {
@@ -176,6 +207,8 @@ body {
 }
 
 .buttons-container {
+    border: 1px solid #958f8f;
+    border-radius: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -189,7 +222,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 5px;
-    border-top: solid 2px rgb(109, 106, 106);
+    border-top: solid 1px rgb(109, 106, 106);
     padding-top: 10px;
 }
 
@@ -243,7 +276,7 @@ body {
 }
 
 .comments-list {
-    border: solid 2px black;
+    border: 1px solid #958f8f;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     padding: 10px;
@@ -279,6 +312,8 @@ body {
     width: 100%;
     height: 30%;
     margin-bottom: 15px;
+    border-radius: 15px;
+    border: 1px solid #958f8f;
 }
 
 .comment-section {
@@ -369,13 +404,52 @@ footer {
     cursor: pointer;
 }
 
-i {
-    color: #ffc107;
-}
 
-.fa-solid {
-    color: #ffc107;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* media queries */
 
@@ -389,10 +463,24 @@ i {
 
     .image-container {
         width: 100%;
+        border: none;
+        
+    }
+
+    .comments-list {
+        max-height: 200px;  
+        border: 1px solid #958f8f;
+        
+    }
+
+    .card-image {
+       border: none;
     }
 
     .card {
-        width: 90%;
+        width: 93%;
+        margin-top: 6px;
+        border: none;
     }
 
     .modal-content {
@@ -419,5 +507,36 @@ i {
         text-decoration: none;
         cursor: pointer;
     }
+
+   #card-container h1 {
+       margin-top: 70px;
+       font-size: 22px;
+       margin-bottom: 15px;
+   }
+
+   .text {
+        border-radius: 15px;
+        width: 85%;
+        height: 35px;
+        border: 1px solid #958f8f;
+        background-color: #F0F2F5;
+        margin-bottom: 0px;
+   }
+
+   .add-comment {
+        display: flex;
+        flex-direction: row;
+        height: 15px;
+        gap: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+   }
+
+   .submit-comment {
+        height: 35px;
+        border-radius: 15px;
+   }
+
+
 
 }
