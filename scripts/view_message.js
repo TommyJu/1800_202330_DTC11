@@ -7,7 +7,8 @@ function dynamicallyPopulatePost(){
     let url = new URL(window.location.href);
     let docID = url.searchParams.get("postID");
     let currentCategoryID = localStorage.getItem("currentCategory");
-    
+    // Will only show the delete button if the user created the post
+    showDeleteButton(docID);
 
     postsCollection.doc(docID)
         .onSnapshot(postID => {
@@ -139,6 +140,25 @@ function deleteFromStorage(imageUrl){
     }).catch((error) => {
         // Uh-oh, an error occurred!
         console.log("error deleting image from storage", error);
+    });
+}
+
+
+// Delete button will only appear if the post is created by the user
+function showDeleteButton(docID) {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            user = db.collection("users").doc(user.uid);
+            user.get().then((userDoc) => {
+                var userPosts = userDoc.data().myposts;
+                if (userPosts.includes(docID)) {
+                    document.getElementById("delete-post").style.display = "block";
+                }
+            })
+            
+        } else {
+            console.log("No user is signed in");
+        }
     });
 }
 

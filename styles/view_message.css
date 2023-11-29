@@ -131,3 +131,7 @@ form > textarea {
     display: flex;
     align-items: center;
 }
+
+#delete-post {
+    display: none;
+}
