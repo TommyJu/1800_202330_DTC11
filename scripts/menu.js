@@ -165,14 +165,14 @@ function uploadPic(categoryDocID) {
                 // AFTER .getDownloadURL is done
                 .then(function (url) { // Get URL of the uploaded file
                     console.log("3. Got the download URL.");
-                    categoryImageUrl = url // store result in global variable
-
+                    categoryImageUrl = url; // store result in global variable
                     // Now that the image is on Storage, we can go back to the
                     // post document, and update it with an "image" field
                     // that contains the url of where the picture is stored.
                     categoriesCollection.doc(categoryDocID).update({
                         "image": url // Save the URL into users collection
                     })
+                    
                         // AFTER .update is done
                         .then(function () {
                             console.log('4. Added pic URL to Firestore.');
@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
 
                 // The rest of the code to add to Firestore
-                categoriesCollection.add(categoryData).then(category => {
-                    uploadPic(category.id);
+                categoriesCollection.add(categoryData).then(async (category) => {
+                    await uploadPic(category.id);
                     console.log("category", category);
                     
                     console.log('Post added successfully!');
