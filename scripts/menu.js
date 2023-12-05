@@ -204,7 +204,7 @@ function listenFileSelect() {
         ImageFile = e.target.files[0];   //Global variable
         var blob = URL.createObjectURL(ImageFile);
         image.src = blob; // Display this image
-        categoryImageUrl = blob;
+        // categoryImageUrl = blob;
     })
 }
 listenFileSelect();
