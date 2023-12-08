@@ -1,9 +1,4 @@
-// --------- Scroll to top button ---------
-// const scrollToTop = document.getElementById("scroll-to-top");
 const cardContainer = document.getElementById("card-container");
-// scrollToTop.addEventListener("click", () => {
-//     cardContainer.scrollTop = 0;
-// })
 
 // global variables
 var currentCategory = localStorage.getItem("currentCategory");
@@ -93,6 +88,7 @@ function displayCardsDynamically(category) {
         });
     });
 }
+
 
 // Bookmark a post from the message board
 function updateBookmark(docID) {
@@ -190,30 +186,7 @@ function createComments(newcard, docID) {
 }
 
 
-
-
-// function getParameterByName(name, url = window.location.href) {
-//     name = name.replace(/[\[\]]/g, '\\$&');
-//     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-//         results = regex.exec(url);
-//     if (!results) return null;
-//     if (!results[2]) return '';
-//     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-// }
-
-// var category = getParameterByName('category');
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    // var urlParams = new URLSearchParams(window.location.search);
-    // var category = urlParams.get('category');
-    // var addPostLink = document.getElementById('add-post-link');
-
-    // if (category && addPostLink) {
-    //     addPostLink.href = `new_post_screen.html?category=${category}`;
-    // }
-    // Display cards based on the category obtained from the URL
-
     displayCardsDynamically(currentCategory); // global variable
 });
 
@@ -221,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // ---------- Add user name and category to message board title ---------
 const messageBoardCategory = document.getElementById("message-board-category")
 const messageBoardUserName = document.getElementById("message-board-user-name");
+
 
 // Display the user's name using localStorage
 function displayUserName() {
@@ -350,6 +324,7 @@ function timeAgo(dateParam) {
 }
 
 
+// possibly unused variables
 var submitButton = document.querySelector('.submit-button');
 // Obtén el modal
 var modal = document.getElementById("exampleModal");
@@ -357,30 +332,3 @@ var modal = document.getElementById("exampleModal");
 var btn = document.getElementById("add-post-link");
 // Obtén el elemento <span> que cierra el modal
 var span = document.getElementsByClassName("close")[0];
-
-// // Cuando el usuario haga clic en el botón, abre el modal 
-// btn.onclick = function (event) {
-//     event.preventDefault(); // Previene la navegación al enlace
-//     modal.style.display = "block";
-
-// }
-
-// // Cuando el usuario haga clic en <span> (x), cierra el modal
-// span.onclick = function () {
-//     modal.style.display = "none";
-//     document.getElementById('myform').reset();
-//     // Limpiar el campo de archivo
-//     document.getElementById('media-input').value = "";
-//     // Limpiar la vista previa de la imagen si es necesario
-//     document.getElementById('media').src = "";
-// }
-
-// // Cuando el usuario haga clic fuera del modal, también lo cierra
-// window.onclick = function (event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
-
-

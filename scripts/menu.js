@@ -61,9 +61,7 @@ function displayCardsDynamically(collection) {
                     }
                 })
 
-
                 //attach to card-container
-                // document.getElementById("card-container").prepend(newcard);
                 document.getElementById("category-container").append(newcard);
             })
         })
@@ -71,17 +69,22 @@ function displayCardsDynamically(collection) {
 displayCardsDynamically("categories");
 
 
-// Will store the category to localstorage for future use
+// Will store useful category data to localstorage for future use
 function storeCategory(value) {
     let key = "currentCategory";
     localStorage.setItem(key, value);
 };
 
-
 function storeCategoryTitle(value) {
     let key = "currentCategoryTitle";
     localStorage.setItem(key, value);
 };
+
+function storeCategoryImage(value) {
+    let key = "newCategoryImage"
+    localStorage.setItem(key, value)
+}
+
 
 // Bookmark a category
 function updateBookmark(docID) {
@@ -116,9 +119,12 @@ function updateBookmark(docID) {
     });
 }
 
+
 // Code for adding a new category -------------------------------
 
 var userName; // create userName global variable using userID in local storage
+
+
 function saveUserName() {
     var userID = localStorage.getItem("userID");
     console.log("userid from local storage:", userID);
@@ -131,6 +137,7 @@ function saveUserName() {
     })
 }
 saveUserName();
+
 
 function saveCategoryIDforUser(categoryDocID) {
     firebase.auth().onAuthStateChanged(user => {
@@ -149,7 +156,10 @@ function saveCategoryIDforUser(categoryDocID) {
     })
 }
 
+
 var categoryImageUrl; // global variable for adding image to first post when creating a new category
+
+
 function uploadPic(categoryDocID) {
     console.log("inside uploadPic " + categoryDocID);
 
@@ -165,7 +175,9 @@ function uploadPic(categoryDocID) {
                 // AFTER .getDownloadURL is done
                 .then(function (url) { // Get URL of the uploaded file
                     console.log("3. Got the download URL.");
-                    categoryImageUrl = url // store result in global variable
+                    // Store the result in local storage for creating the first post in collection
+                    storeCategoryImage(url);
+
 
                     // Now that the image is on Storage, we can go back to the
                     // post document, and update it with an "image" field
@@ -173,14 +185,10 @@ function uploadPic(categoryDocID) {
                     categoriesCollection.doc(categoryDocID).update({
                         "image": url // Save the URL into users collection
                     })
+                    
                         // AFTER .update is done
                         .then(function () {
                             console.log('4. Added pic URL to Firestore.');
-                            // One last thing to do:
-                            // save this postID into an array for the OWNER
-                            // so we can show "my posts" in the future
-                            
-                            // saveCategoryIDforUser(categoryDocID);
                         })
                 })
         })
@@ -190,8 +198,8 @@ function uploadPic(categoryDocID) {
 }
 
 
-
 var ImageFile;
+
 
 // Change media preview on file upload
 function listenFileSelect() {
@@ -204,16 +212,13 @@ function listenFileSelect() {
         ImageFile = e.target.files[0];   //Global variable
         var blob = URL.createObjectURL(ImageFile);
         image.src = blob; // Display this image
-        categoryImageUrl = blob;
     })
 }
 listenFileSelect();
 
+
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('myform');
-    // var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
-    // var urlParams = new URLSearchParams(window.location.search);
-    // var category = urlParams.get('category');
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -241,16 +246,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
 
                 // The rest of the code to add to Firestore
-                categoriesCollection.add(categoryData).then(category => {
-                    uploadPic(category.id);
+                categoriesCollection.add(categoryData).then(async (category) => {
+                    await uploadPic(category.id);
                     console.log("category", category);
-                    
                     console.log('Post added successfully!');
                     // Create posts collection with a sample post to start
                     category.collection("posts").add(categoryData).then(firstPost => {
                         console.log("first post", firstPost)
                         firstPost.update({
-                            "image" : categoryImageUrl
+                            "image" : localStorage.getItem("newCategoryImage")
                         })
                     })
                 })
@@ -258,18 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Give the user confirmation when a category is added
                 var categoryConfirmation = document.getElementById("confirm-category");
                 categoryConfirmation.style.display = "block";
-                
-                // form.style.display = 'none';
-                // messageSentDiv.style.display = 'flex';
 
-                // Redirect the user to the message board page with the correct category
-                // setTimeout(function () {
-                //     window.location.href = `message_board.html`;
-               // }, 1000); // Redirects after 3 seconds
-
-                // }).catch(function (error) {
-                //     console.error('Error adding post: ', error);
-                // });
             } else {
                 console.error('User not signed in.');
                 // Here you could, for example, display an error message or redirect to the login page.

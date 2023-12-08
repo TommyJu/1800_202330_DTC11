@@ -2,6 +2,7 @@
 var currentCategory = localStorage.getItem("currentCategory");
 var ImageFile;
 
+
 // Change media preview on file upload
 function listenFileSelect() {
     // listen for file selection
@@ -113,8 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('myform');
     var messageSentDiv = document.getElementById('message-sent'); // Gets the "SENT!" message div
     var modal = document.getElementById("postModal");
-    // var urlParams = new URLSearchParams(window.location.search);
-    // var category = urlParams.get('category');
 
 
     form.addEventListener('submit', function (e) {
@@ -158,11 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Limpiar la vista previa de la imagen si es necesario
                     document.getElementById('media').src = "";
 
-
-                    // Redirect the user to the message board page with the correct category
-                    // setTimeout(function () {
-                    //     window.location.href = `message_board.html`;
-                    // }, 1000); // Redirects after 3 seconds
                 }).catch(function (error) {
                     console.error('Error adding post: ', error);
                 });
