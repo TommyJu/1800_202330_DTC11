@@ -7,14 +7,7 @@ function getNameFromAuth() {
             console.log(user.displayName);  //print the user name in the browser console
             userName = user.displayName;
 
-            // method #1:  insert with JS
             document.getElementById("name-goes-here").innerText = userName;    
-
-            //method #2:  insert using jquery
-            //$("#name-goes-here").text(userName); //using jquery
-
-            //method #3:  insert using querySelector
-            //document.querySelector("#name-goes-here").innerText = userName
 
         } else {
             // No user is signed in.

@@ -95,6 +95,7 @@ function deletePost(docID){
     }
 }
 
+
 // delete post from my posts in user collection
 function deleteFromMyPosts(docID){
     firebase.auth().onAuthStateChanged(user => {
@@ -112,9 +113,11 @@ function deleteFromMyPosts(docID){
     })
 }
 
+
 function getExtensionFromImageUrl(url){
     return url.split('.').pop();
 }
+
 
 function deleteFromCategories(docID) {
     var postsCollection = db.collection("categories").doc(currentCategory).collection("posts");
@@ -124,6 +127,7 @@ function deleteFromCategories(docID) {
         console.log("Error deleting post from categories collection")
     })
 }
+
 
 function deleteFromStorage(imageUrl){
     var storageRef = firebase.storage().ref();
