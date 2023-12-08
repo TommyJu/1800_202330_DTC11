@@ -83,6 +83,11 @@ function storeCategoryTitle(value) {
     localStorage.setItem(key, value);
 };
 
+function storeCategoryImage(value) {
+    let key = "newCategoryImage"
+    localStorage.setItem(key, value)
+}
+
 // Bookmark a category
 function updateBookmark(docID) {
     let currentUser = db.collection("users").doc(localStorage.getItem("userID"));
@@ -165,7 +170,11 @@ function uploadPic(categoryDocID) {
                 // AFTER .getDownloadURL is done
                 .then(function (url) { // Get URL of the uploaded file
                     console.log("3. Got the download URL.");
-                    categoryImageUrl = url; // store result in global variable
+                    // categoryImageUrl = url; // store result in global variable
+                    // Store the result in local storage for creating the first post in collection
+                    storeCategoryImage(url);
+
+
                     // Now that the image is on Storage, we can go back to the
                     // post document, and update it with an "image" field
                     // that contains the url of where the picture is stored.
@@ -249,8 +258,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Create posts collection with a sample post to start
                     category.collection("posts").add(categoryData).then(firstPost => {
                         console.log("first post", firstPost)
+                        
                         firstPost.update({
-                            "image" : categoryImageUrl
+                            "image" : localStorage.getItem("newCategoryImage")
                         })
                     })
                 })
